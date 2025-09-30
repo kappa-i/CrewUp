@@ -4,6 +4,13 @@
 
 TeamUp est une plateforme web de gestion et d'organisation d'événements sportifs, accessible en français et en anglais. L'application permet à ses utilisateurs de créer, rejoindre et gérer des événements sportifs dans leur région.
 
+## 📋 Répartition des tâches
+
+Semaine 06.10.25
+Nuno : Cahier des charges + imlpémentation pages de base
+Gabriel : Création espace Git + imlpémentation pages de base
+Tanguy : Réalisation de maquette + footer & header 
+
 ---
 
 ## 📄 Cahier des Charges
@@ -56,10 +63,3 @@ TeamUp est une plateforme web de gestion et d'organisation d'événements sporti
 
 
 ---
-
-## 📋 Répartition des tâches
-
-Semaine 06.10.25
-Nuno : Cahier des charges + imlpémentation pages de base
-Gabriel : Création espace Git + imlpémentation pages de base
-Tanguy : Réalisation de maquette + footer & header 
