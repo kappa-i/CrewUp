@@ -61,5 +61,5 @@ Semaine 06.10.25
 ## 🔗 Liens utiles
 
 - [Figma / Maquettes UI/UX](#)
-- [Trello / Suivi de projet](#)
+- [Notion / Suivi de projet](https://www.notion.so/27e72db9f84980878778e7631257d2f2?v=27e72db9f84981bf97ba000c4ff9ad7e&source=copy_link)
 
