@@ -32,7 +32,7 @@ Semaine 06.10.25
     - Nombre de joueurs minimum/maximum
     - Matériel requis
     - Titre/Description
-    - *(Optionnel)* Inviter des amis
+  - *(Optionnel)* Inviter des amis
   - *(Optionnel)* Page Contact / FAQ
 
 ---
