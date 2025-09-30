@@ -1,4 +1,4 @@
-# 🏀 TeamUp – Gestion d'Événements Sportifs (FR/EN)
+# 🏃‍♂️ TeamUp – Gestion d'Événements Sportifs (FR/EN)
 
 > Projet développé par Gabriel, Nuno, Tanguy M53-2
 
@@ -7,6 +7,7 @@ TeamUp est une plateforme web de gestion et d'organisation d'événements sporti
 ## 📋 Répartition des tâches
 
 Semaine 06.10.25
+
 Nuno : Cahier des charges + imlpémentation pages de base
 Gabriel : Création espace Git + imlpémentation pages de base
 Tanguy : Réalisation de maquette + footer & header 
@@ -61,5 +62,3 @@ Tanguy : Réalisation de maquette + footer & header
 - [Figma / Maquettes UI/UX](#)
 - [Trello / Suivi de projet](#)
 
-
----
