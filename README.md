@@ -6,7 +6,7 @@ TeamUp est une plateforme web de gestion et d'organisation d'événements sporti
 
 ## 📋 Répartition des tâches
 
-## Semaine 06.10.25
+Semaine 06.10.25
 
 - **Nuno** : Cahier des charges + implémentation pages de base  
 - **Gabriel** : Création espace Git + implémentation pages de base  
