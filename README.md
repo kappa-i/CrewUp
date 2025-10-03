@@ -60,6 +60,6 @@ Semaine 06.10.25
 
 ## 🔗 Liens utiles
 
-- [Figma / Maquettes UI/UX](#)
+- [Figma / Maquettes UI/UX](https://www.figma.com/design/GBVyr8XimXcI81jz8sVaxA/TeamUp-Maquette?node-id=0-1&t=7iepslXIBDtJJwVn-1)
 - [Notion / Suivi de projet](https://www.notion.so/27e72db9f84980878778e7631257d2f2?v=27e72db9f84981bf97ba000c4ff9ad7e&source=copy_link)
 
