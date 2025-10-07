@@ -1,4 +1,4 @@
-# 🏃‍♂️ TeamUp – Gestion d'Événements Sportifs (FR/EN)
+# 🏃‍♂️ CrewUp – Gestion d'Événements Sportifs (FR/EN)
 
 > Projet développé par Gabriel, Nuno, Tanguy M53-2
 
