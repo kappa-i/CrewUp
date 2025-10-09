@@ -1,16 +1,16 @@
 # 🏃‍♂️ CrewUp – Gestion d'Événements Sportifs (FR/EN)
 
-> Projet développé par Gabriel, Nuno, Tanguy M53-2
+> Projet développé par Gabriel, Nuno, Tanguy M53-2, lors du cours de Programmation Serveur 2, en ingénirie des médias à l'HEIG-VD.
 
-TeamUp est une plateforme web de gestion et d'organisation d'événements sportifs, accessible en français et en anglais. L'application permet à ses utilisateurs de créer, rejoindre et gérer des événements sportifs dans leur région.
+CrewUp est une plateforme web de gestion et d'organisation d'événements sportifs, accessible en français et en anglais. L'application permet à ses utilisateurs de créer, rejoindre et gérer des événements sportifs dans leur région.
 
 ## 📋 Répartition des tâches
 
-Semaine 06.10.25
+Semaine 27.10.25
 
-- **Nuno** : Cahier des charges + implémentation pages de base  
-- **Gabriel** : Création espace Git + implémentation pages de base  
-- **Tanguy** : Réalisation de maquette + footer & header  
+- **Nuno** : Terminer la maquette du site +  dire ce qu'il a spécifiquement dans create, modif, suppression + avancer pages de base
+- **Gabriel** : mettre en place une base de données pour l'application
+- **Tanguy** : footer & header + avancer pages de base  
 
 
 ---
