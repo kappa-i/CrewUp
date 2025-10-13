@@ -7,5 +7,5 @@
     <li><a href="/terrains">Terrains</a></li>
   </ul>
 
-  <a class="btn-inscription" href="/inscription">Inscription gratuite</a>
+  <a class="btn-inscription" href="/public/annonces">Inscription gratuite</a>
 </nav>
