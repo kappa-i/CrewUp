@@ -8,12 +8,7 @@
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="https://use.typekit.net/ooh3jgp.css">
     <script src="assets/js/global.js"></script>
-    
-    
-    <link rel="icon" href="https://crewup.ch/favicon.ico?v=6" sizes="any">
-<link rel="shortcut icon" href="https://crewup.ch/favicon.ico?v=6">
-<link rel="icon" type="image/png" href="https://crewup.ch/favicon-32.png?v=6" sizes="32x32">
-<link rel="apple-touch-icon" href="https://crewup.ch/favicon-180.png?v=6" sizes="180x180">
+    <link rel="icon" href="https://crewup.ch/favicon.ico">
 
 </head>
 
