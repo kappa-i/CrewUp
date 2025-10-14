@@ -1,14 +1,18 @@
 /*Global*/
 
+body {
+    background-color: red !important;
+  }
+
 html {
     font-family: "industry", sans-serif;
 }
 
-body {
-    background-color: #160d23 !important;
+/*body {
+    background-color: #160d23;
     margin: 0;
     padding: 0;
-}
+}*/
 
 .hello {
     color: white;
@@ -317,3 +321,21 @@ footer {
     width: 28px;
     height: 28px;
 }
+
+/*Account pages styling*/
+
+.account-menu {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    color: white;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .account-menu li a {
+    color: white !important;
+  }
+
+ 
+  
