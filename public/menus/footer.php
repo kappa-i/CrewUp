@@ -15,9 +15,9 @@
                 </a>
             </div>
             <div class="footer_links">
-                <a href="#">Annonces</a>
-                <a href="#">Créer un compte</a>
-                <a href="#">Terrains</a>
+                <a href="/annonces">Annonces</a>
+                <a href="/private/dashboard.php">Créer un compte</a>
+                <a href="/terrains">Terrains</a>
                 <a href="#">À proximité</a>
                 <a href="#">Communauté</a>
                 <a href="#">Mentions légales</a>

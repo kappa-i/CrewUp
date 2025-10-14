@@ -15,10 +15,10 @@
 
     <main>
         <h1 class="hello">Mon compte</h1>
-        <ul class="account-menu">
-            <li><a>• Create</a></li>
-            <li><a>• Update</a></li>
-            <li><a>• Delete</a></li>
+        <ul class="account-menu" style="margin-bottom: 400px;">
+            <li><a href="create.php">• Créer</a></li>
+            <li><a href="update.php">• Éditer</a></li>
+            <li><a href="delete.php">• Supprimer</a></li>
         </ul>
     </main>
 

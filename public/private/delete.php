@@ -14,7 +14,12 @@
     <?php require __DIR__ . '/../menus/header.php'; ?>
 
     <main>
-        <h1 class="hello" style="margin-bottom: 50vh;">Supprimer une annonce</h1>
+        <h1 class="hello">Supprimer une annonce</h1>
+        <ul class="account-menu" style="margin-bottom: 400px;">
+            <li><a href="dashboard.php">• Retour</a></li>
+            <li><a href="create.php">• Créer</a></li>
+            <li><a href="update.php">• Éditer</a></li>
+        </ul>
     </main>
 
     <?php require __DIR__ . '/../menus/footer.php'; ?>

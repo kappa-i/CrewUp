@@ -1,18 +1,14 @@
 /*Global*/
 
-body {
-    background-color: red !important;
-  }
-
 html {
     font-family: "industry", sans-serif;
 }
 
-/*body {
+body {
     background-color: #160d23;
     margin: 0;
     padding: 0;
-}*/
+}
 
 .hello {
     color: white;
@@ -327,6 +323,7 @@ footer {
 .account-menu {
     list-style: none;
     display: flex;
+    justify-content: center;
     gap: 1.5rem;
     color: white;
     padding: 0;
@@ -334,7 +331,8 @@ footer {
   }
   
   .account-menu li a {
-    color: white !important;
+    color: white;
+    text-decoration: none;
   }
 
  
