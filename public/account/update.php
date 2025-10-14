@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="https://use.typekit.net/ooh3jgp.css">
     <script src="../assets/js/global.js"></script>
+    <link rel="shortcut icon" href="../favicon.ico">
 </head>
 
 <body>
