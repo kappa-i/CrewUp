@@ -1,12 +1,14 @@
 <?php
 
 
-class Database implements DatabaseInterface {
+class Database implements DatabaseInterface
+{
     const DATABASE_CONFIGURATION_FILE = __DIR__ . '/../config/database.ini';
 
     private $pdo;
 
-    public function __construct() {
+    public function __construct()
+    {
         // Documentation : https://www.php.net/manual/fr/function.parse-ini-file.php
         $config = parse_ini_file(self::DATABASE_CONFIGURATION_FILE, true);
 
@@ -44,12 +46,31 @@ class Database implements DatabaseInterface {
             age INT NOT NULL
         );";
 
+
+        // Après la création de la table users
+        $sql = "CREATE TABLE IF NOT EXISTS events (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        sport VARCHAR(100) NOT NULL,
+        location VARCHAR(255) NOT NULL,
+        date DATE NOT NULL,
+        time TIME NOT NULL,
+        capacity INT NOT NULL,
+        filled INT DEFAULT 0,
+        description TEXT,
+        image_url VARCHAR(500),
+        user_id INT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        );";
+
         $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute();
     }
 
-    public function getPdo(): \PDO {
+    public function getPdo(): \PDO
+    {
         return $this->pdo;
     }
 }
