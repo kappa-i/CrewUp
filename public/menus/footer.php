@@ -17,7 +17,7 @@
             <div class="footer_links">
                 <a href="/annonces.php">Annonces</a>
                 <a href="/account/dashboard.php">Créer un compte</a>
-                <a href="/terrains">Terrains</a>
+                <a href="/terrains.php">Terrains</a>
                 <a href="#">À proximité</a>
                 <a href="#">Communauté</a>
                 <a href="#">Mentions légales</a>

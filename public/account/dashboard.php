@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://use.typekit.net/ooh3jgp.css">
     <script src="../assets/js/global.js"></script>
     <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="icon" href="https://crewup.ch/favicon.ico?v=6" sizes="any">
 </head>
 
 <body>
