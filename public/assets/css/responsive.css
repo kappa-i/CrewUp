@@ -252,12 +252,34 @@
     }
 }
 
+/* Très petits écrans (max 645px) */
+@media (max-width: 645px) {
+    .nav {
+        padding: 6px;
+        min-height: auto;
+    }
+
+    .logo {
+        margin: 2px 0;
+    }
+
+    .btn-inscription {
+        width: 50%;
+        margin: 4px auto 0 auto;
+    }
+}
+
 /* Petits mobiles (max 480px) */
 @media (max-width: 480px) {
     .nav {
         top: 10px;
         margin: 12px auto;
         padding: 6px;
+        min-height: auto;
+    }
+
+    .logo {
+        margin: 2px 0;
     }
 
     .logo a {
@@ -275,10 +297,10 @@
     }
 
     .btn-inscription {
-        width: 100%;
+        width: 50%;
         padding: 10px 16px;
         font-size: 0.85rem;
-        margin-top: 4px;
+        margin: 4px auto 0 auto;
     }
 
     .hello,
