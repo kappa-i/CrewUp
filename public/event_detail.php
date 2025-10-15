@@ -119,7 +119,7 @@ $sports = [
                     </a>
                     
                     <?php if ($event->isAvailable()): ?>
-                        <button class="btn-action btn-join" onclick="alert('Fonctionnalité à venir : Rejoindre l\'événement')">
+                        <button class="btn-action btn-join">
                             Rejoindre l'événement
                         </button>
                     <?php else: ?>
