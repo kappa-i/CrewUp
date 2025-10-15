@@ -1,34 +1,19 @@
 <?php
-// Autoloader simple & robuste
 spl_autoload_register(function ($class) {
-    // Normalise
-    $class = ltrim($class, '\\');
-    $base  = __DIR__ . '/../Classes/';
+    // On charge seulement le namespace 'Classes\'
+    $prefix  = 'Classes\\';
+    $baseDir = __DIR__ . '/../Classes/'; // => /src/Classes
 
-    // 1) PSR-4 standard: src/Classes/{Namespace}/{Class}.php
-    $path = $base . str_replace('\\', '/', $class) . '.php';
+    $len = strlen($prefix);
+    if (strncmp($class, $prefix, $len) !== 0) return;
 
-    // 2) Fallback pour classes globales (ex: Database)
-    if (!is_file($path) && strpos($class, '\\') === false) {
-        $path = $base . $class . '.php';
+    $relative = substr($class, $len);
+    $file = $baseDir . str_replace('\\', '/', $relative) . '.php';
+
+    // Fallback si ton entity s'appelle 'Events.php' (classe 'Events') mais on l’alias en 'Event'
+    if (!is_file($file) && str_ends_with($file, '/Event.php')) {
+        $file = substr($file, 0, -9) . 'Events.php'; // Event.php -> Events.php
     }
 
-    // 3) Classmap de secours pour les sensibles
-    static $classmap = [
-        'Events\Event'                 => 'Events/Event.php',
-        'Events\EventInterface'        => 'Events/EventInterface.php',
-        'Events\EventManager'          => 'Events/EventManager.php',
-        'Events\EventManagerInterface' => 'Events/EventManagerInterface.php',
-        'Database'                     => 'Database.php',
-        'DatabaseInterface'            => 'DatabaseInterface.php',
-    ];
-    if (!is_file($path) && isset($classmap[$class])) {
-        $path = $base . $classmap[$class];
-    }
-
-    // 4) Charge si trouvé
-    if (is_file($path)) {
-        require_once $path;
-    }
+    if (is_file($file)) require $file;
 });
-

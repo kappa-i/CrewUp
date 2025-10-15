@@ -1,7 +1,10 @@
 <?php
 require __DIR__ . '/../src/utils/autoloader.php';
+require_once __DIR__ . '/../src/Classes/database.php';
 
-use Events\EventManager;
+use Classes\Events\EventManager;
+
+$eventManager = new EventManager();
 
 // charge les creds depuis src/config/database.ini
 $config = parse_ini_file(__DIR__ . '/../src/config/database.ini', false, INI_SCANNER_TYPED);

@@ -1,13 +1,18 @@
 <?php
-namespace Events;
+namespace Classes\Events;
+
+use Classes\Events\Events as Event; // alias vers ta classe "Events"
+use Classes\Database;               // ta DB namespacée
+use PDO;
 
 class EventManager implements EventManagerInterface
 {
-    private \Database $database; // classe globale sans namespace
+    private Database $database;
 
     public function __construct()
     {
-        $this->database = new \Database();
+        // Si ta Database lit la config en interne, on garde l'instanciation simple
+        $this->database = new Database();
     }
 
     /**
@@ -19,25 +24,8 @@ class EventManager implements EventManagerInterface
         $stmt = $this->database->getPdo()->prepare($sql);
         $stmt->execute();
 
-        // tableau associatif only
-        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-        return array_map(function (array $e) {
-            return new Event(
-                (int)$e['id'],
-                (string)$e['title'],
-                (string)$e['sport'],
-                (string)$e['location'],
-                (string)$e['date'],
-                (string)$e['time'],
-                (int)$e['capacity'],
-                (int)$e['filled'],
-                (string)$e['description'],
-                $e['image_url'] ?? null,
-                (int)$e['user_id'],
-                (string)$e['created_at']
-            );
-        }, $rows);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return array_map([$this, 'hydrateEvent'], $rows);
     }
 
     /**
@@ -47,30 +35,16 @@ class EventManager implements EventManagerInterface
     {
         $sql  = "SELECT * FROM events WHERE id = :id";
         $stmt = $this->database->getPdo()->prepare($sql);
-        $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
-        $e = $stmt->fetch(\PDO::FETCH_ASSOC);
-        if (!$e) return null;
-
-        return new Event(
-            (int)$e['id'],
-            (string)$e['title'],
-            (string)$e['sport'],
-            (string)$e['location'],
-            (string)$e['date'],
-            (string)$e['time'],
-            (int)$e['capacity'],
-            (int)$e['filled'],
-            (string)$e['description'],
-            $e['image_url'] ?? null,
-            (int)$e['user_id'],
-            (string)$e['created_at']
-        );
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row ? $this->hydrateEvent($row) : null;
     }
 
     /**
      * Ajoute un nouvel événement
+     * @return int ID inséré
      */
     public function addEvent(Event $event): int
     {
@@ -81,16 +55,22 @@ class EventManager implements EventManagerInterface
         )";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $stmt->bindValue(':title',       $event->getTitle());
-        $stmt->bindValue(':sport',       $event->getSport());
-        $stmt->bindValue(':location',    $event->getLocation());
-        $stmt->bindValue(':date',        $event->getDate());
-        $stmt->bindValue(':time',        $event->getTime());
-        $stmt->bindValue(':capacity',    $event->getCapacity(), \PDO::PARAM_INT);
-        $stmt->bindValue(':filled',      $event->getFilled(),   \PDO::PARAM_INT);
-        $stmt->bindValue(':description', $event->getDescription());
-        $stmt->bindValue(':image_url',   $event->getImageUrl());
-        $stmt->bindValue(':user_id',     $event->getUserId(),   \PDO::PARAM_INT);
+
+        $stmt->bindValue(':title',    $event->getTitle());
+        $stmt->bindValue(':sport',    $event->getSport());
+        $stmt->bindValue(':location', $event->getLocation());
+        $stmt->bindValue(':date',     $event->getDate());
+        $stmt->bindValue(':time',     $event->getTime());
+        $stmt->bindValue(':capacity', $event->getCapacity(), PDO::PARAM_INT);
+        $stmt->bindValue(':filled',   $event->getFilled(),   PDO::PARAM_INT);
+
+        // Conserver correctement NULL en DB
+        $desc = $event->getDescription();
+        $img  = $event->getImageUrl();
+        $stmt->bindValue(':description', $desc, $desc === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+        $stmt->bindValue(':image_url',   $img,  $img  === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+
+        $stmt->bindValue(':user_id',  $event->getUserId(), PDO::PARAM_INT);
         $stmt->execute();
 
         return (int)$this->database->getPdo()->lastInsertId();
@@ -114,16 +94,20 @@ class EventManager implements EventManagerInterface
         WHERE id = :id";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $stmt->bindValue(':id',          $event->getId(),       \PDO::PARAM_INT);
-        $stmt->bindValue(':title',       $event->getTitle());
-        $stmt->bindValue(':sport',       $event->getSport());
-        $stmt->bindValue(':location',    $event->getLocation());
-        $stmt->bindValue(':date',        $event->getDate());
-        $stmt->bindValue(':time',        $event->getTime());
-        $stmt->bindValue(':capacity',    $event->getCapacity(), \PDO::PARAM_INT);
-        $stmt->bindValue(':filled',      $event->getFilled(),   \PDO::PARAM_INT);
-        $stmt->bindValue(':description', $event->getDescription());
-        $stmt->bindValue(':image_url',   $event->getImageUrl());
+
+        $stmt->bindValue(':id',       $event->getId(), PDO::PARAM_INT);
+        $stmt->bindValue(':title',    $event->getTitle());
+        $stmt->bindValue(':sport',    $event->getSport());
+        $stmt->bindValue(':location', $event->getLocation());
+        $stmt->bindValue(':date',     $event->getDate());
+        $stmt->bindValue(':time',     $event->getTime());
+        $stmt->bindValue(':capacity', $event->getCapacity(), PDO::PARAM_INT);
+        $stmt->bindValue(':filled',   $event->getFilled(),   PDO::PARAM_INT);
+
+        $desc = $event->getDescription();
+        $img  = $event->getImageUrl();
+        $stmt->bindValue(':description', $desc, $desc === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+        $stmt->bindValue(':image_url',   $img,  $img  === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
 
         return $stmt->execute();
     }
@@ -135,7 +119,7 @@ class EventManager implements EventManagerInterface
     {
         $sql  = "DELETE FROM events WHERE id = :id";
         $stmt = $this->database->getPdo()->prepare($sql);
-        $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
 
@@ -149,41 +133,50 @@ class EventManager implements EventManagerInterface
         $stmt->bindValue(':sport', $sport);
         $stmt->execute();
 
-        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-        return array_map(function (array $e) {
-            return new Event(
-                (int)$e['id'],
-                (string)$e['title'],
-                (string)$e['sport'],
-                (string)$e['location'],
-                (string)$e['date'],
-                (string)$e['time'],
-                (int)$e['capacity'],
-                (int)$e['filled'],
-                (string)$e['description'],
-                $e['image_url'] ?? null,
-                (int)$e['user_id'],
-                (string)$e['created_at']
-            );
-        }, $rows);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return array_map([$this, 'hydrateEvent'], $rows);
     }
 
+    /**
+     * Incrémente remplissage si dispo
+     */
     public function incrementFilled(int $eventId): bool
     {
-        $sql  = "UPDATE events SET filled = filled + 1 
-                 WHERE id = :id AND filled < capacity";
+        $sql  = "UPDATE events SET filled = filled + 1 WHERE id = :id AND filled < capacity";
         $stmt = $this->database->getPdo()->prepare($sql);
-        $stmt->bindValue(':id', $eventId, \PDO::PARAM_INT);
+        $stmt->bindValue(':id', $eventId, PDO::PARAM_INT);
         return $stmt->execute() && $stmt->rowCount() > 0;
     }
 
+    /**
+     * Décrémente remplissage si > 0
+     */
     public function decrementFilled(int $eventId): bool
     {
-        $sql  = "UPDATE events SET filled = filled - 1 
-                 WHERE id = :id AND filled > 0";
+        $sql  = "UPDATE events SET filled = filled - 1 WHERE id = :id AND filled > 0";
         $stmt = $this->database->getPdo()->prepare($sql);
-        $stmt->bindValue(':id', $eventId, \PDO::PARAM_INT);
+        $stmt->bindValue(':id', $eventId, PDO::PARAM_INT);
         return $stmt->execute() && $stmt->rowCount() > 0;
+    }
+
+    /**
+     * Hydrate un Event depuis une ligne DB
+     */
+    private function hydrateEvent(array $e): Event
+    {
+        return new Event(
+            (int)$e['id'],
+            (string)$e['title'],
+            (string)$e['sport'],
+            (string)$e['location'],
+            (string)$e['date'],
+            (string)$e['time'],
+            (int)$e['capacity'],
+            (int)($e['filled'] ?? 0),
+            $e['description'] ?? null,
+            $e['image_url'] ?? null,
+            (int)$e['user_id'],
+            (string)$e['created_at']
+        );
     }
 }
