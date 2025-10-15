@@ -64,7 +64,7 @@ class Database implements DatabaseInterface
         image_url VARCHAR(500),
         user_id INT NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        -- FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
         );";
 
         $stmt = $this->pdo->prepare($sql);

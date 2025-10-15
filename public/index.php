@@ -17,9 +17,9 @@
     <main>
         <h1 class="hello">Bienvenue sur CrewUp!</h1>
         <p class="hello-sub">🔥 Trouve ton équipe, entre sur le terrain.</p>
-        <a href="/public/account/create.php">Crée ton événement</a>
-        <a href="/public/account/update.php">Updaate ton événement</a>
-        <a href="/public/account/delete.php">Suppr ton événement</a>
+        <a href="/account/create.php">Crée ton événement</a>
+        <a href="/account/update.php">Updaate ton événement</a>
+        <a href="/account/delete.php">Suppr ton événement</a>
 
         <div class="cta-section">
             <img src="https://purepng.com/public/uploads/large/nba-player-zzw.png" alt="basketball-player">

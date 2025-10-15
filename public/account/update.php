@@ -161,11 +161,11 @@ if (isset($_GET["id"])) {
         <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
             <?php if (empty($errors)): ?>
                 <div class="success-message">
-                    <p>✓ L'annonce a été mise à jour avec succès !</p>
+                    <p>L'annonce a été mise à jour avec succès !</p>
                 </div>
             <?php else: ?>
                 <div class="error-message">
-                    <p>❌ Le formulaire contient des erreurs :</p>
+                    <p>Le formulaire contient des erreurs :</p>
                     <ul>
                         <?php foreach ($errors as $error): ?>
                             <li><?php echo htmlspecialchars($error); ?></li>
@@ -246,7 +246,6 @@ if (isset($_GET["id"])) {
     <?php require __DIR__ . '/../menus/footer.php'; ?>
 </body>
 
-</html>
 
 
 <!DOCTYPE html>
