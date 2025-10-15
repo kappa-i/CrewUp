@@ -1,4 +1,6 @@
-/* Responsive Design */
+.info-label {
+        font-size: 0.75rem;
+    }/* Responsive Design */
 
 /* Tablettes (max 1024px) */
 @media (max-width: 1024px) {
@@ -207,6 +209,12 @@
         gap: 12px;
     }
 
+    .info-value {
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
     .event-description {
         padding: 20px;
     }
@@ -343,14 +351,13 @@
 
     .info-item {
         padding: 14px;
-    }
-
-    .info-label {
-        font-size: 0.75rem;
+        word-wrap: break-word;
     }
 
     .info-value {
         font-size: 1rem;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     .event-description {
