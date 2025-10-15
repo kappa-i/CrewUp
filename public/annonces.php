@@ -1,6 +1,4 @@
 <?php
-// Chargement de l'autoloader pour charger automatiquement les classes
-require_once __DIR__ . '/../src/utils/autoloader.php';
 
 // Importation de la classe EventManager
 use Events\EventManager;
