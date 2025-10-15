@@ -1,14 +1,37 @@
 <?php
+require __DIR__ . '/../src/utils/autoloader.php';
 
-// Importation de la classe EventManager
 use Events\EventManager;
 
-// Création d'une instance de EventManager pour accéder aux événements
-$eventManager = new EventManager();
+// charge les creds depuis src/config/database.ini
+$config = parse_ini_file(__DIR__ . '/../src/config/database.ini', false, INI_SCANNER_TYPED);
+if ($config === false) {
+    die('Impossible de lire src/config/database.ini');
+}
 
-// Récupération de tous les événements depuis la base de données
+$host = $config['host'] ?? '127.0.0.1';
+$port = $config['port'] ?? 3306;
+$db   = $config['database'] ?? '';
+$user = $config['username'] ?? '';
+$pass = $config['password'] ?? '';
+
+// DSN + options
+$dsn = "mysql:host={$host};port={$port};dbname={$db};charset=utf8mb4";
+
+try {
+    $pdo = new \PDO($dsn, $user, $pass, [
+        \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
+        \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+    ]);
+} catch (\PDOException $e) {
+    // en prod, log plutôt que die()
+    die('Connexion DB KO: ' . $e->getMessage());
+}
+
+$eventManager = new EventManager($pdo);
 $events = $eventManager->getEvents();
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
