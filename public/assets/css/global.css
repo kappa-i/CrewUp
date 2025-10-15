@@ -103,6 +103,13 @@ img {
     color: #fff;
 }
 
+body[data-page="accueil"] .main-menu a[href="/"],
+body[data-page="annonces"] .main-menu a[href="/annonces.php"],
+body[data-page="terrains"] .main-menu a[href="/terrains.php"] {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
 .btn-inscription {
     background: #6b29ff;
     color: #fff;
@@ -238,7 +245,7 @@ footer {
 .footer_btn svg {
     width: 24px;
     height: 24px;
-    margin-top:-2px;
+    margin-top: -2px;
 }
 
 .footer_links {
@@ -292,10 +299,10 @@ footer {
 }
 
 .lang_selected {
-    margin-right:8px;
-    padding:8px 8px 6px 8px; 
+    margin-right: 8px;
+    padding: 8px 8px 6px 8px;
     border: 1px solid var(--stroke);
-    border-radius:8px;
+    border-radius: 8px;
     background: rgba(255, 255, 255, .06);
 }
 
@@ -332,14 +339,14 @@ footer {
     color: white;
     padding: 0;
     margin: 0;
-  }
-  
-  .account-menu li a {
+}
+
+.account-menu li a {
     color: white;
     text-decoration: none;
-  }
+}
 
- /*Articles card*/
+/*Articles card*/
 
 #events.events-grid {
     display: grid;
@@ -347,24 +354,24 @@ footer {
     gap: 28px;
     padding: 0 40px;
     margin-bottom: 60px;
-  }
-  
-  .card {
+}
+
+.card {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
-  }
-  
-  .card_img {
+}
+
+.card_img {
     display: block;
     width: 100%;
     height: 220px;
     object-fit: cover;
-  }
-  
-  .card_info {
+}
+
+.card_info {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -372,45 +379,45 @@ footer {
     padding: 16px 18px;
     background: rgba(0, 0, 0, 0.25);
     color: #fff;
-  }
-  
-  .card_left_col {
+}
+
+.card_left_col {
     display: flex;
     flex-direction: column;
     gap: 4px;
-  }
-  
-  .card_title {
+}
+
+.card_title {
     margin: 0;
     font-weight: 800;
     font-style: italic;
     font-size: 1.15rem;
     color: #fff;
-  }
-  
-  .card_place,
-  .card_date {
+}
+
+.card_place,
+.card_date {
     margin: 0;
     font-weight: 500;
     font-size: .95rem;
     color: rgba(255, 255, 255, 0.85);
-  }
-  
-  .card_right_col {
+}
+
+.card_right_col {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 10px;
     white-space: nowrap;
-  }
-  
-  .card_ppl {
+}
+
+.card_ppl {
     font-weight: 700;
     font-size: 1rem;
     color: #fff;
-  }
-  
-  .card_link {
+}
+
+.card_link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -422,11 +429,10 @@ footer {
     text-decoration: none;
     line-height: 1;
     transition: transform .15s ease, background .15s ease, border-color .15s ease;
-  }
-  
-  .card_link:hover {
+}
+
+.card_link:hover {
     transform: translateY(-1px);
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.4);
-  }
-  
+}

@@ -11,7 +11,7 @@
     <link rel="icon" href="https://crewup.ch/favicon.ico?v=6" sizes="any">
 </head>
 
-<body>
+<body data-page="terrains">
     <?php require __DIR__ . '/menus/header.php'; ?>
 
     <main>
