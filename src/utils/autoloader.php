@@ -1,19 +1,17 @@
 <?php
+
+// Charge les classes automatiquement
 spl_autoload_register(function ($class) {
-    // On charge seulement le namespace 'Classes\'
-    $prefix  = 'Classes\\';
-    $baseDir = __DIR__ . '/../Classes/'; // => /src/Classes
+    // Exemple : Users\User devient Users/User
+    $relativePath = str_replace('\\', '/', $class);
 
-    $len = strlen($prefix);
-    if (strncmp($class, $prefix, $len) !== 0) return;
+    // Construit le chemin complet du fichier
+    // __DIR__ est 'src/utils', donc '../Classes' pointe vers 'src/Classes'
+    $file = __DIR__ . '/../Classes/' . $relativePath . '.php';
 
-    $relative = substr($class, $len);
-    $file = $baseDir . str_replace('\\', '/', $relative) . '.php';
-
-    // Fallback si ton entity s'appelle 'Events.php' (classe 'Events') mais on l’alias en 'Event'
-    if (!is_file($file) && str_ends_with($file, '/Event.php')) {
-        $file = substr($file, 0, -9) . 'Events.php'; // Event.php -> Events.php
+    // Vérifie si le fichier existe avant de l'inclure
+    if (file_exists($file)) {
+        // Inclut le fichier de classe
+        require_once $file;
     }
-
-    if (is_file($file)) require $file;
 });
