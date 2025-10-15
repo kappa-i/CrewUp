@@ -70,6 +70,10 @@
     color: #fff;
     font-size: 1.3rem;
     font-weight: 700;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
 .event-description {
