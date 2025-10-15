@@ -781,3 +781,329 @@ footer {
     border-radius: 6px;
     transition: width 0.3s ease;
 }
+
+/* Responsive Design - Mobile & Tablet */
+
+/* Tablettes et petits écrans (max 1024px) */
+@media (max-width: 1024px) {
+    /* Header */
+    .nav {
+        padding: 0 12px;
+        width: 90%;
+    }
+
+    .logo a {
+        font-size: 1.5rem;
+        margin-right: 12px;
+    }
+
+    .main-menu {
+        gap: 5px;
+    }
+
+    .main-menu a {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .btn-inscription {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    /* Footer */
+    .footer_col1 {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "title"
+            "cta"
+            "links";
+    }
+
+    .footer_links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px 24px;
+    }
+
+    .footer_btn {
+        font-size: 1rem;
+    }
+
+    .footer_col2 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .copyright,
+    .language_switcher,
+    .footer_social {
+        justify-self: center;
+    }
+
+    .copyright {
+        font-size: 0.9rem;
+    }
+
+    .language_switcher {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile (max 768px) */
+@media (max-width: 768px) {
+    /* Header - Version mobile compacte */
+    .nav {
+        flex-wrap: wrap;
+        padding: 8px;
+        width: 95%;
+        gap: 8px;
+    }
+
+    .logo {
+        flex: 1 1 100%;
+        text-align: center;
+        margin: 4px 0;
+    }
+
+    .logo a {
+        font-size: 1.8rem;
+        margin: 0;
+    }
+
+    .main-menu {
+        flex: 1 1 auto;
+        gap: 4px;
+        justify-content: center;
+    }
+
+    .main-menu a {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .btn-inscription {
+        flex: 0 0 auto;
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        margin: 0;
+    }
+
+    /* Titres */
+    .hello,
+    .art-header {
+        font-size: 2.5rem;
+        padding-top: 20px;
+    }
+
+    .hello-sub {
+        font-size: 0.95rem;
+    }
+
+    /* Footer */
+    .footer-main {
+        padding: 24px 20px 12px 20px;
+    }
+
+    .footer_title {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .footer_cta {
+        display: flex;
+        justify-content: center;
+        margin-top: 16px;
+    }
+
+    .footer_btn {
+        font-size: 0.9rem;
+        padding: 12px 16px;
+    }
+
+    .footer_links {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .footer_links a {
+        font-size: 1.1rem;
+    }
+
+    /* Cards grid */
+    #events.events-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+        flex-direction: column;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .cta-section img {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    .cta-section .orange-btn {
+        width: 100%;
+        margin: 0;
+        padding: 14px 24px;
+    }
+
+    /* Form container */
+    .form-container {
+        padding: 20px 16px;
+    }
+
+    .form-container form {
+        padding: 24px 20px;
+    }
+
+    /* Account menu */
+    .account-menu {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    /* Event detail */
+    .event-detail-container {
+        padding: 0 20px;
+    }
+
+    .event-image {
+        height: 250px;
+    }
+
+    .event-content {
+        padding: 24px 20px;
+    }
+
+    .event-title {
+        font-size: 1.8rem;
+    }
+
+    .event-info-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .event-actions {
+        flex-direction: column;
+    }
+
+    .btn-action {
+        width: 100%;
+    }
+}
+
+/* Très petits mobiles (max 480px) */
+@media (max-width: 480px) {
+    .nav {
+        top: 10px;
+        margin: 12px auto;
+    }
+
+    .logo a {
+        font-size: 1.5rem;
+    }
+
+    .main-menu {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .main-menu a {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .btn-inscription {
+        width: 100%;
+        text-align: center;
+        margin-top: 4px;
+    }
+
+    .hello,
+    .art-header {
+        font-size: 2rem;
+    }
+
+    .footer_title {
+        font-size: 2rem;
+    }
+
+    .footer_btn {
+        font-size: 0.85rem;
+        padding: 10px 14px;
+    }
+
+    .footer_btn svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .card_info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .card_right_col {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .event-title {
+        font-size: 1.5rem;
+    }
+
+    .event-sport {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+
+    .info-label {
+        font-size: 0.75rem;
+    }
+
+    .info-value {
+        font-size: 1.1rem;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+    }
+
+    .form-buttons button,
+    .form-buttons a {
+        width: 100%;
+    }
+}
+
+/* Landscape mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .nav {
+        top: 5px;
+        margin: 8px auto;
+    }
+
+    .hello,
+    .art-header {
+        font-size: 2rem;
+        padding-top: 10px;
+    }
+
+    .event-image {
+        height: 200px;
+    }
+}
