@@ -252,11 +252,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
             <?php if (empty($errors)): ?>
                 <div class="success-message">
-                    <p>✓ L'annonce a été créée avec succès !</p>
+                    <p>L'annonce a été créée avec succès !</p>
                 </div>
             <?php else: ?>
                 <div class="error-message">
-                    <p>❌ Le formulaire contient des erreurs :</p>
+                    <p>Le formulaire contient des erreurs :</p>
                     <ul>
                         <?php foreach ($errors as $error): ?>
                             <li><?php echo htmlspecialchars($error); ?></li>
