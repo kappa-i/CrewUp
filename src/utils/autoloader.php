@@ -1,21 +1,34 @@
 <?php
-// PSR-4 light pour ton projet
+// Autoloader simple & robuste
 spl_autoload_register(function ($class) {
     // Normalise
     $class = ltrim($class, '\\');
     $base  = __DIR__ . '/../Classes/';
 
-    // 1) Namespace "Events\*"  -> src/Classes/Events/...
-    if (strncmp($class, 'Events\\', 7) === 0) {
-        $relative = substr($class, 7); // enlève "Events\"
-        $file = $base . 'Events/' . str_replace('\\', '/', $relative) . '.php';
-    } else {
-        // 2) Classes globales (sans namespace) -> src/Classes/<Class>.php
-        //    ex: \Database -> src/Classes/Database.php
-        $file = $base . str_replace('\\', '/', $class) . '.php';
+    // 1) PSR-4 standard: src/Classes/{Namespace}/{Class}.php
+    $path = $base . str_replace('\\', '/', $class) . '.php';
+
+    // 2) Fallback pour classes globales (ex: Database)
+    if (!is_file($path) && strpos($class, '\\') === false) {
+        $path = $base . $class . '.php';
     }
 
-    if (is_file($file)) {
-        require_once $file;
+    // 3) Classmap de secours pour les sensibles
+    static $classmap = [
+        'Events\Event'                 => 'Events/Event.php',
+        'Events\EventInterface'        => 'Events/EventInterface.php',
+        'Events\EventManager'          => 'Events/EventManager.php',
+        'Events\EventManagerInterface' => 'Events/EventManagerInterface.php',
+        'Database'                     => 'Database.php',
+        'DatabaseInterface'            => 'DatabaseInterface.php',
+    ];
+    if (!is_file($path) && isset($classmap[$class])) {
+        $path = $base . $classmap[$class];
+    }
+
+    // 4) Charge si trouvé
+    if (is_file($path)) {
+        require_once $path;
     }
 });
+
