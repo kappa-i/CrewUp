@@ -1,3 +1,28 @@
+<?php
+require_once __DIR__ . '/../../src/utils/autoloader.php';
+
+use Events\EventManager;
+
+// Création d'une instance de EventManager
+$eventManager = new EventManager();
+
+// Vérification si l'ID de l'événement est passé dans l'URL
+if (isset($_GET["id"])) {
+    // Récupération de l'ID de l'événement de la superglobale `$_GET`
+    $eventId = $_GET["id"];
+    
+    // Suppression de l'événement correspondant à l'ID
+    $eventManager->removeEvent($eventId);
+    
+    header("Location: /annonces.php");
+    exit();
+} else {
+    // Si l'ID n'est pas passé dans l'URL, redirection vers la page des annonces
+    header("Location: /annonces.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

@@ -438,7 +438,6 @@ footer {
 }
 
 /* Formulaire create */
-
 /* Forms styling */
 
 .form-container {
@@ -479,6 +478,18 @@ footer {
     font-family: "industry", sans-serif;
     font-size: 1rem;
     box-sizing: border-box;
+}
+
+/* Fix pour les options du select */
+.form-container select option {
+    background: #160d23;
+    color: #fff;
+}
+
+.form-container select option:hover,
+.form-container select option:checked {
+    background: #6b29ff;
+    color: #fff;
 }
 
 .form-container input:focus,
