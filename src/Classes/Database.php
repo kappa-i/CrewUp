@@ -46,6 +46,9 @@ class Database implements DatabaseInterface
             age INT NOT NULL
         );";
 
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+
 
         // Après la création de la table users
         $sql = "CREATE TABLE IF NOT EXISTS events (
@@ -65,7 +68,6 @@ class Database implements DatabaseInterface
         );";
 
         $stmt = $this->pdo->prepare($sql);
-
         $stmt->execute();
     }
 
