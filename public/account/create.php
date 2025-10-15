@@ -97,147 +97,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CrewUp - Nouvelle annonce</title>
     <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/forms.css">
     <link rel="stylesheet" href="https://use.typekit.net/ooh3jgp.css">
     <script src="../assets/js/global.js"></script>
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="icon" href="https://crewup.ch/favicon.ico?v=6" sizes="any">
-    <style>
-        .form-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .form-container form {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 24px;
-            padding: 40px;
-            margin-top: 30px;
-        }
-
-        .form-container label {
-            display: block;
-            color: #fff;
-            font-weight: 600;
-            margin-bottom: 8px;
-            margin-top: 20px;
-        }
-
-        .form-container input[type="text"],
-        .form-container input[type="date"],
-        .form-container input[type="time"],
-        .form-container input[type="number"],
-        .form-container input[type="url"],
-        .form-container select,
-        .form-container textarea {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            color: #fff;
-            font-family: "industry", sans-serif;
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
-
-        .form-container input:focus,
-        .form-container select:focus,
-        .form-container textarea:focus {
-            outline: none;
-            border-color: #6b29ff;
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .form-container textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .form-buttons {
-            display: flex;
-            gap: 16px;
-            margin-top: 30px;
-        }
-
-        .form-buttons button {
-            flex: 1;
-            padding: 14px 24px;
-            border: none;
-            border-radius: 12px;
-            font-family: "industry", sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-submit {
-            background: #6b29ff;
-            color: #fff;
-        }
-
-        .btn-submit:hover {
-            background: #844aff;
-            box-shadow: 0 0 20px rgba(107, 41, 255, 0.6);
-        }
-
-        .btn-reset {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-reset:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .error-message {
-            background: rgba(220, 53, 69, 0.2);
-            border: 1px solid rgba(220, 53, 69, 0.5);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 20px;
-        }
-
-        .error-message p {
-            color: #ff6b6b;
-            font-weight: 600;
-            margin: 0 0 10px 0;
-        }
-
-        .error-message ul {
-            color: #ffb3b3;
-            margin: 0;
-            padding-left: 20px;
-        }
-
-        .success-message {
-            background: rgba(40, 167, 69, 0.2);
-            border: 1px solid rgba(40, 167, 69, 0.5);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 20px;
-        }
-
-        .success-message p {
-            color: #5fff5f;
-            font-weight: 600;
-            margin: 0;
-        }
-
-        .back-link {
-            color: #6b29ff;
-            text-decoration: none;
-            font-weight: 600;
-            transition: opacity 0.2s ease;
-        }
-
-        .back-link:hover {
-            opacity: 0.8;
-        }
-    </style>
 </head>
 
 <body>
@@ -252,11 +116,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
             <?php if (empty($errors)): ?>
                 <div class="success-message">
-                    <p>L'annonce a été créée avec succès !</p>
+                    <p>✓ L'annonce a été créée avec succès !</p>
                 </div>
             <?php else: ?>
                 <div class="error-message">
-                    <p>Le formulaire contient des erreurs :</p>
+                    <p>❌ Le formulaire contient des erreurs :</p>
                     <ul>
                         <?php foreach ($errors as $error): ?>
                             <li><?php echo htmlspecialchars($error); ?></li>
