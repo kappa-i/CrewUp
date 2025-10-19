@@ -49,6 +49,52 @@ Semaine 27.10.25
 
 - **Formulaire de réservation d’un terrain**
 
+- **Page Création**
+        ***-Titre de l'événement (obligatoire)***
+        ***-Choix du sport (obligatoire)***
+        ***-Lieu (obligatoire)***
+        ***-Date (obligatoire)***
+        ***-Heure (obligatoire)***
+        ***-Nombre de participants maximum (obligatoire)***
+        ***-Description (optionnel)***
+        ---
+        ***-Avec option de créer l'anonce et de reset les choix réalisés.***
+
+- **Page Modification**
+        ***-Titre de l'événement (obligatoire)***
+        ***-Choix du sport (obligatoire)***
+        ***-Lieu (obligatoire)***
+        ***-Date (obligatoire)***
+        ***-Heure (obligatoire)***
+        ***-Nombre de participants maximum (obligatoire)***
+        ***-Description (optionnel)***
+        ---
+        ***-Les informations seront gardés afin que l'utilisateur n'ait pas besoin de tout remettre.***
+        ***-Mettre à jour l'annonce en questions avec les nouveaux changements.***
+
+- **Page View**
+        ***-Titre de l'événement (obligatoire)***
+        ***-Choix du sport (obligatoire)***
+        ***-Lieu (obligatoire)***
+        ***-Date (obligatoire)***
+        ***-Heure (obligatoire)***
+        ***-Nombre de participants maximum (obligatoire)***
+        ***-Description (optionnel)***
+        ---
+        ***-L'utilisateur ne pourra que visualiser l'annoce, sans le pouvoir de faire aucun changement.***
+
+- **Page Delete**
+        ***-Titre de l'événement (obligatoire)***
+        ***-Choix du sport (obligatoire)***
+        ***-Lieu (obligatoire)***
+        ***-Date (obligatoire)***
+        ***-Heure (obligatoire)***
+        ***-Nombre de participants maximum (obligatoire)***
+        ***-Description (optionnel)***
+        ---
+        ***-L'utilisateur pourra donc faire le choix de dédicer de supprimer une annonce existante ou pas.***
+
+
 ---
 
 ### 🛠️ Fonctionnalités Optionnelles (si le temps le permet)
