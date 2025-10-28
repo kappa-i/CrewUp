@@ -68,6 +68,7 @@ img {
     overflow: hidden;
 }
 
+
 .cta-section img {
     flex: 1;
     width: 50%;
@@ -77,7 +78,6 @@ img {
 }
 
 .cta-section .orange-btn {
-    flex: 0 0 auto;
     display: inline-flex;
     width: auto;
     white-space: nowrap;
@@ -95,6 +95,8 @@ img {
     align-self: center;
     margin-left: auto;
 }
+
+
 
 .cta-section .orange-btn:hover {
     background: #dc5b0b;

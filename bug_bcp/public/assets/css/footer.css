@@ -1,0 +1,140 @@
+/* Footer */
+
+footer {
+    --violet: #6b29ff;
+    --bg1: #2d0b76;
+    --stroke: rgba(255, 255, 255, 0.314);
+    --text: #fff;
+    background: var(--bg1) linear-gradient(0deg, var(--bg1) 0%, var(--violet) 100%);
+    color: var(--text);
+}
+
+.footer-main {
+    padding: 38px 40px 18px 40px;
+}
+
+.footer_col1 {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-areas:
+        "title links"
+        "cta   links";
+    align-items: start;
+    gap: 10px;
+}
+
+.footer_title {
+    grid-area: title;
+    font-size: 50px;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.footer_cta {
+    grid-area: cta;
+}
+
+.footer_btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 14px 18px 12px 18px;
+    border: 1px solid var(--stroke);
+    border-radius: 14px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 2vw;
+    transition: 0.25s ease;
+}
+
+.footer_btn:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.footer_btn svg {
+    width: 24px;
+    height: 24px;
+    margin-top: -2px;
+}
+
+.footer_links {
+    grid-area: links;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+    gap: 16px 56px;
+    align-content: start;
+    margin-top: 17px;
+}
+
+.footer_links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: clamp(18px, 2.2vw, 26px);
+    font-weight: 500;
+    line-height: 1.2;
+    transition: opacity 0.2s ease;
+}
+
+.footer_links a:hover {
+    opacity: 0.85;
+}
+
+.footer_col2 {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 19px;
+    border-top: 1px solid var(--stroke);
+    gap: 12px;
+}
+
+.copyright {
+    justify-self: start;
+    font-size: 1.6vw;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.language_switcher {
+    justify-self: center;
+    font-size: 2vw;
+    font-weight: 700;
+}
+
+.language_switcher a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.lang_selected {
+    margin-right: 8px;
+    padding: 8px 8px 6px 8px;
+    border: 1px solid var(--stroke);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.footer_social {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer_social a {
+    display: inline-flex;
+    color: var(--text);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.footer_social a:hover {
+    transform: scale(1.08);
+    opacity: 0.85;
+}
+
+.footer_social svg {
+    width: 28px;
+    height: 28px;
+}

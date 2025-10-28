@@ -19,8 +19,8 @@
         <p class="hello-sub">🔥 Trouve ton équipe, entre sur le terrain.</p>
 
         <div class="cta-section">
-            <img src="https://purepng.com/public/uploads/large/nba-player-zzw.png" alt="basketball-player">
             <button class="orange-btn" type="button" onclick="window.location.href='/annonces.php'">Commencer votre aventure</button>
+            <img src="assets/img/home_bg.png" alt="basketball-player">
         </div>
     </main>
 
