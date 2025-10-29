@@ -1,17 +1,19 @@
 <?php
 
 require_once __DIR__ . '/../src/utils/autoloader.php';
-
+use I18n\LanguageManager;
 // Importation de la classe EventManager
 use Events\EventManager;
 
 // Création d'une instance de EventManager pour accéder aux événements
 $eventManager = new EventManager();
+$lang = new LanguageManager();
 
 // Récupération de tous les événements depuis la base de données
 $events = $eventManager->getEvents();
 ?>
 <!DOCTYPE html>
+<h1><?php echo $lang->t('key_name'); ?></h1>
 <html lang="fr">
 
 <head>

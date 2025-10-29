@@ -1,4 +1,15 @@
+<?php
+require_once __DIR__ . '/../src/utils/autoloader.php';
+
+use I18n\LanguageManager;
+
+// Initialise le gestionnaire de langue
+$lang = new LanguageManager();
+
+// Reste de votre code...
+?>
 <!DOCTYPE html>
+<h1><?php echo $lang->t('key_name'); ?></h1>
 <html lang="fr">
 
 <head>

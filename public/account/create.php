@@ -3,8 +3,11 @@ require_once __DIR__ . '/../../src/utils/autoloader.php';
 
 use Events\EventManager;
 use Events\Event;
+use I18n\LanguageManager;
+$lang = new LanguageManager();
 
 $eventManager = new EventManager();
+
 
 // Liste des sports disponibles
 $sports = [
@@ -91,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="fr">
-
+<h1><?php echo $lang->t('key_name'); ?></h1>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

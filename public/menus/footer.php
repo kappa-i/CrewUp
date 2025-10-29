@@ -1,3 +1,13 @@
+<?php
+use I18n\LanguageManager;
+
+// Récupère le gestionnaire de langue (déjà initialisé dans la page)
+if (!isset($lang)) {
+    $lang = new LanguageManager();
+}
+
+$currentLang = $lang->getCurrentLanguage();
+?>
 <footer>
 
     <div class="footer-main">
@@ -11,24 +21,28 @@
                         <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
                         <path d="m22 6-10 7L2 6" />
                     </svg>
-                    <span>Souscrire à la newsletter</span>
+                    <span><?php echo $lang->t('newsletter'); ?></span>
                 </a>
             </div>
             <div class="footer_links">
-                <a href="/annonces.php">Annonces</a>
-                <a href="/account/dashboard.php">Créer un compte</a>
-                <a href="/terrains.php">Terrains</a>
-                <a href="#">À proximité</a>
-                <a href="#">Communauté</a>
-                <a href="#">Mentions légales</a>
+                <a href="/annonces.php"><?php echo $lang->t('nav_announcements'); ?></a>
+                <a href="/account/dashboard.php"><?php echo $lang->t('create_account'); ?></a>
+                <a href="/terrains.php"><?php echo $lang->t('nav_fields'); ?></a>
+                <a href="#"><?php echo $lang->t('nearby'); ?></a>
+                <a href="#"><?php echo $lang->t('community'); ?></a>
+                <a href="#"><?php echo $lang->t('legal'); ?></a>
             </div>
         </div>
 
         <div class="footer_col2">
-            <div class="copyright">© 2025 CrewUp. Tous droits réservés.</div>
+            <div class="copyright"><?php echo $lang->t('rights'); ?></div>
             <div class="language_switcher">
-                <a href="/fr" class="lang_selected" lang="fr">FR</a>
-                <a href="/en" lang="en">EN</a>
+                <a href="/change-language.php?lang=fr" 
+                   class="<?php echo $currentLang === 'fr' ? 'lang_selected' : ''; ?>" 
+                   lang="fr">FR</a>
+                <a href="/change-language.php?lang=en" 
+                   class="<?php echo $currentLang === 'en' ? 'lang_selected' : ''; ?>" 
+                   lang="en">EN</a>
             </div>
             <div class="footer_social">
                 <a href="https://github.com/kappa-i/CrewUp" target="_blank">
