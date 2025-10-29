@@ -1,4 +1,14 @@
+<?php
+require_once __DIR__ . '/../src/utils/autoloader.php';
+
+use I18n\LanguageManager;
+
+$lang = new LanguageManager();
+
+
+?>
 <nav class="nav" aria-label="Navigation principale">
+  <h1><?php echo $lang->t('key_name'); ?></h1>
   <h1 class="logo"><a href="/">CrewUp</a></h1>
 
   <ul class="main-menu">

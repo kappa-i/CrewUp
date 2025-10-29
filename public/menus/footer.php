@@ -9,7 +9,7 @@ if (!isset($lang)) {
 $currentLang = $lang->getCurrentLanguage();
 ?>
 <footer>
-
+<h1><?php echo $lang->t('key_name'); ?></h1>
     <div class="footer-main">
 
         <div class="footer_col1">

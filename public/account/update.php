@@ -3,8 +3,10 @@ require_once __DIR__ . '/../../src/utils/autoloader.php';
 
 use Events\EventManager;
 use Events\Event;
+use I18n\LanguageManager;
 
 $eventManager = new EventManager();
+$lang = new LanguageManager();
 
 // Liste des sports disponibles
 $sports = [
@@ -135,6 +137,7 @@ if (isset($_GET["id"])) {
 ?>
 
 <!DOCTYPE html>
+<h1><?php echo $lang->t('key_name'); ?></h1>
 <html lang="fr">
 
 <head>

@@ -1,10 +1,10 @@
 <?php
 require_once __DIR__ . '/../src/utils/autoloader.php';
-
+use I18n\LanguageManager;
 use Events\EventManager;
 
 $eventManager = new EventManager();
-
+$lang = new LanguageManager();
 // On vérifie si l'ID de l'événement est passé dans l'URL
 if (!isset($_GET["id"])) {
     header("Location: /annonces.php");
@@ -34,6 +34,7 @@ $sports = [
 ?>
 
 <!DOCTYPE html>
+<h1><?php echo $lang->t('key_name'); ?></h1>
 <html lang="fr">
 
 <head>
