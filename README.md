@@ -6,11 +6,11 @@ CrewUp est une plateforme web de gestion et d'organisation d'événements sporti
 
 ## 📋 Répartition des tâches
 
-Semaine 27.10.25
+Semaine 03.11.25
 
-- **Nuno** : Terminer la maquette du site +  dire ce qu'il a spécifiquement dans create, modif, suppression + avancer pages de base
-- **Gabriel** : mettre en place une base de données pour l'application
-- **Tanguy** : footer & header + avancer pages de base  
+- **Nuno** : Multilangues FR-EN
+- **Gabriel** : Multilangues FR-EN
+- **Tanguy** : Multilangues  FR-EN
 
 
 ---
