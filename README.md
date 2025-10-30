@@ -2,6 +2,8 @@
 
 > Projet développé par Gabriel, Nuno, Tanguy M53-2, lors du cours de Programmation Serveur 2, en ingénirie des médias à l'HEIG-VD.
 
+> Utilisation des IA suivantes en support : ChatGPT, Claude AI
+
 CrewUp est une plateforme web de gestion et d'organisation d'événements sportifs, accessible en français et en anglais. L'application permet à ses utilisateurs de créer, rejoindre et gérer des événements sportifs dans leur région.
 
 ## 📋 Répartition des tâches
