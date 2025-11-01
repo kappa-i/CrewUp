@@ -27,12 +27,12 @@ $lang = new LanguageManager();
 
         <div class="cta-section">
             <div class="cta-buttons">
-                <button class="orange-btn" type="button" onclick="window.location.href='/annonces.php'">
+                <a href="/annonces.php" class="orange-btn">
                     <?php echo $lang->t('home_cta'); ?>
-                </button>
-                <button class="purple-btn" type="button" onclick="window.location.href='/account/create.php'">
+                </a>
+                <a href="/account/create.php" class="purple-btn">
                     <?php echo $lang->t('create_announcement_btn'); ?>
-                </button>
+                </a>
             </div>
             <img src="assets/img/home_bg.png" alt="">
         </div>

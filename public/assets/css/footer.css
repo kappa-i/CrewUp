@@ -25,7 +25,7 @@ footer {
 
 .footer_title {
     grid-area: title;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 800;
     font-style: italic;
 }
@@ -44,7 +44,7 @@ footer {
     color: var(--text);
     text-decoration: none;
     font-weight: 700;
-    font-size: 2vw;
+    font-size: 1vw;
     transition: 0.25s ease;
 }
 
@@ -71,7 +71,7 @@ footer {
 .footer_links a {
     color: var(--text);
     text-decoration: none;
-    font-size: clamp(18px, 2.2vw, 26px);
+    font-size: clamp(18px, 1.5vw, 26px);
     font-weight: 500;
     line-height: 1.2;
     transition: opacity 0.2s ease;
@@ -93,13 +93,13 @@ footer {
 
 .copyright {
     justify-self: start;
-    font-size: 1.6vw;
+    font-size: 1vw;
     color: rgba(255, 255, 255, 0.85);
 }
 
 .language_switcher {
     justify-self: center;
-    font-size: 2vw;
+    font-size: 1.5vw;
     font-weight: 700;
 }
 

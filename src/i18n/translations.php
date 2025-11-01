@@ -14,7 +14,7 @@ $translations = [
         'home_title' => 'Bienvenue sur CrewUp!',
         'home_subtitle' => '🔥 Trouve ton équipe, entre sur le terrain.',
         'home_cta' => 'Commencer votre aventure',
-        'create_announcement_btn' => '+ Créer une annonce',
+        'create_announcement_btn' => 'Créer une annonce',
         
         // ===== Page annonces =====
         'announcements_title' => 'Annonces',
@@ -108,7 +108,7 @@ $translations = [
         'home_title' => 'Welcome to CrewUp!',
         'home_subtitle' => '🔥 Find your team, get on the field.',
         'home_cta' => 'Start your adventure',
-        'create_announcement_btn' => '+ Create Event',
+        'create_announcement_btn' => 'Create Event',
         
         // ===== Announcements page =====
         'announcements_title' => 'Events',

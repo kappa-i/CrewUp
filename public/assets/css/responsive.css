@@ -139,11 +139,16 @@
         gap: 16px;
     }
 
+    .cta-section button.orange-btn,
+    .cta-section button.purple-btn,
+    .cta-section a.orange-btn,
+    .cta-section a.purple-btn,
     .cta-section .orange-btn,
     .cta-section .purple-btn {
         width: 100%;
         padding: 14px 24px;
         font-size: 1rem;
+        text-decoration: none !important;
     }
 
     .cta-section img {
@@ -315,10 +320,15 @@
         gap: 12px;
     }
 
+    .cta-section button.orange-btn,
+    .cta-section button.purple-btn,
+    .cta-section a.orange-btn,
+    .cta-section a.purple-btn,
     .cta-section .orange-btn,
     .cta-section .purple-btn {
         padding: 12px 20px;
         font-size: 0.95rem;
+        text-decoration: none !important;
     }
 
     .footer_title {
@@ -460,6 +470,10 @@
         max-width: 600px;
     }
 
+    .cta-section button.orange-btn,
+    .cta-section button.purple-btn,
+    .cta-section a.orange-btn,
+    .cta-section a.purple-btn,
     .cta-section .orange-btn,
     .cta-section .purple-btn {
         flex: 1;
