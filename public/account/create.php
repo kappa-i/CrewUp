@@ -93,11 +93,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?php echo $lang->getCurrentLanguage(); ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrewUp - Nouvelle annonce</title>
+    <title>CrewUp - <?php echo $lang->t('create_announcement'); ?></title>
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/forms.css">
     <link rel="stylesheet" href="https://use.typekit.net/ooh3jgp.css">
@@ -110,19 +110,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php require __DIR__ . '/../menus/header.php'; ?>
 
     <main class="form-container">
-        <h1 class="hello">Créer une annonce</h1>
+        <h1 class="hello"><?php echo $lang->t('create_announcement'); ?></h1>
         <p style="text-align: center;">
-            <a href="dashboard.php" class="back-link">← Retour au dashboard</a>
+$            <a href="dashboard.php" class="back-link"><?php echo $lang->t('back_to_dashboard'); ?></a>
         </p>
 
         <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
             <?php if (empty($errors)): ?>
                 <div class="success-message">
-                    <p>✓ L'annonce a été créée avec succès !</p>
+$                    <p><?php echo $lang->t('success_created'); ?></p>
                 </div>
             <?php else: ?>
                 <div class="error-message">
-                    <p>❌ Le formulaire contient des erreurs :</p>
+                    <p><?php echo $lang->t('error_form'); ?></p>
                     <ul>
                         <?php foreach ($errors as $error): ?>
                             <li><?php echo htmlspecialchars($error); ?></li>
@@ -133,15 +133,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endif; ?>
 
         <form action="create.php" method="POST">
-            <label for="title">Titre de l'événement <span style="color: #ff6b6b;">*</span></label>
+            <label for="title"><?php echo $lang->t('event_title_label'); ?> <span style="color: #ff6b6b;"><?php echo $lang->t('required_field'); ?></span></label>
             <input type="text" id="title" name="title" 
                    value="<?php echo isset($title) ? htmlspecialchars($title) : ''; ?>" 
                    required minlength="3" 
-                   placeholder="Ex: Match de foot amical">
+                   placeholder="<?php echo $lang->t('placeholder_title'); ?>">
 
-            <label for="sport">Sport <span style="color: #ff6b6b;">*</span></label>
+            <label for="sport"><?php echo $lang->t('sport_label'); ?> <span style="color: #ff6b6b;"><?php echo $lang->t('required_field'); ?></span></label>
             <select id="sport" name="sport" required>
-                <option value="">-- Choisir un sport --</option>
+                <option value=""><?php echo $lang->t('choose_sport'); ?></option>
                 <?php foreach ($sports as $key => $value): ?>
                     <option value="<?= $key ?>" <?php echo (isset($sport) && $sport == $key) ? 'selected' : ''; ?>>
                         <?= $value ?>
@@ -149,40 +149,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php endforeach; ?>
             </select>
 
-            <label for="location">Lieu <span style="color: #ff6b6b;">*</span></label>
+            <label for="location"><?php echo $lang->t('location_label'); ?> <span style="color: #ff6b6b;"><?php echo $lang->t('required_field'); ?></span></label>
             <input type="text" id="location" name="location" 
                    value="<?php echo isset($location) ? htmlspecialchars($location) : ''; ?>" 
                    required 
-                   placeholder="Ex: Centre sportif d'Écublens">
+                   placeholder="<?php echo $lang->t('placeholder_location'); ?>">
 
-            <label for="date">Date <span style="color: #ff6b6b;">*</span></label>
+            <label for="date"><?php echo $lang->t('date_label'); ?> <span style="color: #ff6b6b;"><?php echo $lang->t('required_field'); ?></span></label>
             <input type="date" id="date" name="date" 
                    value="<?php echo isset($date) ? htmlspecialchars($date) : ''; ?>" 
                    required>
 
-            <label for="time">Heure <span style="color: #ff6b6b;">*</span></label>
+            <label for="time"><?php echo $lang->t('time_label'); ?> <span style="color: #ff6b6b;"><?php echo $lang->t('required_field'); ?></span></label>
             <input type="time" id="time" name="time" 
                    value="<?php echo isset($time) ? htmlspecialchars($time) : ''; ?>" 
                    required>
 
-            <label for="capacity">Nombre de participants maximum <span style="color: #ff6b6b;">*</span></label>
+            <label for="capacity"><?php echo $lang->t('max_participants_label'); ?> <span style="color: #ff6b6b;"><?php echo $lang->t('required_field'); ?></span></label>
             <input type="number" id="capacity" name="capacity" 
                    value="<?php echo isset($capacity) ? htmlspecialchars($capacity) : ''; ?>" 
                    required min="2" 
-                   placeholder="Ex: 10">
+                   placeholder="<?php echo $lang->t('placeholder_capacity'); ?>">
 
-            <label for="description">Description (optionnel)</label>
+            <label for="description"><?php echo $lang->t('description_label'); ?></label>
             <textarea id="description" name="description" 
-                      placeholder="Décrivez votre événement, le niveau requis, le matériel nécessaire..."><?php echo isset($description) ? htmlspecialchars($description) : ''; ?></textarea>
+                      placeholder="<?php echo $lang->t('placeholder_description'); ?>"><?php echo isset($description) ? htmlspecialchars($description) : ''; ?></textarea>
 
-            <label for="image_url">URL de l'image (optionnel)</label>
+            <label for="image_url"><?php echo $lang->t('image_url_label'); ?></label>
             <input type="url" id="image_url" name="image_url" 
                    value="<?php echo isset($imageUrl) ? htmlspecialchars($imageUrl) : ''; ?>" 
-                   placeholder="https://exemple.com/image.jpg">
+                   placeholder="<?php echo $lang->t('placeholder_image'); ?>">
 
             <div class="form-buttons">
-                <button type="submit" class="btn-submit">Créer l'annonce</button>
-                <button type="reset" class="btn-reset">Réinitialiser</button>
+                <button type="submit" class="btn-submit"><?php echo $lang->t('btn_create'); ?></button>
+                <button type="reset" class="btn-reset"><?php echo $lang->t('btn_reset'); ?></button>
             </div>
         </form>
     </main>

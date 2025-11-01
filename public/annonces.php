@@ -13,12 +13,12 @@ $lang = new LanguageManager();
 $events = $eventManager->getEvents();
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?php echo $lang->getCurrentLanguage(); ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrewUp - Annonces</title>
+    <title>CrewUp - <?php echo $lang->t('nav_announcements'); ?></title>
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="https://use.typekit.net/ooh3jgp.css">
     <script src="assets/js/global.js"></script>
@@ -29,20 +29,21 @@ $events = $eventManager->getEvents();
     <?php require __DIR__ . '/menus/header.php'; ?>
 
     <main>
-        <h1 class="art-header">Annonces</h1>
+        <h1 class="art-header"><?php echo $lang->t('announcements_title'); ?></h1>
         <ul class="account-menu">
-            <li>Filtres : </li>
-            <li><a href="#">Sport ></a></li>
-            <li><a href="#">Lieu ></a></li>
-            <li><a href="#">Date ></a></li>
+            <li><?php echo $lang->t('filters'); ?></li>
+            <li><a href="#"><?php echo $lang->t('filter_sport'); ?></a></li>
+            <li><a href="#"><?php echo $lang->t('filter_location'); ?></a></li>
+            <li><a href="#"><?php echo $lang->t('filter_date'); ?></a></li>
         </ul>
 
         <div id="events" class="events-grid" style="margin: 40px 0 60px 0;">
             <?php if (empty($events)): ?>
-                <!-- Message si aucun événement n'existe -->
                 <p style="color: white; text-align: center; grid-column: 1 / -1; font-size: 1.2rem;">
-                    Aucune annonce disponible pour le moment.
-                    <a href="/account/create.php" style="color: #6b29ff; text-decoration: underline;">Créez la première !</a>
+                    <?php echo $lang->t('no_events'); ?>
+                    <a href="/account/create.php" style="color: #6b29ff; text-decoration: underline;">
+                        <?php echo $lang->t('create_first'); ?>
+                    </a>
                 </p>
             <?php else: ?>
                 <!-- Boucle sur tous les événements récupérés -->
@@ -83,6 +84,3 @@ $events = $eventManager->getEvents();
 </body>
 
 </html>
-
-
-

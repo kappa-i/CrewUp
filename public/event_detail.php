@@ -5,6 +5,7 @@ use Events\EventManager;
 
 $eventManager = new EventManager();
 $lang = new LanguageManager();
+
 // On vérifie si l'ID de l'événement est passé dans l'URL
 if (!isset($_GET["id"])) {
     header("Location: /annonces.php");
@@ -34,7 +35,7 @@ $sports = [
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?php echo $lang->getCurrentLanguage(); ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -52,7 +53,7 @@ $sports = [
 
     <main class="event-detail-container">
         <p style="text-align: center; margin-bottom: 20px;">
-            <a href="/annonces.php" class="back-link">← Retour aux annonces</a>
+            <a href="/annonces.php" class="back-link"><?php echo $lang->t('back_to_announcements'); ?></a>
         </p>
 
         <div class="event-header">
@@ -69,32 +70,32 @@ $sports = [
 
                 <?php if ($event->isAvailable()): ?>
                     <span class="availability-badge badge-available">
-                        ✓ Places disponibles
+                        <?php echo $lang->t('places_available'); ?>
                     </span>
                 <?php else: ?>
                     <span class="availability-badge badge-full">
-                        ✗ Complet
+                        <?php echo $lang->t('event_full'); ?>
                     </span>
                 <?php endif; ?>
 
                 <div class="event-info-grid">
                     <div class="info-item">
-                        <div class="info-label">📍 Lieu</div>
+                        <div class="info-label">📍 <?php echo $lang->t('location_label'); ?></div>
                         <div class="info-value"><?php echo htmlspecialchars($event->getLocation()); ?></div>
                     </div>
 
                     <div class="info-item">
-                        <div class="info-label">📅 Date</div>
+                        <div class="info-label">📅 <?php echo $lang->t('date_label'); ?></div>
                         <div class="info-value"><?php echo htmlspecialchars($event->getFormattedDate()); ?></div>
                     </div>
 
                     <div class="info-item">
-                        <div class="info-label">🕐 Heure</div>
+                        <div class="info-label">🕐 <?php echo $lang->t('time_label'); ?></div>
                         <div class="info-value"><?php echo htmlspecialchars(substr($event->getTime(), 0, 5)); ?></div>
                     </div>
 
                     <div class="info-item">
-                        <div class="info-label">👥 Participants</div>
+                        <div class="info-label">👥 <?php echo $lang->t('participants'); ?></div>
                         <div class="info-value">
                             <?php echo $event->getFilled(); ?> / <?php echo $event->getCapacity(); ?>
                         </div>
@@ -108,28 +109,28 @@ $sports = [
 
                 <?php if ($event->getDescription()): ?>
                     <div class="event-description">
-                        <h3>📝 Description</h3>
+                        <h3>📝 <?php echo $lang->t('description_label'); ?></h3>
                         <p><?php echo nl2br(htmlspecialchars($event->getDescription())); ?></p>
                     </div>
                 <?php endif; ?>
 
                 <div class="event-actions">
                     <a href="/annonces.php" class="btn-action btn-back">
-                        ← Retour
+                        <?php echo $lang->t('back'); ?>
                     </a>
                     
                     <?php if ($event->isAvailable()): ?>
                         <button class="btn-action btn-join">
-                            Rejoindre l'événement
+                            <?php echo $lang->t('join_event'); ?>
                         </button>
                     <?php else: ?>
                         <button class="btn-action btn-join" disabled>
-                            Événement complet
+                            <?php echo $lang->t('event_full_btn'); ?>
                         </button>
                     <?php endif; ?>
 
                     <a href="/account/update.php?id=<?php echo $event->getId(); ?>" class="btn-action btn-edit">
-                        ✏️ Modifier
+                        <?php echo $lang->t('modify'); ?>
                     </a>
                 </div>
             </div>
