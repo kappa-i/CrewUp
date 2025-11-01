@@ -26,11 +26,14 @@ $lang = new LanguageManager();
         <p class="hello-sub"><?php echo $lang->t('home_subtitle'); ?></p>
 
         <div class="cta-section">
-            <button class="orange-btn" type="button" onclick="window.location.href='/annonces.php'">
-                <?php echo $lang->t('home_cta'); ?>
-            </button>
-            <img src="assets/img/home_bg.png" alt="basketball-player">
-        </div>
+            <div class="cta-buttons">
+                <button class="orange-btn" type="button" onclick="window.location.href='/annonces.php'">
+                    <?php echo $lang->t('home_cta'); ?>
+                </button>
+                <button class="purple-btn" type="button" onclick="window.location.href='/account/create.php'">
+                    <?php echo $lang->t('create_announcement_btn'); ?>
+                </button>
+            </div>
     </main>
 
     <?php require __DIR__ . '/menus/footer.php'; ?>
