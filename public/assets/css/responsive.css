@@ -1,6 +1,4 @@
-.info-label {
-        font-size: 0.75rem;
-    }/* Responsive Design */
+/* Responsive Design */
 
 /* Tablettes (max 1024px) */
 @media (max-width: 1024px) {
@@ -26,6 +24,14 @@
     .btn-inscription {
         padding: 8px 16px;
         font-size: 0.9rem;
+    }
+
+    .cta-buttons {
+        max-width: 600px;
+    }
+
+    .cta-section img {
+        max-width: 700px;
     }
 
     .footer_col1 {
@@ -117,6 +123,31 @@
 
     .hello-sub {
         font-size: 0.95rem;
+        margin-bottom: 30px;
+    }
+
+    /* CTA Section Mobile */
+    .cta-section {
+        padding: 0 20px 40px 20px;
+        gap: 30px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px;
+        gap: 16px;
+    }
+
+    .cta-section .orange-btn,
+    .cta-section .purple-btn {
+        width: 100%;
+        padding: 14px 24px;
+        font-size: 1rem;
+    }
+
+    .cta-section img {
+        max-width: 100%;
     }
 
     .footer-main {
@@ -154,23 +185,6 @@
         grid-template-columns: 1fr;
         gap: 20px;
         padding: 0 20px;
-    }
-
-    .cta-section {
-        flex-direction: column;
-        padding: 0 20px;
-        text-align: center;
-    }
-
-    .cta-section img {
-        width: 80%;
-        max-width: 300px;
-    }
-
-    .cta-section .orange-btn {
-        width: 100%;
-        margin: 50px;
-        padding: 14px 24px;
     }
 
     .form-container {
@@ -284,6 +298,27 @@
     .hello,
     .art-header {
         font-size: 2rem;
+    }
+
+    .hello-sub {
+        font-size: 0.9rem;
+    }
+
+    /* CTA Section Petit Mobile */
+    .cta-section {
+        padding: 0 16px 30px 16px;
+        gap: 24px;
+    }
+
+    .cta-buttons {
+        max-width: 100%;
+        gap: 12px;
+    }
+
+    .cta-section .orange-btn,
+    .cta-section .purple-btn {
+        padding: 12px 20px;
+        font-size: 0.95rem;
     }
 
     .footer_title {
@@ -418,6 +453,16 @@
     .art-header {
         font-size: 2rem;
         padding-top: 10px;
+    }
+
+    .cta-buttons {
+        flex-direction: row;
+        max-width: 600px;
+    }
+
+    .cta-section .orange-btn,
+    .cta-section .purple-btn {
+        flex: 1;
     }
 
     .event-image {
