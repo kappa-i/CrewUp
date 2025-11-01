@@ -1,5 +1,7 @@
 <?php
 
+
+
 // Charge les classes automatiquement
 spl_autoload_register(function ($class) {
     // Exemple : Users\User devient Users/User
