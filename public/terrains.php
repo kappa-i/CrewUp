@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CrewUp - Annonces</title>
-    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="https://use.typekit.net/ooh3jgp.css">
     <script src="assets/js/global.js"></script>
     <link rel="icon" href="https://crewup.ch/favicon.ico?v=6" sizes="any">
