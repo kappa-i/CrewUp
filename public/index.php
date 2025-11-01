@@ -34,7 +34,8 @@ $lang = new LanguageManager();
                     <?php echo $lang->t('create_announcement_btn'); ?>
                 </button>
             </div>
-            <img src="./assets/img/home_bg.png" alt="">
+            <img src="assets/img/home_bg.png" alt="">
+        </div>
     </main>
 
     <?php require __DIR__ . '/menus/footer.php'; ?>
