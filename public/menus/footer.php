@@ -1,7 +1,6 @@
 <?php
 use I18n\LanguageManager;
 
-// Récupère le gestionnaire de langue (déjà initialisé dans la page)
 if (!isset($lang)) {
     $lang = new LanguageManager();
 }
@@ -9,7 +8,6 @@ if (!isset($lang)) {
 $currentLang = $lang->getCurrentLanguage();
 ?>
 <footer>
-<h1><?php echo $lang->t('key_name'); ?></h1>
     <div class="footer-main">
 
         <div class="footer_col1">

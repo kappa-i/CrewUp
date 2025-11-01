@@ -3,7 +3,6 @@ require_once __DIR__ . '/../src/utils/autoloader.php';
 
 use I18n\LanguageManager;
 
-// Initialise le gestionnaire de langue
 $lang = new LanguageManager();
 ?>
 <!DOCTYPE html>

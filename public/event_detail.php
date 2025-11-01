@@ -34,7 +34,6 @@ $sports = [
 ?>
 
 <!DOCTYPE html>
-<h1><?php echo $lang->t('key_name'); ?></h1>
 <html lang="fr">
 
 <head>
