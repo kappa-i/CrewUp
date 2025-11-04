@@ -106,14 +106,7 @@
         white-space: nowrap;
     }
 
-    .btn-inscription {
-        flex: 0 0 100%;
-        padding: 10px 20px;
-        font-size: 0.9rem;
-        margin: 4px 0 0 0;
-        text-align: center;
-        display: block;
-    }
+
 
     .hello,
     .art-header {
@@ -277,6 +270,7 @@
         top: 10px;
         margin: 12px auto;
         padding: 6px;
+        position:static;
     }
 
     .logo a {
@@ -285,7 +279,7 @@
 
     .main-menu {
         width: 100%;
-        justify-content: space-around;
+        justify-content: center;
     }
 
     .main-menu a {
@@ -294,10 +288,9 @@
     }
 
     .btn-inscription {
-        width: 100%;
-        padding: 10px 16px;
+        width: 50%;
         font-size: 0.85rem;
-        margin-top: 4px;
+        text-align: center;
     }
 
     .hello,
