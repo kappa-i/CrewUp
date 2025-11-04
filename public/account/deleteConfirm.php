@@ -61,9 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirm_delete"])) {
 
     <main class="form-container">
         <h1 class="hello"><?= htmlspecialchars($t['delete_announcement']) ?></h1>
-        <p style="text-align: center;">
-            <a href="update.php?id=<?= htmlspecialchars($eventId) ?>" class="back-link"><?= htmlspecialchars($t['back']) ?></a>
-        </p>
+
 
         <div class="delete-confirm-container">
             <div class="delete-warning">
