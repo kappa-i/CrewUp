@@ -1,10 +1,18 @@
 <?php
 require_once __DIR__ . '/../src/utils/autoloader.php';
-use I18n\LanguageManager;
+require_once __DIR__ . '/../src/i18n/load-translation.php';
+
 use Events\EventManager;
 
+// Constantes
+const COOKIE_NAME = 'lang';
+const DEFAULT_LANG = 'fr';
+
+// Déterminer la langue
+$lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
+$t = loadTranslation($lang);
+
 $eventManager = new EventManager();
-$lang = new LanguageManager();
 
 // On vérifie si l'ID de l'événement est passé dans l'URL
 if (!isset($_GET["id"])) {
@@ -21,26 +29,26 @@ if (!$event) {
     exit();
 }
 
-// Liste des sports pour affichage
+// Liste des sports pour affichage (traduits)
 $sports = [
-    'football' => 'Football',
-    'basketball' => 'Basketball',
-    'volleyball' => 'Volleyball',
-    'tennis' => 'Tennis',
-    'running' => 'Course à pied',
-    'cycling' => 'Cyclisme',
-    'swimming' => 'Natation',
-    'other' => 'Autre'
+    'football' => $t['sport_football'],
+    'basketball' => $t['sport_basketball'],
+    'volleyball' => $t['sport_volleyball'],
+    'tennis' => $t['sport_tennis'],
+    'running' => $t['sport_running'],
+    'cycling' => $t['sport_cycling'],
+    'swimming' => $t['sport_swimming'],
+    'other' => $t['sport_other']
 ];
 ?>
 
 <!DOCTYPE html>
-<html lang="<?php echo $lang->getCurrentLanguage(); ?>">
+<html lang="<?= htmlspecialchars($lang) ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrewUp - <?php echo htmlspecialchars($event->getTitle()); ?></title>
+    <title>CrewUp - <?= htmlspecialchars($event->getTitle()) ?></title>
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/event-detail.css">
     <link rel="stylesheet" href="https://use.typekit.net/ooh3jgp.css">
@@ -53,55 +61,55 @@ $sports = [
 
     <main class="event-detail-container">
         <p style="text-align: center; margin-bottom: 20px;">
-            <a href="/annonces.php" class="back-link"><?php echo $lang->t('back_to_announcements'); ?></a>
+            <a href="/annonces.php" class="back-link"><?= htmlspecialchars($t['back_to_announcements']) ?></a>
         </p>
 
         <div class="event-header">
             <img class="event-image" 
-                 src="<?php echo htmlspecialchars($event->getImageUrl() ?? 'https://media.istockphoto.com/id/533861572/fr/photo/football-au-coucher-du-soleil.jpg?s=612x612&w=0&k=20&c=6qnC4x39vZ2wEUkTh1e6QJsqIKfxW6jo15aSCPjsITk='); ?>" 
-                 alt="<?php echo htmlspecialchars($event->getTitle()); ?>">
+                 src="<?= htmlspecialchars($event->getImageUrl() ?? 'https://media.istockphoto.com/id/533861572/fr/photo/football-au-coucher-du-soleil.jpg?s=612x612&w=0&k=20&c=6qnC4x39vZ2wEUkTh1e6QJsqIKfxW6jo15aSCPjsITk=') ?>" 
+                 alt="<?= htmlspecialchars($event->getTitle()) ?>">
             
             <div class="event-content">
-                <h1 class="event-title"><?php echo htmlspecialchars($event->getTitle()); ?></h1>
+                <h1 class="event-title"><?= htmlspecialchars($event->getTitle()) ?></h1>
                 
                 <span class="event-sport">
-                    <?php echo htmlspecialchars($sports[$event->getSport()] ?? $event->getSport()); ?>
+                    <?= htmlspecialchars($sports[$event->getSport()] ?? $event->getSport()) ?>
                 </span>
 
                 <?php if ($event->isAvailable()): ?>
                     <span class="availability-badge badge-available">
-                        <?php echo $lang->t('places_available'); ?>
+                        <?= htmlspecialchars($t['places_available']) ?>
                     </span>
                 <?php else: ?>
                     <span class="availability-badge badge-full">
-                        <?php echo $lang->t('event_full'); ?>
+                        <?= htmlspecialchars($t['event_full']) ?>
                     </span>
                 <?php endif; ?>
 
                 <div class="event-info-grid">
                     <div class="info-item">
-                        <div class="info-label">📍 <?php echo $lang->t('location_label'); ?></div>
-                        <div class="info-value"><?php echo htmlspecialchars($event->getLocation()); ?></div>
+                        <div class="info-label">📍 <?= htmlspecialchars($t['location_label']) ?></div>
+                        <div class="info-value"><?= htmlspecialchars($event->getLocation()) ?></div>
                     </div>
 
                     <div class="info-item">
-                        <div class="info-label">📅 <?php echo $lang->t('date_label'); ?></div>
-                        <div class="info-value"><?php echo htmlspecialchars($event->getFormattedDate()); ?></div>
+                        <div class="info-label">📅 <?= htmlspecialchars($t['date_label']) ?></div>
+                        <div class="info-value"><?= htmlspecialchars($event->getFormattedDate()) ?></div>
                     </div>
 
                     <div class="info-item">
-                        <div class="info-label">🕐 <?php echo $lang->t('time_label'); ?></div>
-                        <div class="info-value"><?php echo htmlspecialchars(substr($event->getTime(), 0, 5)); ?></div>
+                        <div class="info-label">🕐 <?= htmlspecialchars($t['time_label']) ?></div>
+                        <div class="info-value"><?= htmlspecialchars(substr($event->getTime(), 0, 5)) ?></div>
                     </div>
 
                     <div class="info-item">
-                        <div class="info-label">👥 <?php echo $lang->t('participants'); ?></div>
+                        <div class="info-label">👥 <?= htmlspecialchars($t['participants']) ?></div>
                         <div class="info-value">
-                            <?php echo $event->getFilled(); ?> / <?php echo $event->getCapacity(); ?>
+                            <?= $event->getFilled() ?> / <?= $event->getCapacity() ?>
                         </div>
                         <div class="participants-bar">
                             <div class="participants-fill" 
-                                 style="width: <?php echo ($event->getFilled() / $event->getCapacity()) * 100; ?>%">
+                                 style="width: <?= ($event->getFilled() / $event->getCapacity()) * 100 ?>%">
                             </div>
                         </div>
                     </div>
@@ -109,28 +117,28 @@ $sports = [
 
                 <?php if ($event->getDescription()): ?>
                     <div class="event-description">
-                        <h3>📝 <?php echo $lang->t('description_label'); ?></h3>
-                        <p><?php echo nl2br(htmlspecialchars($event->getDescription())); ?></p>
+                        <h3>📝 <?= htmlspecialchars($t['description_label']) ?></h3>
+                        <p><?= nl2br(htmlspecialchars($event->getDescription())) ?></p>
                     </div>
                 <?php endif; ?>
 
                 <div class="event-actions">
                     <a href="/annonces.php" class="btn-action btn-back">
-                        <?php echo $lang->t('back'); ?>
+                        <?= htmlspecialchars($t['back']) ?>
                     </a>
                     
                     <?php if ($event->isAvailable()): ?>
                         <button class="btn-action btn-join">
-                            <?php echo $lang->t('join_event'); ?>
+                            <?= htmlspecialchars($t['join_event']) ?>
                         </button>
                     <?php else: ?>
                         <button class="btn-action btn-join" disabled>
-                            <?php echo $lang->t('event_full_btn'); ?>
+                            <?= htmlspecialchars($t['event_full_btn']) ?>
                         </button>
                     <?php endif; ?>
 
-                    <a href="/account/update.php?id=<?php echo $event->getId(); ?>" class="btn-action btn-edit">
-                        <?php echo $lang->t('modify'); ?>
+                    <a href="/account/update.php?id=<?= $event->getId() ?>" class="btn-action btn-edit">
+                        <?= htmlspecialchars($t['modify']) ?>
                     </a>
                 </div>
             </div>

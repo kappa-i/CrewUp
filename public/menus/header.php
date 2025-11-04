@@ -1,22 +1,28 @@
 <?php
 require_once __DIR__ . '/../../src/utils/autoloader.php';
 
-use I18n\LanguageManager;
-
-if (!isset($lang)) {
-    $lang = new LanguageManager();
+// Charger les traductions si pas déjà fait
+if (!isset($t)) {
+    require_once __DIR__ . '/../../src/i18n/load-translation.php';
+    
+    if (!defined('COOKIE_NAME')) {
+        define('COOKIE_NAME', 'lang');
+        define('DEFAULT_LANG', 'fr');
+    }
+    
+    $lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
+    $t = loadTranslation($lang);
 }
 ?>
 <nav class="nav" aria-label="Navigation principale">
   <h1 class="logo"><a href="/">CrewUp</a></h1>
 
   <ul class="main-menu">
-    <li><a href="/"><?php echo $lang->t('nav_home'); ?></a></li>
-    <li><a href="/annonces.php"><?php echo $lang->t('nav_announcements'); ?></a></li>
-    <!-- <li><a href="/terrains.php"><?php echo $lang->t('nav_fields'); ?></a></li> -->
+    <li><a href="/"><?= htmlspecialchars($t['nav_home']) ?></a></li>
+    <li><a href="/annonces.php"><?= htmlspecialchars($t['nav_announcements']) ?></a></li>
   </ul>
 
   <a class="btn-inscription" href="/account/dashboard.php">
-    <?php echo $lang->t('nav_signup'); ?>
+    <?= htmlspecialchars($t['nav_signup']) ?>
   </a>
 </nav>

@@ -1,10 +1,21 @@
+<?php
+require_once __DIR__ . '/../src/i18n/load-translation.php';
+
+// Constantes
+const COOKIE_NAME = 'lang';
+const DEFAULT_LANG = 'fr';
+
+// Déterminer la langue
+$lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
+$t = loadTranslation($lang);
+?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?= htmlspecialchars($lang) ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrewUp - Annonces</title>
+    <title>CrewUp - <?= htmlspecialchars($t['fields_title']) ?></title>
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="https://use.typekit.net/ooh3jgp.css">
     <script src="assets/js/global.js"></script>
@@ -15,12 +26,12 @@
     <?php require __DIR__ . '/menus/header.php'; ?>
 
     <main>
-        <h1 class="art-header">Terrains</h1>
+        <h1 class="art-header"><?= htmlspecialchars($t['fields_title']) ?></h1>
         <ul class="account-menu">
-            <li>Filtres : </li>
-            <li><a href="#">Sport ></a></li>
-            <li><a href="#">Lieu ></a></li>
-            <li><a href="#">Date ></a></li>
+            <li><?= htmlspecialchars($t['filters']) ?></li>
+            <li><a href="#"><?= htmlspecialchars($t['filter_sport']) ?></a></li>
+            <li><a href="#"><?= htmlspecialchars($t['filter_location']) ?></a></li>
+            <li><a href="#"><?= htmlspecialchars($t['filter_date']) ?></a></li>
         </ul>
         <div id="events" class="events-grid" style="margin: 40px 0 60px 0;">
         <!--PLACEHOLDER -> Migrer dans assets/cards.php-->

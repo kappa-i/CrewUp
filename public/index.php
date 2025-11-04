@@ -1,17 +1,24 @@
 <?php
 require_once __DIR__ . '/../src/utils/autoloader.php';
+require_once __DIR__ . '/../src/i18n/load-translation.php';
 
-use I18n\LanguageManager;
+// Constantes
+const COOKIE_NAME = 'lang';
+const DEFAULT_LANG = 'fr';
 
-$lang = new LanguageManager();
+// Déterminer la langue préférée
+$lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
+
+// Charger les traductions
+$t = loadTranslation($lang);
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $lang->getCurrentLanguage(); ?>">
+<html lang="<?= htmlspecialchars($lang) ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrewUp - <?php echo $lang->t('nav_home'); ?></title>
+    <title>CrewUp - <?= htmlspecialchars($t['nav_home']) ?></title>
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="https://use.typekit.net/ooh3jgp.css">
     <script src="assets/js/global.js"></script>
@@ -22,16 +29,16 @@ $lang = new LanguageManager();
     <?php require __DIR__ . '/menus/header.php'; ?>
 
     <main>
-        <h1 class="hello"><?php echo $lang->t('home_title'); ?></h1>
-        <p class="hello-sub"><?php echo $lang->t('home_subtitle'); ?></p>
+        <h1 class="hello"><?= htmlspecialchars($t['home_title']) ?></h1>
+        <p class="hello-sub"><?= htmlspecialchars($t['home_subtitle']) ?></p>
 
         <div class="cta-section">
             <div class="cta-buttons">
                 <a href="/annonces.php" class="orange-btn">
-                    <?php echo $lang->t('home_cta'); ?>
+                    <?= htmlspecialchars($t['home_cta']) ?>
                 </a>
                 <a href="/account/create.php" class="purple-btn">
-                    <?php echo $lang->t('create_announcement_btn'); ?>
+                    <?= htmlspecialchars($t['create_announcement_btn']) ?>
                 </a>
             </div>
             <img src="assets/img/home_bg.png" alt="">

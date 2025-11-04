@@ -1,24 +1,30 @@
 <?php
-
 require_once __DIR__ . '/../src/utils/autoloader.php';
-use I18n\LanguageManager;
-// Importation de la classe EventManager
+require_once __DIR__ . '/../src/i18n/load-translation.php';
+
 use Events\EventManager;
+
+// Constantes
+const COOKIE_NAME = 'lang';
+const DEFAULT_LANG = 'fr';
+
+// Déterminer la langue
+$lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
+$t = loadTranslation($lang);
 
 // Création d'une instance de EventManager pour accéder aux événements
 $eventManager = new EventManager();
-$lang = new LanguageManager();
 
 // Récupération de tous les événements depuis la base de données
 $events = $eventManager->getEvents();
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $lang->getCurrentLanguage(); ?>">
+<html lang="<?= htmlspecialchars($lang) ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrewUp - <?php echo $lang->t('nav_announcements'); ?></title>
+    <title>CrewUp - <?= htmlspecialchars($t['nav_announcements']) ?></title>
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="https://use.typekit.net/ooh3jgp.css">
     <script src="assets/js/global.js"></script>
@@ -29,49 +35,39 @@ $events = $eventManager->getEvents();
     <?php require __DIR__ . '/menus/header.php'; ?>
 
     <main>
-        <h1 class="art-header"><?php echo $lang->t('announcements_title'); ?></h1>
+        <h1 class="art-header"><?= htmlspecialchars($t['announcements_title']) ?></h1>
         <ul class="account-menu">
-            <li><?php echo $lang->t('filters'); ?></li>
-            <li><a href="#"><?php echo $lang->t('filter_sport'); ?></a></li>
-            <li><a href="#"><?php echo $lang->t('filter_location'); ?></a></li>
-            <li><a href="#"><?php echo $lang->t('filter_date'); ?></a></li>
+            <li><?= htmlspecialchars($t['filters']) ?></li>
+            <li><a href="#"><?= htmlspecialchars($t['filter_sport']) ?></a></li>
+            <li><a href="#"><?= htmlspecialchars($t['filter_location']) ?></a></li>
+            <li><a href="#"><?= htmlspecialchars($t['filter_date']) ?></a></li>
         </ul>
 
         <div id="events" class="events-grid" style="margin: 40px 0 60px 0;">
             <?php if (empty($events)): ?>
                 <p style="color: white; text-align: center; grid-column: 1 / -1; font-size: 1.2rem;">
-                    <?php echo $lang->t('no_events'); ?>
+                    <?= htmlspecialchars($t['no_events']) ?>
                     <a href="/account/create.php" style="color: #6b29ff; text-decoration: underline;">
-                        <?php echo $lang->t('create_first'); ?>
+                        <?= htmlspecialchars($t['create_first']) ?>
                     </a>
                 </p>
             <?php else: ?>
-                <!-- Boucle sur tous les événements récupérés -->
                 <?php foreach ($events as $event): ?>
                     <article class="card">
-                        <!-- Image de l'événement (ou image par défaut) -->
-                        <img class="card_img" src="<?php echo htmlspecialchars($event->getImageUrl() ?? 'https://media.istockphoto.com/id/533861572/fr/photo/football-au-coucher-du-soleil.jpg?s=612x612&w=0&k=20&c=6qnC4x39vZ2wEUkTh1e6QJsqIKfxW6jo15aSCPjsITk='); ?>" alt="<?php echo htmlspecialchars($event->getTitle()); ?>">
+                        <img class="card_img" src="<?= htmlspecialchars($event->getImageUrl() ?? 'https://media.istockphoto.com/id/533861572/fr/photo/football-au-coucher-du-soleil.jpg?s=612x612&w=0&k=20&c=6qnC4x39vZ2wEUkTh1e6QJsqIKfxW6jo15aSCPjsITk=') ?>" alt="<?= htmlspecialchars($event->getTitle()) ?>">
 
                         <div class="card_info">
                             <div class="card_left_col">
-                                <!-- Titre de l'événement -->
-                                <h1 class="card_title"><?php echo htmlspecialchars($event->getTitle()); ?></h1>
-
-                                <!-- Lieu de l'événement -->
-                                <h3 class="card_place"><?php echo htmlspecialchars($event->getLocation()); ?></h3>
-
-                                <!-- Date formatée (ex: "Sa, 12.07.26") -->
-                                <h3 class="card_date"><?php echo htmlspecialchars($event->getFormattedDate()); ?></h3>
+                                <h1 class="card_title"><?= htmlspecialchars($event->getTitle()) ?></h1>
+                                <h3 class="card_place"><?= htmlspecialchars($event->getLocation()) ?></h3>
+                                <h3 class="card_date"><?= htmlspecialchars($event->getFormattedDate()) ?></h3>
                             </div>
 
                             <div class="card_right_col">
-                                <!-- Nombre de participants / capacité -->
                                 <span class="card_ppl">
-                                    <span class="card_filled"><?php echo $event->getFilled(); ?></span>/<span class="card_capacity"><?php echo $event->getCapacity(); ?></span>
+                                    <span class="card_filled"><?= $event->getFilled() ?></span>/<span class="card_capacity"><?= $event->getCapacity() ?></span>
                                 </span>
-
-                                <!-- Lien vers la page de détail (à créer plus tard) -->
-                                <a class="card_link" href="event_detail.php?id=<?php echo $event->getId(); ?>">›</a>
+                                <a class="card_link" href="event_detail.php?id=<?= $event->getId() ?>">›</a>
                             </div>
                         </div>
                     </article>

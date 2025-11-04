@@ -1,11 +1,18 @@
 <?php
-use I18n\LanguageManager;
-
-if (!isset($lang)) {
-    $lang = new LanguageManager();
+// Charger les traductions si pas déjà fait
+if (!isset($t)) {
+    require_once __DIR__ . '/../../src/i18n/load-translation.php';
+    
+    if (!defined('COOKIE_NAME')) {
+        define('COOKIE_NAME', 'lang');
+        define('DEFAULT_LANG', 'fr');
+    }
+    
+    $lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
+    $t = loadTranslation($lang);
 }
 
-$currentLang = $lang->getCurrentLanguage();
+$currentLang = $lang ?? DEFAULT_LANG;
 ?>
 <footer>
     <div class="footer-main">
@@ -19,27 +26,27 @@ $currentLang = $lang->getCurrentLanguage();
                         <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
                         <path d="m22 6-10 7L2 6" />
                     </svg>
-                    <span><?php echo $lang->t('newsletter'); ?></span>
+                    <span><?= htmlspecialchars($t['newsletter']) ?></span>
                 </a>
             </div>
             <div class="footer_links">
-                <a href="/annonces.php"><?php echo $lang->t('nav_announcements'); ?></a>
-                <a href="/account/dashboard.php"><?php echo $lang->t('create_account'); ?></a>
-                <a href="/terrains.php"><?php echo $lang->t('nav_fields'); ?></a>
-                <a href="#"><?php echo $lang->t('nearby'); ?></a>
-                <a href="#"><?php echo $lang->t('community'); ?></a>
-                <a href="#"><?php echo $lang->t('legal'); ?></a>
+                <a href="/annonces.php"><?= htmlspecialchars($t['nav_announcements']) ?></a>
+                <a href="/account/dashboard.php"><?= htmlspecialchars($t['create_account']) ?></a>
+                <a href="/terrains.php"><?= htmlspecialchars($t['nav_fields']) ?></a>
+                <a href="#"><?= htmlspecialchars($t['nearby']) ?></a>
+                <a href="#"><?= htmlspecialchars($t['community']) ?></a>
+                <a href="#"><?= htmlspecialchars($t['legal']) ?></a>
             </div>
         </div>
 
         <div class="footer_col2">
-            <div class="copyright"><?php echo $lang->t('rights'); ?></div>
+            <div class="copyright"><?= htmlspecialchars($t['rights']) ?></div>
             <div class="language_switcher">
                 <a href="/change-language.php?lang=fr" 
-                   class="<?php echo $currentLang === 'fr' ? 'lang_selected' : ''; ?>" 
+                   class="<?= $currentLang === 'fr' ? 'lang_selected' : '' ?>" 
                    lang="fr">FR</a>
                 <a href="/change-language.php?lang=en" 
-                   class="<?php echo $currentLang === 'en' ? 'lang_selected' : ''; ?>" 
+                   class="<?= $currentLang === 'en' ? 'lang_selected' : '' ?>" 
                    lang="en">EN</a>
             </div>
             <div class="footer_social">

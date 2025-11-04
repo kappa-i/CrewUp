@@ -1,23 +1,30 @@
 <?php
 require_once __DIR__ . '/../../src/utils/autoloader.php';
+require_once __DIR__ . '/../../src/i18n/load-translation.php';
 
 use Events\EventManager;
 use Events\Event;
-use I18n\LanguageManager;
+
+// Constantes
+const COOKIE_NAME = 'lang';
+const DEFAULT_LANG = 'fr';
+
+// Déterminer la langue
+$lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
+$t = loadTranslation($lang);
 
 $eventManager = new EventManager();
-$lang = new LanguageManager();
 
-// Liste des sports disponibles
+// Liste des sports disponibles (traduits)
 $sports = [
-    'football' => 'Football',
-    'basketball' => 'Basketball',
-    'volleyball' => 'Volleyball',
-    'tennis' => 'Tennis',
-    'running' => 'Course à pied',
-    'cycling' => 'Cyclisme',
-    'swimming' => 'Natation',
-    'other' => 'Autre'
+    'football' => $t['sport_football'],
+    'basketball' => $t['sport_basketball'],
+    'volleyball' => $t['sport_volleyball'],
+    'tennis' => $t['sport_tennis'],
+    'running' => $t['sport_running'],
+    'cycling' => $t['sport_cycling'],
+    'swimming' => $t['sport_swimming'],
+    'other' => $t['sport_other']
 ];
 
 // On vérifie si l'ID de l'événement est passé dans l'URL
@@ -137,13 +144,12 @@ if (isset($_GET["id"])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="<?php echo $lang->getCurrentLanguage(); ?>">
+<html lang="<?= htmlspecialchars($lang) ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CHANGEMENT: Traduire le titre -->
-    <title>CrewUp - <?php echo $lang->t('edit_announcement'); ?></title>
+    <title>CrewUp - <?= htmlspecialchars($t['edit_announcement']) ?></title>
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/forms.css">
     <link rel="stylesheet" href="https://use.typekit.net/ooh3jgp.css">
@@ -156,26 +162,22 @@ if (isset($_GET["id"])) {
     <?php require __DIR__ . '/../menus/header.php'; ?>
 
     <main class="form-container">
-        <!-- CHANGEMENT: Traduire le titre -->
-        <h1 class="hello"><?php echo $lang->t('edit_announcement'); ?></h1>
+        <h1 class="hello"><?= htmlspecialchars($t['edit_announcement']) ?></h1>
         <p style="text-align: center;">
-            <!-- CHANGEMENT: Traduire le lien -->
-            <a href="dashboard.php" class="back-link"><?php echo $lang->t('back_to_dashboard'); ?></a>
+            <a href="dashboard.php" class="back-link"><?= htmlspecialchars($t['back_to_dashboard']) ?></a>
         </p>
 
         <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
             <?php if (empty($errors)): ?>
                 <div class="success-message">
-                    <!-- CHANGEMENT: Traduire le message -->
-                    <p><?php echo $lang->t('success_updated'); ?></p>
+                    <p><?= htmlspecialchars($t['success_updated']) ?></p>
                 </div>
             <?php else: ?>
                 <div class="error-message">
-                    <!-- CHANGEMENT: Traduire le message -->
-                    <p><?php echo $lang->t('error_form'); ?></p>
+                    <p><?= htmlspecialchars($t['error_form']) ?></p>
                     <ul>
                         <?php foreach ($errors as $error): ?>
-                            <li><?php echo htmlspecialchars($error); ?></li>
+                            <li><?= htmlspecialchars($error) ?></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -183,71 +185,69 @@ if (isset($_GET["id"])) {
         <?php endif; ?>
 
         <form action="update.php" method="POST">
-            <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>" />
+            <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>" />
 
-            <!-- CHANGEMENT: Traduire tous les labels -->
-            <label for="title"><?php echo $lang->t('event_title_label'); ?> <span style="color: #ff6b6b;"><?php echo $lang->t('required_field'); ?></span></label>
+            <label for="title"><?= htmlspecialchars($t['event_title_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
             <input type="text" id="title" name="title" 
-                   value="<?php echo isset($title) ? htmlspecialchars($title) : ''; ?>" 
+                   value="<?= isset($title) ? htmlspecialchars($title) : '' ?>" 
                    required minlength="3" 
-                   placeholder="<?php echo $lang->t('placeholder_title'); ?>">
+                   placeholder="<?= htmlspecialchars($t['placeholder_title']) ?>">
 
-            <label for="sport"><?php echo $lang->t('sport_label'); ?> <span style="color: #ff6b6b;"><?php echo $lang->t('required_field'); ?></span></label>
+            <label for="sport"><?= htmlspecialchars($t['sport_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
             <select id="sport" name="sport" required>
-                <option value=""><?php echo $lang->t('choose_sport'); ?></option>
+                <option value=""><?= htmlspecialchars($t['choose_sport']) ?></option>
                 <?php foreach ($sports as $key => $value): ?>
-                    <option value="<?= $key ?>" <?php echo (isset($sport) && $sport == $key) ? 'selected' : ''; ?>>
-                        <?= $value ?>
+                    <option value="<?= $key ?>" <?= (isset($sport) && $sport == $key) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($value) ?>
                     </option>
                 <?php endforeach; ?>
             </select>
 
-            <label for="location"><?php echo $lang->t('location_label'); ?> <span style="color: #ff6b6b;"><?php echo $lang->t('required_field'); ?></span></label>
+            <label for="location"><?= htmlspecialchars($t['location_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
             <input type="text" id="location" name="location" 
-                   value="<?php echo isset($location) ? htmlspecialchars($location) : ''; ?>" 
+                   value="<?= isset($location) ? htmlspecialchars($location) : '' ?>" 
                    required 
-                   placeholder="<?php echo $lang->t('placeholder_location'); ?>">
+                   placeholder="<?= htmlspecialchars($t['placeholder_location']) ?>">
 
-            <label for="date"><?php echo $lang->t('date_label'); ?> <span style="color: #ff6b6b;"><?php echo $lang->t('required_field'); ?></span></label>
+            <label for="date"><?= htmlspecialchars($t['date_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
             <input type="date" id="date" name="date" 
-                   value="<?php echo isset($date) ? htmlspecialchars($date) : ''; ?>" 
+                   value="<?= isset($date) ? htmlspecialchars($date) : '' ?>" 
                    required>
 
-            <label for="time"><?php echo $lang->t('time_label'); ?> <span style="color: #ff6b6b;"><?php echo $lang->t('required_field'); ?></span></label>
+            <label for="time"><?= htmlspecialchars($t['time_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
             <input type="time" id="time" name="time" 
-                   value="<?php echo isset($time) ? htmlspecialchars($time) : ''; ?>" 
+                   value="<?= isset($time) ? htmlspecialchars($time) : '' ?>" 
                    required>
 
-            <label for="capacity"><?php echo $lang->t('max_participants_label'); ?> <span style="color: #ff6b6b;"><?php echo $lang->t('required_field'); ?></span></label>
+            <label for="capacity"><?= htmlspecialchars($t['max_participants_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
             <input type="number" id="capacity" name="capacity" 
-                   value="<?php echo isset($capacity) ? htmlspecialchars($capacity) : ''; ?>" 
+                   value="<?= isset($capacity) ? htmlspecialchars($capacity) : '' ?>" 
                    required min="2" 
-                   placeholder="<?php echo $lang->t('placeholder_capacity'); ?>">
+                   placeholder="<?= htmlspecialchars($t['placeholder_capacity']) ?>">
 
-            <label for="filled"><?php echo $lang->t('registered_participants_label'); ?> <span style="color: #ff6b6b;"><?php echo $lang->t('required_field'); ?></span></label>
+            <label for="filled"><?= htmlspecialchars($t['registered_participants_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
             <input type="number" id="filled" name="filled" 
-                   value="<?php echo isset($filled) ? htmlspecialchars($filled) : ''; ?>" 
+                   value="<?= isset($filled) ? htmlspecialchars($filled) : '' ?>" 
                    required min="0" 
                    placeholder="Ex: 5">
 
-            <label for="description"><?php echo $lang->t('description_label'); ?></label>
+            <label for="description"><?= htmlspecialchars($t['description_label']) ?></label>
             <textarea id="description" name="description" 
-                      placeholder="<?php echo $lang->t('placeholder_description'); ?>"><?php echo isset($description) ? htmlspecialchars($description) : ''; ?></textarea>
+                      placeholder="<?= htmlspecialchars($t['placeholder_description']) ?>"><?= isset($description) ? htmlspecialchars($description) : '' ?></textarea>
 
-            <label for="image_url"><?php echo $lang->t('image_url_label'); ?></label>
+            <label for="image_url"><?= htmlspecialchars($t['image_url_label']) ?></label>
             <input type="url" id="image_url" name="image_url" 
-                   value="<?php echo isset($imageUrl) ? htmlspecialchars($imageUrl) : ''; ?>" 
-                   placeholder="<?php echo $lang->t('placeholder_image'); ?>">
+                   value="<?= isset($imageUrl) ? htmlspecialchars($imageUrl) : '' ?>" 
+                   placeholder="<?= htmlspecialchars($t['placeholder_image']) ?>">
 
             <div class="form-buttons">
-                <!-- CHANGEMENT: Traduire les boutons et le message de confirmation -->
-                <a href="delete.php?id=<?php echo htmlspecialchars($id); ?>" 
-                   onclick="return confirm('<?php echo $lang->t('delete_confirm'); ?>')"
+                <a href="delete.php?id=<?= htmlspecialchars($id) ?>" 
+                   onclick="return confirm('<?= htmlspecialchars($t['delete_confirm']) ?>')"
                    style="flex: 1; text-decoration: none;">
-                    <button type="button" class="btn-reset" style="width: 100%;"><?php echo $lang->t('btn_delete'); ?></button>
+                    <button type="button" class="btn-reset" style="width: 100%;"><?= htmlspecialchars($t['btn_delete']) ?></button>
                 </a>
-                <button type="submit" class="btn-submit"><?php echo $lang->t('btn_update'); ?></button>
-                <button type="reset" class="btn-reset"><?php echo $lang->t('btn_reset'); ?></button>
+                <button type="submit" class="btn-submit"><?= htmlspecialchars($t['btn_update']) ?></button>
+                <button type="reset" class="btn-reset"><?= htmlspecialchars($t['btn_reset']) ?></button>
             </div>
         </form>
     </main>
