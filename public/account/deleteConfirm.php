@@ -14,18 +14,6 @@ $t = loadTranslation($lang);
 
 $eventManager = new EventManager();
 
-// Liste des sports disponibles (traduits)
-$sports = [
-    'football' => $t['sport_football'],
-    'basketball' => $t['sport_basketball'],
-    'volleyball' => $t['sport_volleyball'],
-    'tennis' => $t['sport_tennis'],
-    'running' => $t['sport_running'],
-    'cycling' => $t['sport_cycling'],
-    'swimming' => $t['sport_swimming'],
-    'other' => $t['sport_other']
-];
-
 // Vérification si l'ID de l'événement est passé dans l'URL
 if (isset($_GET["id"])) {
     $eventId = $_GET["id"];
@@ -78,49 +66,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirm_delete"])) {
 
         <div style="background: rgba(220, 53, 69, 0.15); border: 2px solid rgba(220, 53, 69, 0.5); border-radius: 24px; padding: 40px; margin-top: 30px;">
             <div style="text-align: center; margin-bottom: 30px;">
-                <h2 style="color: #ff6b6b; font-size: 1.5rem; margin-bottom: 10px;">⚠️ <?= htmlspecialchars($t['delete_warning_title']) ?></h2>
-                <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.1rem;">
+                <h2 style="color: #ff6b6b; font-size: 1.8rem; margin-bottom: 15px;">⚠️ <?= htmlspecialchars($t['delete_warning_title']) ?></h2>
+                <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.1rem; line-height: 1.6;">
                     <?= htmlspecialchars($t['delete_warning_message']) ?>
                 </p>
-            </div>
-
-            <!-- Affichage des détails de l'événement -->
-            <div style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 30px; margin-bottom: 30px;">
-                <h3 style="color: #fff; margin-top: 0; margin-bottom: 20px; font-size: 1.3rem;">
-                    📋 <?= htmlspecialchars($t['event_details']) ?>
-                </h3>
-                
-                <div style="display: grid; gap: 15px;">
-                    <div>
-                        <strong style="color: rgba(255, 255, 255, 0.6);"><?= htmlspecialchars($t['event_title_label']) ?>:</strong>
-                        <span style="color: #fff; margin-left: 10px; font-size: 1.1rem;"><?= htmlspecialchars($event->getTitle()) ?></span>
-                    </div>
-                    
-                    <div>
-                        <strong style="color: rgba(255, 255, 255, 0.6);"><?= htmlspecialchars($t['sport_label']) ?>:</strong>
-                        <span style="color: #fff; margin-left: 10px;"><?= htmlspecialchars($sports[$event->getSport()] ?? $event->getSport()) ?></span>
-                    </div>
-                    
-                    <div>
-                        <strong style="color: rgba(255, 255, 255, 0.6);"><?= htmlspecialchars($t['location_label']) ?>:</strong>
-                        <span style="color: #fff; margin-left: 10px;"><?= htmlspecialchars($event->getLocation()) ?></span>
-                    </div>
-                    
-                    <div>
-                        <strong style="color: rgba(255, 255, 255, 0.6);"><?= htmlspecialchars($t['date_label']) ?>:</strong>
-                        <span style="color: #fff; margin-left: 10px;"><?= htmlspecialchars($event->getFormattedDate()) ?></span>
-                    </div>
-                    
-                    <div>
-                        <strong style="color: rgba(255, 255, 255, 0.6);"><?= htmlspecialchars($t['time_label']) ?>:</strong>
-                        <span style="color: #fff; margin-left: 10px;"><?= htmlspecialchars(substr($event->getTime(), 0, 5)) ?></span>
-                    </div>
-                    
-                    <div>
-                        <strong style="color: rgba(255, 255, 255, 0.6);"><?= htmlspecialchars($t['participants']) ?>:</strong>
-                        <span style="color: #fff; margin-left: 10px;"><?= $event->getFilled() ?> / <?= $event->getCapacity() ?></span>
-                    </div>
-                </div>
+                <p style="color: #fff; font-weight: 600; font-size: 1.2rem; margin-top: 20px;">
+                    "<?= htmlspecialchars($event->getTitle()) ?>"
+                </p>
             </div>
 
             <!-- Formulaire de confirmation -->
