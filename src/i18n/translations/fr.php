@@ -33,6 +33,7 @@ return [
     // ===== Formulaires =====
     'create_announcement' => 'Créer une annonce',
     'edit_announcement' => 'Éditer une annonce',
+    'delete_announcement' => 'Supprimer une annonce',
     'back_to_dashboard' => '← Retour au dashboard',
     'back_to_announcements' => '← Retour aux annonces',
     'event_title_label' => 'Titre de l\'événement',
@@ -49,6 +50,8 @@ return [
     'btn_create' => 'Créer l\'annonce',
     'btn_update' => 'Mettre à jour',
     'btn_delete' => 'Supprimer',
+    'btn_cancel' => 'Annuler',
+    'btn_confirm_delete' => 'Confirmer la suppression',
     'btn_reset' => 'Réinitialiser',
     'delete_confirm' => 'Êtes-vous sûr de vouloir supprimer cet événement ?',
 
@@ -56,6 +59,9 @@ return [
     'success_created' => '✓ L\'annonce a été créée avec succès !',
     'success_updated' => 'L\'annonce a été mise à jour avec succès !',
     'error_form' => '❌ Le formulaire contient des erreurs :',
+    'delete_warning_title' => 'Attention : Action irréversible',
+    'delete_warning_message' => 'Vous êtes sur le point de supprimer définitivement cet événement. Cette action ne peut pas être annulée.',
+    'event_details' => 'Détails de l\'événement à supprimer',
 
     // ===== Sports =====
     'sport_football' => 'Football',

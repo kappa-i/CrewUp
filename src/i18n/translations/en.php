@@ -50,6 +50,8 @@ return [
     'btn_create' => 'Create Event',
     'btn_update' => 'Update',
     'btn_delete' => 'Delete',
+    'btn_cancel' => 'Cancel',
+    'btn_confirm_delete' => 'Confirm deletion',
     'btn_reset' => 'Reset',
     'delete_confirm' => 'Are you sure you want to delete this event?',
     
@@ -57,6 +59,9 @@ return [
     'success_created' => '✓ Event created successfully!',
     'success_updated' => 'Event updated successfully!',
     'error_form' => '❌ The form contains errors:',
+    'delete_warning_title' => 'Warning: Irreversible action',
+    'delete_warning_message' => 'You are about to permanently delete this event. This action cannot be undone.',
+    'event_details' => 'Event details to be deleted',
     
     // ===== Sports =====
     'sport_football' => 'Football',

@@ -241,8 +241,7 @@ if (isset($_GET["id"])) {
                    placeholder="<?= htmlspecialchars($t['placeholder_image']) ?>">
 
             <div class="form-buttons">
-                <a href="delete.php?id=<?= htmlspecialchars($id) ?>" 
-                   onclick="return confirm('<?= htmlspecialchars($t['delete_confirm']) ?>')"
+                <a href="deleteConfirm.php?id=<?= htmlspecialchars($id) ?>" 
                    style="flex: 1; text-decoration: none;">
                     <button type="button" class="btn-reset" style="width: 100%;"><?= htmlspecialchars($t['btn_delete']) ?></button>
                 </a>
