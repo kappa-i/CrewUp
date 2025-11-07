@@ -2,9 +2,6 @@
 //IL FAUT LIER LE BOUTON EN HAUT "INSCRIPTION GRATUITE" A CETTE PAGE POUR QUE LE USER PUISSE SE LOGIN
 
 
-
-
-
 // Constantes
 const DATABASE_FILE = __DIR__ . '/../../users.db';
 

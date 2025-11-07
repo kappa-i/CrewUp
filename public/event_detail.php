@@ -20,7 +20,6 @@ $isAuthenticated = $userId !== null;
 if ($isAuthenticated) {
     // Récupère les autres informations de l'utilisateur
     $username = $_SESSION['username'];
-    $role = $_SESSION['role'];
 }
 // ===== FIN AUTHENTIFICATION =====
 

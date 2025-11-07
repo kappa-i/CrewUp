@@ -39,11 +39,13 @@ class Database implements DatabaseInterface
 
         // Création de la table `users` si elle n'existe pas
         $sql = "CREATE TABLE IF NOT EXISTS users (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            first_name VARCHAR(100) NOT NULL,
-            last_name VARCHAR(100) NOT NULL,
-            email VARCHAR(255) NOT NULL UNIQUE,
-            age INT NOT NULL
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(50) NOT NULL UNIQUE,
+        email VARCHAR(255) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        role VARCHAR(20) DEFAULT 'user',
+        first_name VARCHAR(100),
+        last_name VARCHAR(100),
         );";
 
         $stmt = $this->pdo->prepare($sql);
