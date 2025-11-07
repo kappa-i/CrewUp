@@ -2,6 +2,20 @@
 require_once __DIR__ . '/../src/utils/autoloader.php';
 require_once __DIR__ . '/../src/i18n/load-translation.php';
 
+// Démarre la session
+session_start();
+
+// Vérifie si l'utilisateur est authentifié
+$userId = $_SESSION['user_id'] ?? null;
+$isAuthenticated = $userId !== null;
+
+// L'utilisateur est authentifié
+if ($isAuthenticated) {
+    // Récupère les autres informations de l'utilisateur
+    $username = $_SESSION['username'];
+    $role = $_SESSION['role'];
+}
+
 // Constantes
 const COOKIE_NAME = 'lang';
 const DEFAULT_LANG = 'fr';

@@ -8,6 +8,22 @@ use Events\EventManager;
 const COOKIE_NAME = 'lang';
 const DEFAULT_LANG = 'fr';
 
+// ===== AUTHENTIFICATION =====
+// Démarre la session
+session_start();
+
+// Vérifie si l'utilisateur est authentifié
+$userId = $_SESSION['user_id'] ?? null;
+$isAuthenticated = $userId !== null;
+
+// L'utilisateur est authentifié
+if ($isAuthenticated) {
+    // Récupère les autres informations de l'utilisateur
+    $username = $_SESSION['username'];
+    $role = $_SESSION['role'];
+}
+// ===== FIN AUTHENTIFICATION =====
+
 // Déterminer la langue
 $lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
 $t = loadTranslation($lang);
@@ -127,19 +143,30 @@ $sports = [
                         <?= htmlspecialchars($t['back']) ?>
                     </a>
                     
-                    <?php if ($event->isAvailable()): ?>
-                        <button class="btn-action btn-join">
-                            <?= htmlspecialchars($t['join_event']) ?>
-                        </button>
+                    <?php if ($isAuthenticated): ?>
+                        <!-- Si l'utilisateur est connecté : boutons actifs -->
+                        <?php if ($event->isAvailable()): ?>
+                            <button class="btn-action btn-join">
+                                <?= htmlspecialchars($t['join_event']) ?>
+                            </button>
+                        <?php else: ?>
+                            <button class="btn-action btn-join" disabled>
+                                <?= htmlspecialchars($t['event_full_btn']) ?>
+                            </button>
+                        <?php endif; ?>
+
+                        <a href="/account/update.php?id=<?= $event->getId() ?>" class="btn-action btn-edit">
+                            <?= htmlspecialchars($t['modify']) ?>
+                        </a>
                     <?php else: ?>
-                        <button class="btn-action btn-join" disabled>
-                            <?= htmlspecialchars($t['event_full_btn']) ?>
+                        <!-- Si l'utilisateur n'est PAS connecté : boutons désactivés -->
+                        <button class="btn-action btn-join" disabled title="Connexion requise">
+                            🔒 <?= htmlspecialchars($t['join_event']) ?>
+                        </button>
+                        <button class="btn-action btn-edit" disabled title="Connexion requise" style="background: rgba(255, 255, 255, 0.05); cursor: not-allowed;">
+                            🔒 <?= htmlspecialchars($t['modify']) ?>
                         </button>
                     <?php endif; ?>
-
-                    <a href="/account/update.php?id=<?= $event->getId() ?>" class="btn-action btn-edit">
-                        <?= htmlspecialchars($t['modify']) ?>
-                    </a>
                 </div>
             </div>
         </div>

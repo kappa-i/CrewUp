@@ -22,7 +22,7 @@ if (!isset($t)) {
     <li><a href="/annonces.php"><?= htmlspecialchars($t['nav_announcements']) ?></a></li>
   </ul>
 
-  <a class="btn-inscription" href="/account/dashboard.php">
+  <a class="btn-inscription" href="/auth/register.php">
     <?= htmlspecialchars($t['nav_signup']) ?>
   </a>
 </nav>
