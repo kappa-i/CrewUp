@@ -1,6 +1,4 @@
 <?php
-require_once __DIR__ . '/../../src/utils/autoloader.php';
-
 // Démarre la session
 session_start();
 
@@ -34,17 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Le mot de passe doit contenir au moins 8 caractères.';
     } else {
         try {
-            // Connexion à la base de données
-            $database = new Database();
-            $pdo = $database->getPdo();
+            // Connexion à la base de données MySQL
+            $pdo = new PDO(
+                'mysql:host=h09pj7.myd.infomaniak.com;port=3306;dbname=h09pj7_db_crewup;charset=utf8mb4',
+                'h09pj7_gabcappai',
+                'muG9Wd27@_ Y$'
+            );
 
             // Vérifier si l'email existe déjà
             $stmt = $pdo->prepare('SELECT * FROM users WHERE email = :email');
             $stmt->execute(['email' => $email]);
-            $existingUser = $stmt->fetch();
+            $user = $stmt->fetch();
 
-            if ($existingUser) {
-                $error = 'Cet e-mail est déjà utilisé.';
+            if ($user) {
+                $error = 'Cet e-mail est déjà pris.';
             } else {
                 // Vérifier si le nom d'utilisateur existe déjà
                 $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username');
