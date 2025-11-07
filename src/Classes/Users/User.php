@@ -5,41 +5,44 @@ namespace Users;
 class User implements UsersInterface
 {
     private ?int $id;
-    private string $firstName;
-    private string $lastName;
+    private string $username;
     private string $email;
-    private int $age;
+    private string $password;
+    private string $role;
 
     // Constructeur pour initialiser l'objet
-    public function __construct(?int $id, string $firstName, string $lastName, string $email, int $age)
-    {
+    public function __construct(
+        ?int $id,
+        string $username,
+        string $email,
+        string $password,
+        string $role = 'user'
+    ) {
         // Vérification des données
-        if (empty($firstName)) {
-            throw new \InvalidArgumentException("Le prénom est requis.");
-        } else if (strlen($firstName) < 2) {
-            throw new \InvalidArgumentException("Le prénom doit contenir au moins 2 caractères.");
-        }
-
-        if (empty($lastName)) {
-            throw new \InvalidArgumentException("Le nom est requis.");
-        } else if (strlen($lastName) < 2) {
-            throw new \InvalidArgumentException("Le nom doit contenir au moins 2 caractères.");
+        if (empty($username)) {
+            throw new \InvalidArgumentException("Le nom d'utilisateur est requis.");
+        } else if (strlen($username) < 3) {
+            throw new \InvalidArgumentException("Le nom d'utilisateur doit contenir au moins 3 caractères.");
         }
 
         if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new \InvalidArgumentException("Un email valide est requis.");
         }
 
-        if ($age < 0) {
-            throw new \InvalidArgumentException("L'âge doit être un nombre positif.");
+        if (empty($password)) {
+            throw new \InvalidArgumentException("Le mot de passe est requis.");
+        }
+
+        if (!in_array($role, ['user', 'admin'])) {
+            throw new \InvalidArgumentException("Le rôle doit être 'user' ou 'admin'.");
         }
 
         // Initialisation des propriétés
         $this->id = $id;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
+        $this->username = $username;
         $this->email = $email;
-        $this->age = $age;
+        $this->password = $password;
+        $this->role = $role;
     }
 
     // Getters pour accéder aux propriétés
@@ -48,14 +51,9 @@ class User implements UsersInterface
         return $this->id;
     }
 
-    public function getFirstName(): string
+    public function getUsername(): string
     {
-        return $this->firstName;
-    }
-
-    public function getLastName(): string
-    {
-        return $this->lastName;
+        return $this->username;
     }
 
     public function getEmail(): string
@@ -63,9 +61,14 @@ class User implements UsersInterface
         return $this->email;
     }
 
-    public function getAge(): int
+    public function getPassword(): string
     {
-        return $this->age;
+        return $this->password;
+    }
+
+    public function getRole(): string
+    {
+        return $this->role;
     }
 
     // Setters pour modifier les propriétés
@@ -74,25 +77,42 @@ class User implements UsersInterface
         $this->id = $id;
     }
 
-    public function setFirstName(string $firstName): void
+    public function setUsername(string $username): void
     {
-        $this->firstName = $firstName;
-    }
-
-    public function setLastName(string $lastName): void
-    {
-        $this->lastName = $lastName;
+        if (!empty($username) && strlen($username) >= 3) {
+            $this->username = $username;
+        }
     }
 
     public function setEmail(string $email): void
     {
-        $this->email = $email;
+        if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->email = $email;
+        }
     }
 
-    public function setAge(int $age): void
+    public function setPassword(string $password): void
     {
-        if ($age >= 0) {
-            $this->age = $age;
+        if (!empty($password)) {
+            $this->password = $password;
         }
+    }
+
+    public function setRole(string $role): void
+    {
+        if (in_array($role, ['user', 'admin'])) {
+            $this->role = $role;
+        }
+    }
+
+    // Méthodes utilitaires
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function verifyPassword(string $password): bool
+    {
+        return password_verify($password, $this->password);
     }
 }
