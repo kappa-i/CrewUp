@@ -44,6 +44,15 @@ if (!$event) {
     exit();
 }
 
+$isParticipating = false;
+if ($isAuthenticated) {
+    $database = new Database();
+    $pdo = $database->getPdo();
+    $stmt = $pdo->prepare('SELECT * FROM event_participants WHERE event_id = :event_id AND user_id = :user_id');
+    $stmt->execute(['event_id' => $eventId, 'user_id' => $userId]);
+    $isParticipating = (bool)$stmt->fetch();
+}
+
 // Liste des sports pour affichage (traduits)
 $sports = [
     'football' => $t['sport_football'],
