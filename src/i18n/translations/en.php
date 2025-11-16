@@ -98,4 +98,6 @@ return [
     'placeholder_capacity' => 'E.g.: 10',
     'placeholder_description' => 'Describe your event, required level, necessary equipment...',
     'placeholder_image' => 'https://example.com/image.jpg',
+    
+    'leave_event' => 'Leave event'
 ];

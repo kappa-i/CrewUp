@@ -80,13 +80,13 @@ $sports = [
         </p>
 
         <div class="event-header">
-            <img class="event-image" 
-                 src="<?= htmlspecialchars($event->getImageUrl() ?? 'https://media.istockphoto.com/id/533861572/fr/photo/football-au-coucher-du-soleil.jpg?s=612x612&w=0&k=20&c=6qnC4x39vZ2wEUkTh1e6QJsqIKfxW6jo15aSCPjsITk=') ?>" 
-                 alt="<?= htmlspecialchars($event->getTitle()) ?>">
-            
+            <img class="event-image"
+                src="<?= htmlspecialchars($event->getImageUrl() ?? 'https://media.istockphoto.com/id/533861572/fr/photo/football-au-coucher-du-soleil.jpg?s=612x612&w=0&k=20&c=6qnC4x39vZ2wEUkTh1e6QJsqIKfxW6jo15aSCPjsITk=') ?>"
+                alt="<?= htmlspecialchars($event->getTitle()) ?>">
+
             <div class="event-content">
                 <h1 class="event-title"><?= htmlspecialchars($event->getTitle()) ?></h1>
-                
+
                 <span class="event-sport">
                     <?= htmlspecialchars($sports[$event->getSport()] ?? $event->getSport()) ?>
                 </span>
@@ -123,8 +123,8 @@ $sports = [
                             <?= $event->getFilled() ?> / <?= $event->getCapacity() ?>
                         </div>
                         <div class="participants-bar">
-                            <div class="participants-fill" 
-                                 style="width: <?= ($event->getFilled() / $event->getCapacity()) * 100 ?>%">
+                            <div class="participants-fill"
+                                style="width: <?= ($event->getFilled() / $event->getCapacity()) * 100 ?>%">
                             </div>
                         </div>
                     </div>
@@ -141,24 +141,28 @@ $sports = [
                     <a href="/annonces.php" class="btn-action btn-back">
                         <?= htmlspecialchars($t['back']) ?>
                     </a>
-                    
+
                     <?php if ($isAuthenticated): ?>
-                        <!-- Si l'utilisateur est connecté : boutons actifs -->
-                        <?php if ($event->isAvailable()): ?>
-                            <button class="btn-action btn-join">
-                                <?= htmlspecialchars($t['join_event']) ?>
-                            </button>
+                        <?php if ($isParticipating): ?>
+                            <a href="/api/join_event.php?event_id=<?= $event->getId() ?>&action=leave" class="btn-action btn-leave">
+                                ❌ <?= htmlspecialchars($t['leave_event'] ?? 'Quitter l\'événement') ?>
+                            </a>
                         <?php else: ?>
-                            <button class="btn-action btn-join" disabled>
-                                <?= htmlspecialchars($t['event_full_btn']) ?>
-                            </button>
+                            <?php if ($event->isAvailable()): ?>
+                                <a href="/api/join_event.php?event_id=<?= $event->getId() ?>&action=join" class="btn-action btn-join">
+                                    <?= htmlspecialchars($t['join_event']) ?>
+                                </a>
+                            <?php else: ?>
+                                <button class="btn-action btn-join" disabled>
+                                    <?= htmlspecialchars($t['event_full_btn']) ?>
+                                </button>
+                            <?php endif; ?>
                         <?php endif; ?>
 
                         <a href="/account/update.php?id=<?= $event->getId() ?>" class="btn-action btn-edit">
                             <?= htmlspecialchars($t['modify']) ?>
                         </a>
                     <?php else: ?>
-                        <!-- Si l'utilisateur n'est PAS connecté : boutons désactivés -->
                         <button class="btn-action btn-join" disabled title="Connexion requise">
                             🔒 <?= htmlspecialchars($t['join_event']) ?>
                         </button>

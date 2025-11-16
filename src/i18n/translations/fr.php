@@ -98,6 +98,7 @@ return [
     'placeholder_location' => 'Ex: Centre sportif d\'Écublens',
     'placeholder_capacity' => 'Ex: 10',
     'placeholder_description' => 'Décrivez votre événement, le niveau requis, le matériel nécessaire...',
-    'placeholder_image' => 'https://exemple.com/image.jpg'
+    'placeholder_image' => 'https://exemple.com/image.jpg',
 
+    'leave_event' => 'Quitter l\'événement'
 ];
