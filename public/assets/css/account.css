@@ -1,0 +1,164 @@
+body {
+    background-color: #160d23;
+    font-family: "industry", sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+/* Conteneur principal */
+main {
+    max-width: 520px;
+    margin: 70px auto 80px;
+    padding: 0 20px 40px 20px;
+    box-sizing: border-box;
+}
+
+/* Titre principal */
+main>h1 {
+    text-align: center;
+    font-size: 2.3rem;
+    font-weight: 800;
+    font-style: italic;
+    color: #fff;
+    margin: 0 0 10px 0;
+}
+
+/* Texte sous le titre / phrases d’aide */
+main>p {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 8px 0;
+}
+
+/* Lien "Se connecter" / "Retour à l'accueil" */
+main a {
+    color: #6b29ff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+main a:hover {
+    opacity: 0.85;
+}
+
+/* Bloc messages (erreur / succès) */
+.auth-message {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.auth-message strong {
+    font-weight: 700;
+}
+
+/* Erreur */
+.auth-message.error {
+    background: rgba(220, 53, 69, 0.18);
+    border: 1px solid rgba(220, 53, 69, 0.6);
+    color: #ffb3b3;
+}
+
+/* Succès */
+.auth-message.success {
+    background: rgba(40, 167, 69, 0.18);
+    border: 1px solid rgba(40, 167, 69, 0.6);
+    color: #b7ffb7;
+}
+
+/* Carte formulaire */
+main form {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 32px 28px 28px 28px;
+    margin-top: 26px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Labels */
+main form label {
+    display: block;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 18px;
+    margin-bottom: 6px;
+}
+
+/* Champs texte */
+main form input[type="text"],
+main form input[type="email"],
+main form input[type="password"] {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-family: "industry", sans-serif;
+    font-size: 0.98rem;
+    box-sizing: border-box;
+}
+
+main form input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+main form input:focus {
+    outline: none;
+    border-color: #6b29ff;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Bouton submit */
+main form button[type="submit"] {
+    margin-top: 26px;
+    width: 100%;
+    padding: 14px 24px;
+    border-radius: 999px;
+    border: none;
+    background: #6b29ff;
+    color: #fff;
+    font-family: "industry", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    font-style: italic;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+main form button[type="submit"]:hover {
+    background: #844aff;
+    box-shadow: 0 0 20px rgba(107, 41, 255, 0.6);
+    transform: translateY(-1px);
+}
+
+main form button[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgba(107, 41, 255, 0.4);
+}
+
+/* Ligne "Vous avez déjà un compte ?" */
+main p.auth-alt {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+/* Lien retour accueil en mode back-link CrewUp */
+main p.back-home {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+main p.back-home a {
+    color: #6b29ff;
+    font-weight: 600;
+}

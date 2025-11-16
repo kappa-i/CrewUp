@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="../assets/css/global.css">
+<link rel="stylesheet" href="../assets/css/account.css">
+
 <?php
 require_once __DIR__ . '/../../src/utils/autoloader.php';
 
