@@ -1,20 +1,20 @@
 <?php
 
-// Charger PHPMailer SANS autoloader
-require __DIR__ . '/../src/PHPMailer/PHPMailer/PHPMailer.php';
-require __DIR__ . '/../src/PHPMailer/PHPMailer/SMTP.php';
-require __DIR__ . '/../src/PHPMailer/PHPMailer/Exception.php';
+// Charger PHPMailer depuis TA structure
+require __DIR__ . '/../src/PHPMailer/PHPMailer.php';
+require __DIR__ . '/../src/PHPMailer/SMTP.php';
+require __DIR__ . '/../src/PHPMailer/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-echo "<pre>TEST SMTP INFOMANIAK...\n";
+echo "<pre>TEST SMTP…\n";
 
 $mail = new PHPMailer(true);
 
 try {
-    // Activer debug complet
-    $mail->SMTPDebug  = 3;
+    // Debug max
+    $mail->SMTPDebug = 3;
     $mail->Debugoutput = 'html';
 
     // SMTP Infomaniak
@@ -29,21 +29,20 @@ try {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->SMTPAutoTLS = false;
 
-    // Destinataire / Expéditeur
     $mail->setFrom('contact@crewup.ch', 'CrewUp SMTP Test');
     $mail->addAddress('contact@crewup.ch');
 
     $mail->isHTML(true);
-    $mail->Subject = 'Test SMTP Infomaniak';
-    $mail->Body    = '<b>Si tu vois ce message, SMTP fonctionne.</b>';
+    $mail->Subject = 'Test SMTP';
+    $mail->Body = '<b>Test OK si tu reçois ça.</b>';
 
-    echo "\nEnvoi...\n";
+    echo "Envoi...\n";
     $mail->send();
-    echo "\n*** MAIL ENVOYÉ AVEC SUCCÈS ***\n";
+    echo "*** MAIL ENVOYÉ ***";
 
 } catch (Exception $e) {
-    echo "\nERREUR : " . $e->getMessage() . "\n";
-    echo "PHPMailer Error : " . $mail->ErrorInfo . "\n";
+    echo "ERREUR : " . $e->getMessage() . "\n";
+    echo "Mailer Error : " . $mail->ErrorInfo . "\n";
 }
 
-echo "\nFIN DU TEST\n</pre>";
+echo "\nFin du test</pre>";
