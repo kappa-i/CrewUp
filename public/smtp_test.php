@@ -1,41 +1,48 @@
 <?php
 
-// CHEMINS EXACTS SELON TA STRUCTURE
-require_once __DIR__ . '/../src/classes/PHPMailer/PHPMailer/PHPMailer.php';
-require_once __DIR__ . '/../src/classes/PHPMailer/PHPMailer/SMTP.php';
-require_once __DIR__ . '/../src/classes/PHPMailer/PHPMailer/Exception.php';
+// Chemins EXACTS (avec C majuscule à Classes)
+require_once __DIR__ . '/../src/Classes/PHPMailer/PHPMailer/PHPMailer.php';
+require_once __DIR__ . '/../src/Classes/PHPMailer/PHPMailer/SMTP.php';
+require_once __DIR__ . '/../src/Classes/PHPMailer/PHPMailer/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+echo "<pre>== SMTP TEST START ==\n";
+
 $mail = new PHPMailer(true);
 
 try {
+    $mail->SMTPDebug  = 3;            // Debug verbeux
+    $mail->Debugoutput = 'html';
+
     // CONFIG SMTP INFOMANIAK
     $mail->isSMTP();
-    $mail->Host       = "mail.infomaniak.com";
+    $mail->Host       = 'mail.infomaniak.com';
     $mail->Port       = 465;
     $mail->SMTPAuth   = true;
-    $mail->Username   = "contact@crewup.ch";
-    $mail->Password   = "v#10_w!HX-6tLVw";
+    $mail->Username   = 'contact@crewup.ch';
+    $mail->Password   = 'v#10_w!HX-6tLVw';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    $mail->CharSet    = "UTF-8";
+    $mail->CharSet    = 'UTF-8';
 
-    // EXPÉDITEUR
-    $mail->setFrom("contact@crewup.ch", "CrewUp");
-
-    // DESTINATAIRE (met un vrai mail à toi)
-    $mail->addAddress("tonmailperso@gmail.com");
+    // EXPÉDITEUR / DESTINATAIRE
+    $mail->setFrom('contact@crewup.ch', 'CrewUp SMTP Test');
+    $mail->addAddress('contact@crewup.ch', 'CrewUp');
 
     // CONTENU
     $mail->isHTML(true);
-    $mail->Subject = "TEST SMTP – CrewUp";
-    $mail->Body    = "<p>Ceci est un test depuis CrewUp.</p>";
+    $mail->Subject = 'Test SMTP Infomaniak';
+    $mail->Body    = '<b>Si tu vois ce mail, c\'est bon.</b>';
+    $mail->AltBody = 'Si tu vois ce mail, c’est bon.';
 
-    // ENVOI
+    echo "Envoi...\n";
     $mail->send();
-    echo "<h1 style='color: green'>✔ Mail envoyé !</h1>";
+    echo "\n*** MAIL ENVOYÉ ✔️ ***\n";
 
 } catch (Exception $e) {
-    echo "<h1 style='color: red'>❌ Erreur : {$mail->ErrorInfo}</h1>";
+    echo "\nERREUR : " . $e->getMessage() . "\n";
+    echo "Mailer Error : " . $mail->ErrorInfo . "\n";
 }
+
+echo "\n== END ==</pre>";
