@@ -29,6 +29,7 @@ return [
     'dashboard_create' => '• Créer',
     'dashboard_edit' => '• Éditer',
     'dashboard_delete' => '• Supprimer',
+    'btn_logout' => '• Se déconnecter',
 
     // ===== Formulaires =====
     'create_announcement' => 'Créer une annonce',

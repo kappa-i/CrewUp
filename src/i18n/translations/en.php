@@ -28,6 +28,7 @@ return [
     'dashboard_create' => '• Create',
     'dashboard_edit' => '• Edit',
     'dashboard_delete' => '• Delete',
+    'btn_logout' => '• Log out',
     
     // ===== Forms =====
     'create_announcement' => 'Create an Event',
