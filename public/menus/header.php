@@ -31,7 +31,7 @@ if (!isset($username) && $isAuthenticated) {
 
   <?php if ($isAuthenticated): ?>
     <a class="btn-inscription" href="/account/dashboard.php">
-      👤 <?= htmlspecialchars($username) ?>
+      <?= htmlspecialchars($username) ?>
     </a>
   <?php else: ?>
     <a class="btn-inscription" href="/auth/register.php">
