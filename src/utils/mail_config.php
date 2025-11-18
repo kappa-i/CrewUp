@@ -3,19 +3,14 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// On charge PHPMailer comme dans smtp_test.php, mais depuis /src/utils
 require_once __DIR__ . '/../Classes/PHPMailer/PHPMailer/PHPMailer.php';
 require_once __DIR__ . '/../Classes/PHPMailer/PHPMailer/SMTP.php';
 require_once __DIR__ . '/../Classes/PHPMailer/PHPMailer/Exception.php';
 
 const MAIL_CONFIGURATION_FILE = __DIR__ . '/../config/mail.ini';
 
-/**
- * Envoie l'email de bienvenue CrewUp au nouvel utilisateur.
- */
 function sendWelcomeEmail(string $email, string $username): void
 {
-    // Lecture de la config SMTP
     $config = parse_ini_file(MAIL_CONFIGURATION_FILE, true);
 
     if (!$config) {
@@ -24,7 +19,6 @@ function sendWelcomeEmail(string $email, string $username): void
         );
     }
 
-    // Extraction
     $host           = $config['host'];
     $port           = filter_var($config['port'], FILTER_VALIDATE_INT);
     $authentication = filter_var($config['authentication'], FILTER_VALIDATE_BOOLEAN);
@@ -36,9 +30,6 @@ function sendWelcomeEmail(string $email, string $username): void
     $mail = new PHPMailer(true);
 
     try {
-        // Même config que dans smtp_test.php
-        // $mail->SMTPDebug  = 0;           // laisse à 0 en prod
-        // $mail->Debugoutput = 'html';
 
         $mail->isSMTP();
         $mail->Host       = $host;
@@ -51,11 +42,9 @@ function sendWelcomeEmail(string $email, string $username): void
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->SMTPAutoTLS = false;
 
-        // Expéditeur et destinataire
         $mail->setFrom($from_email, $from_name);
         $mail->addAddress($email, $username);
 
-        // Contenu
         $mail->isHTML(true);
         $mail->Subject = 'Bienvenue sur CrewUp';
         $mail->Body = '
@@ -67,11 +56,8 @@ function sendWelcomeEmail(string $email, string $username): void
             . "Vous pouvez vous connecter ici : https://crewup.ch/auth/login.php";
 
         $mail->send();
-        // pas d'echo ici, on laisse register.php afficher son message
 
     } catch (Exception $e) {
-        // Si tu veux loguer :
-        // error_log('Mailer Error: ' . $mail->ErrorInfo);
-        // mais on ne casse pas l’inscription si le mail foire
+        
     }
 }
