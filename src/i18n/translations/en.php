@@ -79,7 +79,7 @@ return [
     'participants' => 'Participants',
     'join_event' => 'Join Event',
     'event_full_btn' => 'Event Full',
-    'modify' => '✏️ Edit',
+    'modify' => 'Edit',
     
     // ===== Footer =====
     'newsletter' => 'Subscribe to newsletter',
