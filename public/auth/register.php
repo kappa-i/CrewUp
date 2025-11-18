@@ -71,6 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ]);
 
                     $success = 'Compte créé avec succès ! Vous pouvez maintenant vous connecter.';
+                    // Envoyer un email de confirmation à l'utilisateur
+                    require_once __DIR__ . '/../../src/utils/mail_config.php';
                 }
             }
         } catch (PDOException $e) {
@@ -106,14 +108,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if (!$success): ?>
             <form method="POST">
                 <label for="username">Nom d'utilisateur *</label>
-                <input type="text" id="username" name="username" 
-                       value="<?= isset($username) ? htmlspecialchars($username) : '' ?>" 
-                       required minlength="3" autofocus>
+                <input type="text" id="username" name="username"
+                    value="<?= isset($username) ? htmlspecialchars($username) : '' ?>"
+                    required minlength="3" autofocus>
 
                 <label for="email">Adresse e-mail *</label>
-                <input type="email" id="email" name="email" 
-                       value="<?= isset($email) ? htmlspecialchars($email) : '' ?>" 
-                       required>
+                <input type="email" id="email" name="email"
+                    value="<?= isset($email) ? htmlspecialchars($email) : '' ?>"
+                    required>
 
                 <label for="password">Mot de passe * (min. 8 caractères)</label>
                 <input type="password" id="password" name="password" required minlength="8">
