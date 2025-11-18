@@ -1,7 +1,7 @@
 <?php
 // Test SMTP Infomaniak isolé
 
-require_once __DIR__ . '/src/utils/autoloader.php';
+require_once __DIR__ . '../src/utils/autoloader.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
