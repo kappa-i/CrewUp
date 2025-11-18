@@ -71,8 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ]);
 
                     $success = 'Compte créé avec succès ! Vous pouvez maintenant vous connecter.';
-                    // Envoyer un email de confirmation à l'utilisateur
+                    // Envoyer l'email de bienvenue
                     require_once __DIR__ . '/../../src/utils/mail_config.php';
+                    sendWelcomeEmail($email, $username);
                 }
             }
         } catch (PDOException $e) {
