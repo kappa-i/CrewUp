@@ -56,15 +56,14 @@ $events = $eventManager->getEvents();
             <li><a href="#"><?= htmlspecialchars($t['filter_sport']) ?></a></li>
             <li><a href="#"><?= htmlspecialchars($t['filter_location']) ?></a></li>
             <li><a href="#"><?= htmlspecialchars($t['filter_date']) ?></a></li>
+            <?php if ($isAuthenticated): ?>
+                <li class="create-annonce-li">
+                    <a href="/account/create.php" class="create-annonce-btn">
+                        <?= htmlspecialchars($t['create']) ?? 'Créer une annonce' ?>
+                    </a>
+                </li>
+            <?php endif; ?>
         </ul>
-
-        <?php if ($isAuthenticated): ?>
-            <div class="annonces-actions">
-                <a href="/account/create.php" class="btn-create-annonce">
-                    Créer une annonce
-                </a>
-            </div>
-        <?php endif; ?>
 
         <div id="events" class="events-grid" style="margin: 40px 0 60px 0;">
             <?php if (empty($events)): ?>

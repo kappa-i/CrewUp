@@ -208,25 +208,25 @@
 }
 
 /*Bouton de création d'annonce*/
-.annonces-actions {
-    margin: 20px 0 10px;
-    display: flex;
-    justify-content: flex-end;
+.create-annonce-li {
+    list-style: none; 
 }
 
-.btn-create-annonce {
+.create-annonce-btn {
     display: inline-block;
-    padding: 0.6rem 1.3rem;
-    border-radius: 999px;
-    background: #6b29ff;
-    color: #fff;
+    padding: 8px 18px;
+    background-color: #6b29ff;
+    border-radius: 20px;
+
+    color: white;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     text-decoration: none;
-    letter-spacing: 0.03em;
+
+    transition: background 0.25s ease, transform 0.2s ease;
 }
 
-.btn-create-annonce:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
+.create-annonce-btn:hover {
+    background-color: #5720d1;
+    transform: translateY(-2px);
 }
