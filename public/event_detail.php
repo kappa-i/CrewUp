@@ -168,9 +168,11 @@ $sports = [
                             <?php endif; ?>
                         <?php endif; ?>
 
-                        <a href="/account/update.php?id=<?= $event->getId() ?>" class="btn-action btn-edit">
-                            <?= htmlspecialchars($t['modify']) ?>
-                        </a>
+                        <?php if ($isAuthenticated && $event->getUserId() === $userId): ?>
+                            <a href="/account/update.php?id=<?= $event->getId() ?>" class="btn-action btn-edit">
+                                <?= htmlspecialchars($t['modify']) ?>
+                            </a>
+                        <?php endif; ?>
                     <?php else: ?>
                         <button class="btn-action btn-join" disabled title="Connexion requise">
                             🔒 <?= htmlspecialchars($t['join_event']) ?>

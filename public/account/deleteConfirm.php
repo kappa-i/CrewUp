@@ -34,15 +34,23 @@ $eventManager = new EventManager();
 // Vérification si l'ID de l'événement est passé dans l'URL
 if (isset($_GET["id"])) {
     $eventId = $_GET["id"];
-    
+
     // Récupération de l'événement
     $event = $eventManager->getEventById($eventId);
-    
+
     // Si l'événement n'existe pas, redirection vers la page des annonces
     if (!$event) {
         header("Location: /annonces.php");
         exit();
     }
+
+    if ($event->getUserId() !== $userId) {
+        $_SESSION['error_message'] = "Vous n'avez pas la permission de supprimer cet événement.";
+        header("Location: /annonces.php");
+        exit();
+    
+    }
+    
 } else {
     // Si l'ID n'est pas passé dans l'URL, redirection vers la page des annonces
     header("Location: /annonces.php");

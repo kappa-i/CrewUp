@@ -36,6 +36,18 @@ $eventManager = new EventManager();
 if (isset($_GET["id"])) {
     // Récupération de l'ID de l'événement de la superglobale `$_GET`
     $eventId = $_GET["id"];
+
+    $event = $eventManager->getEventById($eventId);
+
+    if (!$event) {
+    header("Location: /annonces.php");
+    exit();
+    }
+
+    if ($event->getUserId() !== $userId) {
+    header("Location: /annonces.php");
+    exit();
+    }
     
     // Suppression de l'événement correspondant à l'ID
     $eventManager->removeEvent($eventId);

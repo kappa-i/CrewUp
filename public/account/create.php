@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 0, // filled = 0 par défaut
                 $description,
                 $imageUrl,
-                1 // TODO: Utiliser l'ID de l'utilisateur connecté
+                $userId // TODO: Utiliser l'ID de l'utilisateur connecté
             );
 
             // On ajoute l'événement à la base de données

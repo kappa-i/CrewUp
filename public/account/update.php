@@ -51,29 +51,46 @@ if (isset($_GET["id"])) {
 
     // On récupère l'événement correspondant à l'ID
     $event = $eventManager->getEventById($eventId);
+    
 
     // Si l'événement n'existe pas, on redirige vers la page des annonces
     if (!$event) {
         header("Location: /annonces.php");
         exit();
-    } else {
-        // Sinon, on initialise les variables
-        $id = $event->getId();
-        $title = $event->getTitle();
-        $sport = $event->getSport();
-        $location = $event->getLocation();
-        $date = $event->getDate();
-        $time = $event->getTime();
-        $capacity = $event->getCapacity();
-        $filled = $event->getFilled();
-        $description = $event->getDescription();
-        $imageUrl = $event->getImageUrl();
     }
+    
+    // ===== VÉRIFICATION DU PROPRIÉTAIRE =====
+    // Vérifie que l'utilisateur connecté est bien le créateur de l'événement
+    if ($event->getUserId() !== $userId) {
+        header("Location: /annonces.php");
+        exit();
+    }
+    
+    $id = $event->getId();
+    $title = $event->getTitle();
+    $sport = $event->getSport();
+    $location = $event->getLocation();
+    $date = $event->getDate();
+    $time = $event->getTime();
+    $capacity = $event->getCapacity();
+    $filled = $event->getFilled();
+    $description = $event->getDescription();
+    $imageUrl = $event->getImageUrl();
+
 } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Gère la soumission du formulaire
 
     // Récupération des données du formulaire
     $id = $_POST["id"];
+    
+    // Vérification supplémentaire lors de la soumission
+    $event = $eventManager->getEventById($id);
+    if (!$event || $event->getUserId() !== $userId) {
+        $_SESSION['error_message'] = "Vous n'avez pas la permission de modifier cet événement.";
+        header("Location: /annonces.php");
+        exit();
+    }
+    
     $title = $_POST["title"];
     $sport = $_POST["sport"];
     $location = $_POST["location"];
@@ -134,7 +151,7 @@ if (isset($_GET["id"])) {
                 (int)$filled,
                 $description,
                 $imageUrl,
-                1 // TODO: Utiliser l'ID de l'utilisateur connecté
+                $userId
             );
 
             // On met à jour l'événement dans la base de données
