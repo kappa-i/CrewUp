@@ -206,3 +206,27 @@
     border-color: rgba(220, 53, 69, 0.7);
     box-shadow: 0 0 20px rgba(220, 53, 69, 0.4);
 }
+
+/*Bouton de création d'annonce*/
+.annonces-actions {
+    margin: 20px 0 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-create-annonce {
+    display: inline-block;
+    padding: 0.6rem 1.3rem;
+    border-radius: 999px;
+    background: #6b29ff;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+}
+
+.btn-create-annonce:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}

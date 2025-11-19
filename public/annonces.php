@@ -58,6 +58,14 @@ $events = $eventManager->getEvents();
             <li><a href="#"><?= htmlspecialchars($t['filter_date']) ?></a></li>
         </ul>
 
+        <?php if ($isAuthenticated): ?>
+            <div class="annonces-actions">
+                <a href="/account/create.php" class="btn-create-annonce">
+                    Créer une annonce
+                </a>
+            </div>
+        <?php endif; ?>
+
         <div id="events" class="events-grid" style="margin: 40px 0 60px 0;">
             <?php if (empty($events)): ?>
                 <p style="color: white; text-align: center; grid-column: 1 / -1; font-size: 1.2rem;">
