@@ -1,8 +1,9 @@
-/* Fichier principal - Imports */
 @import url('base.css');
 @import url('header.css');
 @import url('footer.css');
 @import url('cards.css');
 @import url('forms.css');
 @import url('event-detail.css');
+@import url('account.css');
+@import url('delete-confirm.css');
 @import url('responsive.css');
