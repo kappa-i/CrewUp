@@ -193,7 +193,8 @@ main p.back-home a {
 }
 
 .mesAnnonces{
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
     color: white;
     padding: 40px;
 }
