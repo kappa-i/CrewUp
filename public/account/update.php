@@ -264,13 +264,7 @@ if (isset($_GET["id"])) {
                    value="<?= isset($capacity) ? htmlspecialchars($capacity) : '' ?>" 
                    required min="2" 
                    placeholder="<?= htmlspecialchars($t['placeholder_capacity']) ?>">
-
-            <label for="filled"><?= htmlspecialchars($t['registered_participants_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
-            <input type="number" id="filled" name="filled" 
-                   value="<?= isset($filled) ? htmlspecialchars($filled) : '' ?>" 
-                   required min="0" 
-                   placeholder="Ex: 5">
-
+                   
             <label for="description"><?= htmlspecialchars($t['description_label']) ?></label>
             <textarea id="description" name="description" 
                       placeholder="<?= htmlspecialchars($t['placeholder_description']) ?>"><?= isset($description) ? htmlspecialchars($description) : '' ?></textarea>
