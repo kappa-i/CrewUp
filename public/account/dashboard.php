@@ -75,6 +75,8 @@ $events = $eventManager->getEventsByUserId($userId);
             <li><a href="/auth/logout.php" style="color: #ff6b6b;"><?= htmlspecialchars($t['btn_logout']) ?></a></li>
         </ul>
 
+        <h2 class="mesAnnonces">Mes annonces</h2>
+
         <div id="eventsD" class="events-grid" style="margin: 40px 0 60px 0;">
             <?php if (empty($events)): ?>
                 <p style="color: white; text-align: center; grid-column: 1 / -1; font-size: 1.2rem;">
@@ -101,7 +103,7 @@ $events = $eventManager->getEventsByUserId($userId);
                                 <span class="card_ppl">
                                     <span class="card_filled"><?= $event->getFilled() ?></span>/<span class="card_capacity"><?= $event->getCapacity() ?></span>
                                 </span>
-                                <a class="card_link" href="event_detail.php?id=<?= $event->getId() ?>">›</a>
+                                <a class="card_link" href="../event_detail.php?id=<?= $event->getId() ?>">›</a>
                             </div>
                         </div>
                     </article>

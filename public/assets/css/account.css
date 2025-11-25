@@ -191,3 +191,9 @@ main p.back-home a {
     background-color: #3f69f6;
     color: #fff;
 }
+
+.mesAnnonces{
+    margin: 0 auto;
+    color: white;
+    padding: 40px;
+}
