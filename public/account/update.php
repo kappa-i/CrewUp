@@ -85,7 +85,7 @@ if (isset($_GET["id"])) {
     
     // Vérification supplémentaire lors de la soumission
     $event = $eventManager->getEventById($id);
-    if (!$event || $event->getUserId() !== $userId) {
+    if (!$event || $event->getUserId() !== $userId && $role !== 'admin') {
         $_SESSION['error_message'] = "Vous n'avez pas la permission de modifier cet événement.";
         header("Location: /annonces.php");
         exit();
