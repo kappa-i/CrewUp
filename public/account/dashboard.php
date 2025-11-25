@@ -45,7 +45,6 @@ $t = loadTranslation($lang);
     <?php require __DIR__ . '/../menus/header.php'; ?>
 
     <main>
-        <h1 class="hello"><?= htmlspecialchars($t['dashboard_title']) ?></h1>
 
         <?php
         if ($role === 'admin') {
@@ -56,6 +55,8 @@ $t = loadTranslation($lang);
             $roleClass = 'role-user';
         }
         ?>
+
+        <h1 class="hello"><?= htmlspecialchars($t['dashboard_title']) ?></h1>
 
         <div class="role-container">
             <span class="role-badge <?= htmlspecialchars($roleClass) ?>">
