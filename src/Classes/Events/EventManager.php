@@ -6,17 +6,20 @@ require_once __DIR__ . '/../../utils/autoloader.php';
 
 use Database;
 
-class EventManager implements EventManagerInterface {
+class EventManager implements EventManagerInterface
+{
     private $database;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->database = new Database();
     }
 
     /**
      * Récupère tous les événements
      */
-    public function getEvents(): array {
+    public function getEvents(): array
+    {
         // Définition de la requête SQL pour récupérer tous les événements
         $sql = "SELECT * FROM events ORDER BY date ASC, time ASC";
 
@@ -54,28 +57,17 @@ class EventManager implements EventManagerInterface {
     /**
      * Récupère un événement par son ID
      */
-    public function getEventById(int $id): ?Event {
-        // Définition de la requête SQL
+    public function getEventById(int $id): ?Event
+    {
         $sql = "SELECT * FROM events WHERE id = :id";
-
-        // Préparation de la requête SQL
         $stmt = $this->database->getPdo()->prepare($sql);
-
-        // Lien avec le paramètre
         $stmt->bindValue(':id', $id);
-
-        // Exécution de la requête SQL
         $stmt->execute();
-
-        // Récupération de l'événement
         $eventData = $stmt->fetch();
-
-        // Si aucun événement trouvé, retourner null
         if (!$eventData) {
             return null;
         }
 
-        // Création et retour de l'objet Event
         return new Event(
             $eventData['id'],
             $eventData['title'],
@@ -92,10 +84,39 @@ class EventManager implements EventManagerInterface {
         );
     }
 
+    public function getEventsByUserId(int $userId): array
+    {
+        $sql = "SELECT * FROM events WHERE user_id = :user_id ORDER BY date ASC, time ASC";
+
+        $stmt = $this->database->getPdo()->prepare($sql);
+        $stmt->bindValue(':user_id', $userId);
+        $stmt->execute();
+
+        $events = $stmt->fetchAll();
+
+        return array_map(function ($eventData) {
+            return new Event(
+                $eventData['id'],
+                $eventData['title'],
+                $eventData['sport'],
+                $eventData['location'],
+                $eventData['date'],
+                $eventData['time'],
+                $eventData['capacity'],
+                $eventData['filled'],
+                $eventData['description'],
+                $eventData['image_url'],
+                $eventData['user_id'],
+                $eventData['created_at']
+            );
+        }, $events);
+    }
+
     /**
      * Ajoute un nouvel événement
      */
-    public function addEvent(Event $event): int {
+    public function addEvent(Event $event): int
+    {
         // Définition de la requête SQL pour ajouter un événement
         $sql = "INSERT INTO events (
             title,
@@ -149,7 +170,8 @@ class EventManager implements EventManagerInterface {
     /**
      * Met à jour un événement existant
      */
-    public function updateEvent(Event $event): bool {
+    public function updateEvent(Event $event): bool
+    {
         // Définition de la requête SQL pour mettre à jour un événement
         $sql = "UPDATE events SET
             title = :title,
@@ -185,7 +207,8 @@ class EventManager implements EventManagerInterface {
     /**
      * Supprime un événement
      */
-    public function removeEvent(int $id): bool {
+    public function removeEvent(int $id): bool
+    {
         // Définition de la requête SQL pour supprimer un événement
         $sql = "DELETE FROM events WHERE id = :id";
 
@@ -202,15 +225,16 @@ class EventManager implements EventManagerInterface {
     /**
      * Récupère les événements par sport
      */
-    public function getEventsBySport(string $sport): array {
+    public function getEventsBySport(string $sport): array
+    {
         $sql = "SELECT * FROM events WHERE sport = :sport ORDER BY date ASC, time ASC";
-        
+
         $stmt = $this->database->getPdo()->prepare($sql);
         $stmt->bindValue(':sport', $sport);
         $stmt->execute();
-        
+
         $events = $stmt->fetchAll();
-        
+
         return array_map(function ($eventData) {
             return new Event(
                 $eventData['id'],
@@ -232,24 +256,26 @@ class EventManager implements EventManagerInterface {
     /**
      * Incrémente le nombre de participants
      */
-    public function incrementFilled(int $eventId): bool {
+    public function incrementFilled(int $eventId): bool
+    {
         $sql = "UPDATE events SET filled = filled + 1 WHERE id = :id AND filled < capacity";
-        
+
         $stmt = $this->database->getPdo()->prepare($sql);
         $stmt->bindValue(':id', $eventId);
-        
+
         return $stmt->execute() && $stmt->rowCount() > 0;
     }
 
     /**
      * Décrémente le nombre de participants
      */
-    public function decrementFilled(int $eventId): bool {
+    public function decrementFilled(int $eventId): bool
+    {
         $sql = "UPDATE events SET filled = filled - 1 WHERE id = :id AND filled > 0";
-        
+
         $stmt = $this->database->getPdo()->prepare($sql);
         $stmt->bindValue(':id', $eventId);
-        
+
         return $stmt->execute() && $stmt->rowCount() > 0;
     }
 }
