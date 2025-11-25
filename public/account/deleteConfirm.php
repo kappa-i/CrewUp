@@ -44,7 +44,7 @@ if (isset($_GET["id"])) {
         exit();
     }
 
-    if ($event->getUserId() !== $userId) {
+    if ($event->getUserId() !== $userId && $role !== 'admin') {
         $_SESSION['error_message'] = "Vous n'avez pas la permission de supprimer cet événement.";
         header("Location: /annonces.php");
         exit();

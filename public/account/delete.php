@@ -44,7 +44,7 @@ if (isset($_GET["id"])) {
     exit();
     }
 
-    if ($event->getUserId() !== $userId) {
+    if ($event->getUserId() !== $userId && $role !== 'admin') {
     header("Location: /annonces.php");
     exit();
     }

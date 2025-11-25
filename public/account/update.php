@@ -61,7 +61,7 @@ if (isset($_GET["id"])) {
     
     // ===== VÉRIFICATION DU PROPRIÉTAIRE =====
     // Vérifie que l'utilisateur connecté est bien le créateur de l'événement
-    if ($event->getUserId() !== $userId) {
+    if ($event->getUserId() !== $userId && $role !== 'admin') {
         header("Location: /annonces.php");
         exit();
     }

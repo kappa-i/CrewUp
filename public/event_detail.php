@@ -15,6 +15,7 @@ session_start();
 // Vérifie si l'utilisateur est authentifié
 $userId = $_SESSION['user_id'] ?? null;
 $isAuthenticated = $userId !== null;
+$role = $_SESSION['role'];
 
 // L'utilisateur est authentifié
 if ($isAuthenticated) {
@@ -168,7 +169,7 @@ $sports = [
                             <?php endif; ?>
                         <?php endif; ?>
 
-                        <?php if ($isAuthenticated && $event->getUserId() === $userId): ?>
+                        <?php if ($isAuthenticated && $event->getUserId() === $userId || $role === 'admin'): ?>
                             <a href="/account/update.php?id=<?= $event->getId() ?>" class="btn-action btn-edit">
                                 <?= htmlspecialchars($t['modify']) ?>
                             </a>
