@@ -75,37 +75,39 @@ $events = $eventManager->getEventsByUserId($userId);
             <li><a href="/auth/logout.php" style="color: #ff6b6b;"><?= htmlspecialchars($t['btn_logout']) ?></a></li>
         </ul>
 
-        <?php if (empty($events)): ?>
-            <p style="color: white; text-align: center; grid-column: 1 / -1; font-size: 1.2rem;">
-                <?= htmlspecialchars($t['no_events']) ?>
-                <a href="/account/create.php" style="color: #6b29ff; text-decoration: underline;">
-                    <?= htmlspecialchars($t['create_first']) ?>
-                </a>
-            </p>
-        <?php else: ?>
-            <?php foreach ($events as $event): ?>
-                <article class="card">
-                    <img class="card_img"
-                        src="<?= htmlspecialchars($event->getImageUrl() ?? 'https://media.istockphoto.com/id/533861572/fr/photo/football-au-coucher-du-soleil.jpg?s=612x612&w=0&k=20&c=6qnC4x39vZ2wEUkTh1e6QJsqIKfxW6jo15aSCPjsITk=') ?>"
-                        alt="<?= htmlspecialchars($event->getTitle()) ?>">
+        <div id="eventsD" class="events-grid" style="margin: 40px 0 60px 0;">
+            <?php if (empty($events)): ?>
+                <p style="color: white; text-align: center; grid-column: 1 / -1; font-size: 1.2rem;">
+                    <?= htmlspecialchars($t['no_events']) ?>
+                    <a href="/account/create.php" style="color: #6b29ff; text-decoration: underline;">
+                        <?= htmlspecialchars($t['create_first']) ?>
+                    </a>
+                </p>
+            <?php else: ?>
+                <?php foreach ($events as $event): ?>
+                    <article class="card">
+                        <img class="card_img"
+                            src="<?= htmlspecialchars($event->getImageUrl() ?? 'https://media.istockphoto.com/id/533861572/fr/photo/football-au-coucher-du-soleil.jpg?s=612x612&w=0&k=20&c=6qnC4x39vZ2wEUkTh1e6QJsqIKfxW6jo15aSCPjsITk=') ?>"
+                            alt="<?= htmlspecialchars($event->getTitle()) ?>">
 
-                    <div class="card_info">
-                        <div class="card_left_col">
-                            <h1 class="card_title"><?= htmlspecialchars($event->getTitle()) ?></h1>
-                            <h3 class="card_place"><?= htmlspecialchars($event->getLocation()) ?></h3>
-                            <h3 class="card_date"><?= htmlspecialchars($event->getFormattedDate()) ?></h3>
-                        </div>
+                        <div class="card_info">
+                            <div class="card_left_col">
+                                <h1 class="card_title"><?= htmlspecialchars($event->getTitle()) ?></h1>
+                                <h3 class="card_place"><?= htmlspecialchars($event->getLocation()) ?></h3>
+                                <h3 class="card_date"><?= htmlspecialchars($event->getFormattedDate()) ?></h3>
+                            </div>
 
-                        <div class="card_right_col">
-                            <span class="card_ppl">
-                                <span class="card_filled"><?= $event->getFilled() ?></span>/<span class="card_capacity"><?= $event->getCapacity() ?></span>
-                            </span>
-                            <a class="card_link" href="event_detail.php?id=<?= $event->getId() ?>">›</a>
+                            <div class="card_right_col">
+                                <span class="card_ppl">
+                                    <span class="card_filled"><?= $event->getFilled() ?></span>/<span class="card_capacity"><?= $event->getCapacity() ?></span>
+                                </span>
+                                <a class="card_link" href="event_detail.php?id=<?= $event->getId() ?>">›</a>
+                            </div>
                         </div>
-                    </div>
-                </article>
-            <?php endforeach; ?>
-        <?php endif; ?>
+                    </article>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
     </main>
 
     <?php require __DIR__ . '/../menus/footer.php'; ?>
