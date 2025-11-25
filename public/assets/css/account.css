@@ -196,5 +196,5 @@ main p.back-home a {
     display: flex;
     justify-content: center;
     color: white;
-    padding: 40px;
+    padding: 40px 40px 0 40px;
 }
