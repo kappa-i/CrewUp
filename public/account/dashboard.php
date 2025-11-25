@@ -57,9 +57,11 @@ $t = loadTranslation($lang);
         }
         ?>
 
-        <span class="role-badge <?= htmlspecialchars($roleClass) ?>">
-            <?= htmlspecialchars($roleName) ?>
-        </span>
+        <div class="role-container">
+            <span class="role-badge <?= htmlspecialchars($roleClass) ?>">
+                <?= htmlspecialchars($roleName) ?>
+            </span>
+        </div>
 
         <ul class="account-menu" style="margin-bottom: 400px;">
             <li><a href="create.php"><?= htmlspecialchars($t['dashboard_create']) ?></a></li>

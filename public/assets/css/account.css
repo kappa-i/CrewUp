@@ -164,6 +164,15 @@ main p.back-home a {
 }
 
 /* Rôle de l'utilisateur */
+
+.role-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .role-badge {
     display: inline-block;
     padding: 4px 10px;
@@ -174,11 +183,11 @@ main p.back-home a {
 }
 
 .role-admin {
-    background-color: #ff6b6b;
+    background-color: #df0a9e;
     color: #fff;
 }
 
 .role-user {
-    background-color: #4b6cb7;
+    background-color: #3f69f6;
     color: #fff;
 }
