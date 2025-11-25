@@ -118,6 +118,12 @@ if (isset($_GET["id"])) {
     
     if (empty($date)) {
         $errors[] = "La date est requise.";
+
+    } else {
+        $today = date('Y-m-d');
+        if ($date < $today) {
+            $errors[] = "La date ne peut pas être antérieure à la date actuelle.";
+        }
     }
     
     if (empty($time)) {
