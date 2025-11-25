@@ -51,7 +51,8 @@ if (isset($_GET["id"])) {
 
     // On récupère l'événement correspondant à l'ID
     $event = $eventManager->getEventById($eventId);
-    
+    $actualFilled = $event->getFilled();
+
 
     // Si l'événement n'existe pas, on redirige vers la page des annonces
     if (!$event) {
@@ -138,7 +139,7 @@ if (isset($_GET["id"])) {
         $errors[] = "Le nombre de participants doit être positif ou nul.";
     }
 
-    if ($filled > $capacity) {
+    if ($filled > $actualFilled) {
         $errors[] = "Le nombre de participants ne peut pas dépasser la capacité.";
     }
 
@@ -264,7 +265,7 @@ if (isset($_GET["id"])) {
                    value="<?= isset($capacity) ? htmlspecialchars($capacity) : '' ?>" 
                    required min="2" 
                    placeholder="<?= htmlspecialchars($t['placeholder_capacity']) ?>">
-                   
+
             <label for="description"><?= htmlspecialchars($t['description_label']) ?></label>
             <textarea id="description" name="description" 
                       placeholder="<?= htmlspecialchars($t['placeholder_description']) ?>"><?= isset($description) ? htmlspecialchars($description) : '' ?></textarea>

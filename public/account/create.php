@@ -91,34 +91,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // S'il n'y a pas d'erreurs, on ajoute l'événement
     if (empty($errors)) {
-        try {
-            // On crée un nouvel objet Event
-            // TODO: Remplacer user_id par l'ID de l'utilisateur connecté
-            $event = new Event(
-                null,
-                $title,
-                $sport,
-                $location,
-                $date,
-                $time,
-                (int)$capacity,
-                0, // filled = 0 par défaut
-                $description,
-                $imageUrl,
-                $userId // TODO: Utiliser l'ID de l'utilisateur connecté
-            );
+    try {
+        // Création de l'objet Event
+        $event = new Event(
+            null,
+            $title,
+            $sport,
+            $location,
+            $date,
+            $time,
+            (int)$capacity,
+            1,
+            $description,
+            $imageUrl,
+            $userId
+        );
 
-            // On ajoute l'événement à la base de données
-            $eventId = $eventManager->addEvent($event);
+        // Ajoute l'événement dans la base
+        $eventId = $eventManager->addEvent($event);
 
-            // On redirige vers la page des annonces
-            header("Location: /annonces.php");
-            exit();
-        } catch (\Exception $e) {
-            $errors[] = $e->getMessage();
-        }
+        $db = new Database();
+        $pdo = $db->getPdo();
+
+        $stmt = $pdo->prepare(
+            'INSERT INTO event_participants (event_id, user_id) VALUES (:event_id, :user_id)'
+        );
+        $stmt->execute([
+            'event_id' => $eventId,
+            'user_id' => $userId
+        ]);
+
+        header("Location: /annonces.php");
+        exit();
+
+    } catch (\Exception $e) {
+        $errors[] = $e->getMessage();
     }
 }
+
 ?>
 
 <!DOCTYPE html>
