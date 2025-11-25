@@ -69,10 +69,9 @@ $events = $eventManager->getEventsByUserId($userId);
         <h1 class="hello"><?= htmlspecialchars($t['dashboard_title']) ?></h1>
 
         <ul class="account-menu" style="margin-bottom: 40px;">
-            <li><a href="create.php"><?= htmlspecialchars($t['dashboard_create']) ?></a></li>
-            <li><a href="update.php"><?= htmlspecialchars($t['dashboard_edit']) ?></a></li>
-            <li><a href="delete.php"><?= htmlspecialchars($t['dashboard_delete']) ?></a></li>
-            <li><a href="/auth/logout.php" style="color: #ff6b6b;"><?= htmlspecialchars($t['btn_logout']) ?></a></li>
+            <li>
+                <a href="/auth/logout.php" style="color: #ff6b6b;"><?= htmlspecialchars($t['btn_logout']) ?></a>
+            </li>
         </ul>
 
         <h2 class="mesAnnonces"><?= htmlspecialchars($t['my_events']) ?></h2>

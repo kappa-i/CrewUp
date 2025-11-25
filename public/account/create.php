@@ -55,30 +55,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $capacity = $_POST["capacity"] ?? 0;
     $description = $_POST["description"] ?? null;
     $imageUrl = $_POST["image_url"] ?? null;
-    
+
     // Validation des données
     $errors = [];
-    
+
     if (empty($title) || strlen($title) < 3) {
         $errors[] = "Le titre doit contenir au moins 3 caractères.";
     }
-    
+
     if (empty($sport)) {
         $errors[] = "Le sport est requis.";
     }
-    
+
     if (empty($location)) {
         $errors[] = "Le lieu est requis.";
     }
-    
+
     if (empty($date)) {
         $errors[] = "La date est requise.";
+
+    } else {
+        $today = date('Y-m-d');
+        if ($date < $today) {
+            $errors[] = "La date ne peut pas être antérieure à la date actuelle.";
+        }
     }
-    
+
     if (empty($time)) {
         $errors[] = "L'heure est requise.";
     }
-    
+
     if ($capacity <= 0) {
         $errors[] = "La capacité doit être un nombre positif.";
     }
@@ -117,6 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="<?= htmlspecialchars($lang) ?>">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -157,10 +164,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form action="create.php" method="POST">
             <label for="title"><?= htmlspecialchars($t['event_title_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
-            <input type="text" id="title" name="title" 
-                   value="<?= isset($title) ? htmlspecialchars($title) : '' ?>" 
-                   required minlength="3" 
-                   placeholder="<?= htmlspecialchars($t['placeholder_title']) ?>">
+            <input type="text" id="title" name="title"
+                value="<?= isset($title) ? htmlspecialchars($title) : '' ?>"
+                required minlength="3"
+                placeholder="<?= htmlspecialchars($t['placeholder_title']) ?>">
 
             <label for="sport"><?= htmlspecialchars($t['sport_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
             <select id="sport" name="sport" required>
@@ -173,35 +180,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </select>
 
             <label for="location"><?= htmlspecialchars($t['location_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
-            <input type="text" id="location" name="location" 
-                   value="<?= isset($location) ? htmlspecialchars($location) : '' ?>" 
-                   required 
-                   placeholder="<?= htmlspecialchars($t['placeholder_location']) ?>">
+            <input type="text" id="location" name="location"
+                value="<?= isset($location) ? htmlspecialchars($location) : '' ?>"
+                required
+                placeholder="<?= htmlspecialchars($t['placeholder_location']) ?>">
 
             <label for="date"><?= htmlspecialchars($t['date_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
-            <input type="date" id="date" name="date" 
-                   value="<?= isset($date) ? htmlspecialchars($date) : '' ?>" 
-                   required>
+            <input type="date" id="date" name="date"
+                value="<?= isset($date) ? htmlspecialchars($date) : '' ?>"
+                required>
 
             <label for="time"><?= htmlspecialchars($t['time_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
-            <input type="time" id="time" name="time" 
-                   value="<?= isset($time) ? htmlspecialchars($time) : '' ?>" 
-                   required>
+            <input type="time" id="time" name="time"
+                value="<?= isset($time) ? htmlspecialchars($time) : '' ?>"
+                required>
 
             <label for="capacity"><?= htmlspecialchars($t['max_participants_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
-            <input type="number" id="capacity" name="capacity" 
-                   value="<?= isset($capacity) ? htmlspecialchars($capacity) : '' ?>" 
-                   required min="2" 
-                   placeholder="<?= htmlspecialchars($t['placeholder_capacity']) ?>">
+            <input type="number" id="capacity" name="capacity"
+                value="<?= isset($capacity) ? htmlspecialchars($capacity) : '' ?>"
+                required min="2"
+                placeholder="<?= htmlspecialchars($t['placeholder_capacity']) ?>">
 
             <label for="description"><?= htmlspecialchars($t['description_label']) ?></label>
-            <textarea id="description" name="description" 
-                      placeholder="<?= htmlspecialchars($t['placeholder_description']) ?>"><?= isset($description) ? htmlspecialchars($description) : '' ?></textarea>
+            <textarea id="description" name="description"
+                placeholder="<?= htmlspecialchars($t['placeholder_description']) ?>"><?= isset($description) ? htmlspecialchars($description) : '' ?></textarea>
 
             <label for="image_url"><?= htmlspecialchars($t['image_url_label']) ?></label>
-            <input type="url" id="image_url" name="image_url" 
-                   value="<?= isset($imageUrl) ? htmlspecialchars($imageUrl) : '' ?>" 
-                   placeholder="<?= htmlspecialchars($t['placeholder_image']) ?>">
+            <input type="url" id="image_url" name="image_url"
+                value="<?= isset($imageUrl) ? htmlspecialchars($imageUrl) : '' ?>"
+                placeholder="<?= htmlspecialchars($t['placeholder_image']) ?>">
 
             <div class="form-buttons">
                 <button type="submit" class="btn-submit"><?= htmlspecialchars($t['btn_create']) ?></button>
