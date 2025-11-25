@@ -35,6 +35,7 @@ $t = loadTranslation($lang);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CrewUp - <?= htmlspecialchars($t['nav_dashboard']) ?></title>
     <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/account.css">
     <link rel="stylesheet" href="https://use.typekit.net/ooh3jgp.css">
     <script src="../assets/js/global.js"></script>
     <link rel="shortcut icon" href="../favicon.ico">
