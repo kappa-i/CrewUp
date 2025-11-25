@@ -30,6 +30,8 @@ return [
     'dashboard_edit' => '• Edit',
     'dashboard_delete' => '• Delete',
     'btn_logout' => '• Log out',
+    'role_admin' => 'Administrator',
+    'role_user' => 'User',
     
     // ===== Forms =====
     'create_announcement' => 'Create an Event',

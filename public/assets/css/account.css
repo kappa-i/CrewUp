@@ -162,3 +162,23 @@ main p.back-home a {
     color: #6b29ff;
     font-weight: 600;
 }
+
+/* Rôle de l'utilisateur */
+.role-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+.role-admin {
+    background-color: #ff6b6b;
+    color: #fff;
+}
+
+.role-user {
+    background-color: #4b6cb7;
+    color: #fff;
+}

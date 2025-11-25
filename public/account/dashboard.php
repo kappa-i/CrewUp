@@ -46,6 +46,21 @@ $t = loadTranslation($lang);
 
     <main>
         <h1 class="hello"><?= htmlspecialchars($t['dashboard_title']) ?></h1>
+
+        <?php
+        if ($role === 'admin') {
+            $roleName = $t['role_admin'];
+            $roleClass = 'role-admin';
+        } else {
+            $roleName = $t['role_user'];
+            $roleClass = 'role-user';
+        }
+        ?>
+
+        <span class="role-badge <?= htmlspecialchars($roleClass) ?>">
+            <?= htmlspecialchars($roleName) ?>
+        </span>
+
         <ul class="account-menu" style="margin-bottom: 400px;">
             <li><a href="create.php"><?= htmlspecialchars($t['dashboard_create']) ?></a></li>
             <li><a href="update.php"><?= htmlspecialchars($t['dashboard_edit']) ?></a></li>

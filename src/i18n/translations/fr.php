@@ -1,7 +1,7 @@
 <?php
 
 return [
-    
+
     // ===== Navigation =====
     'nav_home' => 'Accueil',
     'nav_announcements' => 'Annonces',
@@ -31,6 +31,8 @@ return [
     'dashboard_edit' => '• Éditer',
     'dashboard_delete' => '• Supprimer',
     'btn_logout' => '• Se déconnecter',
+    'role_admin' => 'Administrateur',
+    'role_user' => 'Utilisateur',
 
     // ===== Formulaires =====
     'create_announcement' => 'Créer une annonce',
