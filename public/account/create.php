@@ -73,7 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($date)) {
         $errors[] = "La date est requise.";
-
     } else {
         $today = date('Y-m-d');
         if ($date < $today) {
@@ -89,43 +88,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "La capacité doit être un nombre positif.";
     }
 
-    // S'il n'y a pas d'erreurs, on ajoute l'événement
     if (empty($errors)) {
-    try {
-        // Création de l'objet Event
-        $event = new Event(
-            null,
-            $title,
-            $sport,
-            $location,
-            $date,
-            $time,
-            (int)$capacity,
-            1,
-            $description,
-            $imageUrl,
-            $userId
-        );
+        try {
 
-        // Ajoute l'événement dans la base
-        $eventId = $eventManager->addEvent($event);
+            $event = new Event(
+                null,
+                $title,
+                $sport,
+                $location,
+                $date,
+                $time,
+                (int)$capacity,
+                1, 
+                $description,
+                $imageUrl,
+                $userId
+            );
 
-        $db = new Database();
-        $pdo = $db->getPdo();
+            // Ajoute l'événement dans la base
+            $eventId = $eventManager->addEvent($event);
 
-        $stmt = $pdo->prepare(
-            'INSERT INTO event_participants (event_id, user_id) VALUES (:event_id, :user_id)'
-        );
-        $stmt->execute([
-            'event_id' => $eventId,
-            'user_id' => $userId
-        ]);
+            $db = new Database();
+            $pdo = $db->getPdo();
 
-        header("Location: /annonces.php");
-        exit();
+            $stmt = $pdo->prepare(
+                'INSERT INTO event_participants (event_id, user_id) VALUES (:event_id, :user_id)'
+            );
+            $stmt->execute([
+                'event_id' => $eventId,
+                'user_id' => $userId
+            ]);
 
-    } catch (\Exception $e) {
-        $errors[] = $e->getMessage();
+            header("Location: /annonces.php");
+            exit();
+        } catch (\Exception $e) {
+            $errors[] = $e->getMessage();
+        }
     }
 }
 
