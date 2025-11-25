@@ -103,5 +103,6 @@ return [
     'placeholder_description' => 'Describe your event, required level, necessary equipment...',
     'placeholder_image' => 'https://example.com/image.jpg',
     
-    'leave_event' => 'Leave event'
+    'leave_event' => 'Leave event',
+    'my_events' => 'My events'
 ];

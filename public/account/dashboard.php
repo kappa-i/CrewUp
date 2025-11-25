@@ -75,7 +75,7 @@ $events = $eventManager->getEventsByUserId($userId);
             <li><a href="/auth/logout.php" style="color: #ff6b6b;"><?= htmlspecialchars($t['btn_logout']) ?></a></li>
         </ul>
 
-        <h2 class="mesAnnonces">Mes annonces</h2>
+        <h2 class="mesAnnonces"><?= htmlspecialchars($t['my_events']) ?></h2>
 
         <div id="eventsD" class="events-grid" style="margin: 40px 0 60px 0;">
             <?php if (empty($events)): ?>

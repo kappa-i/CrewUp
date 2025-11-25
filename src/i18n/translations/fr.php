@@ -104,5 +104,6 @@ return [
     'placeholder_description' => 'Décrivez votre événement, le niveau requis, le matériel nécessaire...',
     'placeholder_image' => 'https://exemple.com/image.jpg',
 
-    'leave_event' => 'Quitter l\'événement'
+    'leave_event' => 'Quitter l\'événement',
+    'my_events' => 'Mes annonces'
 ];
