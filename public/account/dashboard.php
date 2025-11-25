@@ -68,7 +68,7 @@ $events = $eventManager->getEventsByUserId($userId);
 
         <h1 class="hello"><?= htmlspecialchars($t['dashboard_title']) ?></h1>
 
-        <ul class="account-menu" style="margin-bottom: 400px;">
+        <ul class="account-menu" style="margin-bottom: 40px;">
             <li><a href="create.php"><?= htmlspecialchars($t['dashboard_create']) ?></a></li>
             <li><a href="update.php"><?= htmlspecialchars($t['dashboard_edit']) ?></a></li>
             <li><a href="delete.php"><?= htmlspecialchars($t['dashboard_delete']) ?></a></li>
