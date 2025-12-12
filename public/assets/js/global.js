@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (window.scrollY <= 1) {
         nav.style.background = 'rgba(255, 255, 255, 0)';
         nav.style.border = '1px solid rgba(255, 255, 255, 0)';
+        nav.style.boxShadow = 'none';
       } else {
         nav.style.background = 'rgba(255, 255, 255, 0.120)';
         nav.style.border = '1px solid rgba(255, 255, 255, 0.1)';
