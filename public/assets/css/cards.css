@@ -97,97 +97,24 @@
 }
 
 /*Events rejoins*/
-:root {
-    --cu-green-main: #3ddb6a;
-    --cu-green-deep: #2fbf62;
-    --cu-green-light: #7dffb3;
-  
-    --cu-green-glow-soft: rgba(61, 219, 106, 0.25);
-    --cu-green-glow-strong: rgba(61, 219, 106, 0.45);
+.card {
+    position: relative;
   }
-
+  
   .card.is-joined {
-    border: 2px solid var(--cu-green-main);
-  
-    box-shadow:
-      0 0 0 1px rgba(61, 219, 106, 0.18),
-      0 10px 30px rgba(0, 0, 0, 0.35),
-      0 0 26px var(--cu-green-glow-soft);
-  
-    animation: joinedGlow 5s ease-in-out infinite;
+    border: 2px solid #3ddb6a;
   }
   
   .joined-tag {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-
-  padding: 6px 14px;
-  border-radius: 999px;
-
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  color: #0c2f1c;
-
-  background: linear-gradient(
-    135deg,
-    var(--cu-green-light),
-    var(--cu-green-main),
-    var(--cu-green-deep)
-  );
-
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.35),
-    0 6px 14px rgba(0,0,0,0.3),
-    0 0 14px var(--cu-green-glow-soft);
-
-  z-index: 3;
-  animation: tagPulse 3.5s ease-in-out infinite;
-}
-
-.card.is-joined:hover {
-    transform: translateY(-2px);
-  
-    box-shadow:
-      0 0 0 1px rgba(61, 219, 106, 0.35),
-      0 16px 38px rgba(0, 0, 0, 0.45),
-      0 0 36px var(--cu-green-glow-strong);
-  }
-  
-  @keyframes joinedGlow {
-    0% {
-      box-shadow:
-        0 0 0 1px rgba(61, 219, 106, 0.15),
-        0 10px 30px rgba(0, 0, 0, 0.35),
-        0 0 18px var(--cu-green-glow-soft);
-    }
-    50% {
-      box-shadow:
-        0 0 0 1px rgba(61, 219, 106, 0.3),
-        0 14px 36px rgba(0, 0, 0, 0.4),
-        0 0 32px var(--cu-green-glow-strong);
-    }
-    100% {
-      box-shadow:
-        0 0 0 1px rgba(61, 219, 106, 0.15),
-        0 10px 30px rgba(0, 0, 0, 0.35),
-        0 0 18px var(--cu-green-glow-soft);
-    }
-  }
-  
-  @keyframes tagPulse {
-    0%, 100% {
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.35),
-        0 6px 14px rgba(0,0,0,0.3),
-        0 0 10px var(--cu-green-glow-soft);
-    }
-    50% {
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.5),
-        0 8px 18px rgba(0,0,0,0.35),
-        0 0 18px var(--cu-green-glow-strong);
-    }
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #3ddb6a;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    z-index: 3;
   }
   
