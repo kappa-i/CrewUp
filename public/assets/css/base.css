@@ -153,6 +153,7 @@ a.purple-btn:hover {
     height: auto;
     display: block;
     object-fit: contain;
+    margin-top: 20px;
 }
 
 /* Account pages */
