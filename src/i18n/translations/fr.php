@@ -108,5 +108,8 @@ return [
     'my_events' => 'Mes annonces',
 
     'joined_tag' => 'Rejoint',
-    'joined_event' => 'Rejoint'
+    'joined_event' => 'Rejoint',
+
+    // ===== Footer =====
+    'footer_desc' => 'CrewUp facilite la connexion entre sportifs en Suisse. Rejoins des événements, rencontre des joueurs et pratique ton sport simplement.',
 ];

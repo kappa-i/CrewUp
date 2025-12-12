@@ -138,3 +138,14 @@ footer {
     width: 28px;
     height: 28px;
 }
+
+.footer_col_right {
+    margin-top: 17px;        
+    max-width: 260px;
+}    
+
+.footer_desc {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.88);
+}

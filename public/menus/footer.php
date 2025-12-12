@@ -2,12 +2,12 @@
 // Charger les traductions si pas déjà fait
 if (!isset($t)) {
     require_once __DIR__ . '/../../src/i18n/load-translation.php';
-    
+
     if (!defined('COOKIE_NAME')) {
         define('COOKIE_NAME', 'lang');
         define('DEFAULT_LANG', 'fr');
     }
-    
+
     $lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
     $t = loadTranslation($lang);
 }
@@ -29,25 +29,27 @@ $currentLang = $lang ?? DEFAULT_LANG;
                     <span><?= htmlspecialchars($t['newsletter']) ?></span>
                 </a>
             </div>
+
             <div class="footer_links">
+                <a href="/"><?= htmlspecialchars($t['nav_home']) ?></a>
                 <a href="/annonces.php"><?= htmlspecialchars($t['nav_announcements']) ?></a>
-                <a href="/account/dashboard.php"><?= htmlspecialchars($t['create_account']) ?></a>
-                <a href="/terrains.php"><?= htmlspecialchars($t['nav_fields']) ?></a>
-                <a href="#"><?= htmlspecialchars($t['nearby']) ?></a>
-                <a href="#"><?= htmlspecialchars($t['community']) ?></a>
-                <a href="#"><?= htmlspecialchars($t['legal']) ?></a>
+                <a href="/account/dashboard.php"><?= htmlspecialchars($t['nav_dashboard']) ?></a>
             </div>
+            <div class="footer_col_right">
+                <p class="footer_desc"><?= htmlspecialchars($t['footer_desc']) ?></p>
+            </div>
+
         </div>
 
         <div class="footer_col2">
             <div class="copyright"><?= htmlspecialchars($t['rights']) ?></div>
             <div class="language_switcher">
-                <a href="/change-language.php?lang=fr" 
-                   class="<?= $currentLang === 'fr' ? 'lang_selected' : '' ?>" 
-                   lang="fr">FR</a>
-                <a href="/change-language.php?lang=en" 
-                   class="<?= $currentLang === 'en' ? 'lang_selected' : '' ?>" 
-                   lang="en">EN</a>
+                <a href="/change-language.php?lang=fr"
+                    class="<?= $currentLang === 'fr' ? 'lang_selected' : '' ?>"
+                    lang="fr">FR</a>
+                <a href="/change-language.php?lang=en"
+                    class="<?= $currentLang === 'en' ? 'lang_selected' : '' ?>"
+                    lang="en">EN</a>
             </div>
             <div class="footer_social">
                 <a href="https://github.com/kappa-i/CrewUp" target="_blank">

@@ -108,5 +108,8 @@ return [
 
     // ===== Announcements / Events =====
     'joined_tag' => 'Joined',
-    'joined_event' => 'Joined'
+    'joined_event' => 'Joined',
+
+    // ===== Footer =====
+    'footer_desc' => 'CrewUp makes it easy to connect athletes in Switzerland. Join events, meet players, and play your sport effortlessly.',
 ];
