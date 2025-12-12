@@ -105,5 +105,8 @@ return [
     'placeholder_image' => 'https://exemple.com/image.jpg',
 
     'leave_event' => 'Quitter l\'événement',
-    'my_events' => 'Mes annonces'
+    'my_events' => 'Mes annonces',
+
+    'joined_tag' => 'Rejoint',
+    'joined_event' => 'Rejoint'
 ];

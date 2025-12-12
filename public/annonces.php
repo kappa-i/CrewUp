@@ -95,7 +95,7 @@ if ($isAuthenticated) {
                     <article class="card<?= $isJoined ? ' is-joined' : '' ?>">
 
                         <?php if ($isJoined): ?>
-                            <div class="joined-tag">Rejoint</div>
+                            <div class="joined-tag"><?= htmlspecialchars($t['joined_tag']) ?></div>
                         <?php endif; ?>
 
                         <img class="card_img" src="<?= htmlspecialchars($event->getImageUrl() ?? 'https://media.istockphoto.com/id/533861572/fr/photo/football-au-coucher-du-soleil.jpg?s=612x612&w=0&k=20&c=6qnC4x39vZ2wEUkTh1e6QJsqIKfxW6jo15aSCPjsITk=') ?>" alt="<?= htmlspecialchars($event->getTitle()) ?>">

@@ -104,5 +104,9 @@ return [
     'placeholder_image' => 'https://example.com/image.jpg',
     
     'leave_event' => 'Leave event',
-    'my_events' => 'My events'
+    'my_events' => 'My events',
+
+    // ===== Announcements / Events =====
+    'joined_tag' => 'Joined',
+    'joined_event' => 'Joined'
 ];
