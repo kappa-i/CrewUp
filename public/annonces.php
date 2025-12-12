@@ -32,6 +32,24 @@ $eventManager = new EventManager();
 
 // Récupération de tous les événements depuis la base de données
 $events = $eventManager->getEvents();
+
+// Récupération des événements rejoints par l'utilisateur
+$joinedEventSet = [];
+if ($isAuthenticated) {
+    try {
+        $database = new Database();
+        $pdo = $database->getPdo();
+
+        $stmt = $pdo->prepare('SELECT event_id FROM event_participants WHERE user_id = :user_id');
+        $stmt->execute(['user_id' => $userId]);
+
+        // Set pour lookup O(1)
+        $joinedEventSet = array_fill_keys($stmt->fetchAll(PDO::FETCH_COLUMN), true);
+    } catch (\Throwable $e) {
+        $joinedEventSet = [];
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="<?= htmlspecialchars($lang) ?>">
@@ -71,7 +89,15 @@ $events = $eventManager->getEvents();
                 </p>
             <?php else: ?>
                 <?php foreach ($events as $event): ?>
-                    <article class="card">
+
+                    <?php $isJoined = $isAuthenticated && isset($joinedEventSet[$event->getId()]); ?>
+
+                    <article class="card<?= $isJoined ? ' is-joined' : '' ?>">
+
+                        <?php if ($isJoined): ?>
+                            <div class="joined-tag">Rejoint</div>
+                        <?php endif; ?>
+
                         <img class="card_img" src="<?= htmlspecialchars($event->getImageUrl() ?? 'https://media.istockphoto.com/id/533861572/fr/photo/football-au-coucher-du-soleil.jpg?s=612x612&w=0&k=20&c=6qnC4x39vZ2wEUkTh1e6QJsqIKfxW6jo15aSCPjsITk=') ?>" alt="<?= htmlspecialchars($event->getTitle()) ?>">
 
                         <div class="card_info">
