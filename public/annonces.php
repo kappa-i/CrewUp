@@ -52,10 +52,6 @@ $events = $eventManager->getEvents();
     <main>
         <h1 class="art-header"><?= htmlspecialchars($t['announcements_title']) ?></h1>
         <ul class="account-menu">
-            <li><?= htmlspecialchars($t['filters']) ?></li>
-            <li><a href="#"><?= htmlspecialchars($t['filter_sport']) ?></a></li>
-            <li><a href="#"><?= htmlspecialchars($t['filter_location']) ?></a></li>
-            <li><a href="#"><?= htmlspecialchars($t['filter_date']) ?></a></li>
             <?php if ($isAuthenticated): ?>
                 <li class="create-annonce-li">
                     <a href="/account/create.php" class="create-annonce-btn">
