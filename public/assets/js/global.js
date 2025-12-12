@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         nav.style.background = 'rgba(255, 255, 255, 0.120)';
         nav.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+        nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.25)';
       }
     };
   
