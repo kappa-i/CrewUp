@@ -62,8 +62,10 @@ footer {
 .footer_links {
     grid-area: links;
     display: grid;
-    grid-template-columns: repeat(2, minmax(180px, 1fr));
-    gap: 16px 56px;
+    grid-template-columns: auto 260px; /* liens | texte */
+    column-gap: 56px;
+    row-gap: 16px;
+    align-items: start;
     align-content: start;
     margin-top: 17px;
 }
@@ -139,13 +141,17 @@ footer {
     height: 28px;
 }
 
-.footer_col_right {
-    margin-top: 17px;        
+.footer_col_right {       
     max-width: 260px;
+    margin-top: 0; 
 }    
 
 .footer_desc {
-    margin: 0;
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.55;
+    color: rgba(255,255,255,0.88);
+}
+
+.footer_desc {
+    margin: 0;
 }
