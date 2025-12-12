@@ -112,4 +112,5 @@ return [
 
     // ===== Footer =====
     'footer_desc' => 'CrewUp facilite la connexion entre sportifs en Suisse. Rejoins des événements, rencontre des joueurs et pratique ton sport simplement.',
+    'create_announcement_btn' => 'Créer une annonce',
 ];

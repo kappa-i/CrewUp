@@ -112,4 +112,5 @@ return [
 
     // ===== Footer =====
     'footer_desc' => 'CrewUp makes it easy to connect athletes in Switzerland. Join events, meet players, and play your sport effortlessly.',
+    'create_announcement_btn' => 'Create an Event',
 ];
