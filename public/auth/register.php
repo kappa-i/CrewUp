@@ -4,6 +4,16 @@
 <?php
 session_start();
 
+require_once __DIR__ . '/../../src/i18n/load-translation.php';
+
+if (!defined('COOKIE_NAME')) {
+    define('COOKIE_NAME', 'lang');
+    define('DEFAULT_LANG', 'fr');
+}
+
+$lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
+$t = loadTranslation($lang);
+
 if (isset($_SESSION['user_id'])) {
     header('Location: /index.php');
     exit();
