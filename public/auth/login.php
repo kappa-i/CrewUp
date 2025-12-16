@@ -4,49 +4,38 @@
 <?php
 require_once __DIR__ . '/../../src/utils/autoloader.php';
 
-// Démarre la session
 session_start();
 
-// Si l'utilisateur est déjà connecté, le rediriger vers l'accueil
 if (isset($_SESSION['user_id'])) {
     header('Location: /index.php');
     exit();
 }
 
-// Initialise les variables
 $error = '';
 
-// Traite le formulaire de connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    // Validation des données
     if (empty($username) || empty($password)) {
         $error = 'Tous les champs sont obligatoires.';
     } else {
         try {
-            // Connexion à la base de données
             $database = new Database();
             $pdo = $database->getPdo();
 
-            // Récupérer l'utilisateur de la base de données
             $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username');
             $stmt->execute(['username' => $username]);
             $user = $stmt->fetch();
 
-            // Vérifier le mot de passe
             if ($user && password_verify($password, $user['password'])) {
-                // Authentification réussie - stocker les informations dans la session
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'];
 
-                // Rediriger vers la page d'accueil
                 header('Location: /index.php');
                 exit();
             } else {
-                // Authentification échouée
                 $error = 'Nom d\'utilisateur ou mot de passe incorrect.';
             }
         } catch (PDOException $e) {

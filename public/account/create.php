@@ -5,34 +5,26 @@ require_once __DIR__ . '/../../src/i18n/load-translation.php';
 use Events\EventManager;
 use Events\Event;
 
-// Démarre la session
 session_start();
 
-// Vérifie si l'utilisateur est authentifié
 $userId = $_SESSION['user_id'] ?? null;
 
-// L'utilisateur n'est pas authentifié
 if (!$userId) {
-    // Redirige vers la page de connexion
     header('Location: /auth/login.php');
     exit();
 }
 
-// Sinon, récupère les autres informations de l'utilisateur
 $username = $_SESSION['username'];
 $role = $_SESSION['role'];
 
-// Constantes
 const COOKIE_NAME = 'lang';
 const DEFAULT_LANG = 'fr';
 
-// Déterminer la langue
 $lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
 $t = loadTranslation($lang);
 
 $eventManager = new EventManager();
 
-// Liste des sports disponibles (traduits)
 $sports = [
     'football' => $t['sport_football'],
     'basketball' => $t['sport_basketball'],
@@ -44,9 +36,8 @@ $sports = [
     'other' => $t['sport_other']
 ];
 
-// Gère la soumission du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupération des données du formulaire
+
     $title = $_POST["title"] ?? '';
     $sport = $_POST["sport"] ?? '';
     $location = $_POST["location"] ?? '';
@@ -56,7 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST["description"] ?? null;
     $imageUrl = $_POST["image_url"] ?? null;
 
-    // Validation des données
     $errors = [];
 
     if (empty($title) || strlen($title) < 3) {
@@ -105,7 +95,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $userId
             );
 
-            // Ajoute l'événement dans la base
             $eventId = $eventManager->addEvent($event);
 
             $db = new Database();

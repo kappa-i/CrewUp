@@ -30,7 +30,6 @@ interface EventInterface {
     public function setImageUrl(?string $imageUrl): void;
     public function setUserId(int $userId): void;
 
-    // Méthodes utilitaires
     public function isAvailable(): bool;
     public function getRemainingSlots(): int;
     public function getFormattedDate(): string;

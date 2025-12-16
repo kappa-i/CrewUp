@@ -17,7 +17,7 @@ class Event implements EventInterface
     private int $userId;
     private ?string $createdAt;
 
-    // Constructeur pour initialiser l'objet
+    // Constructeur 
     public function __construct(
         ?int $id,
         string $title,
@@ -67,7 +67,6 @@ class Event implements EventInterface
             throw new \InvalidArgumentException("Le nombre de participants ne peut pas dépasser la capacité.");
         }
 
-        // Initialisation des propriétés
         $this->id = $id;
         $this->title = $title;
         $this->sport = $sport;
@@ -82,7 +81,7 @@ class Event implements EventInterface
         $this->createdAt = $createdAt;
     }
 
-    // Getters pour accéder aux propriétés
+    // Getters
     public function getId(): ?int
     {
         return $this->id;
@@ -143,7 +142,7 @@ class Event implements EventInterface
         return $this->createdAt;
     }
 
-    // Setters pour modifier les propriétés
+    // Setters 
     public function setId(int $id): void
     {
         $this->id = $id;
@@ -213,7 +212,6 @@ class Event implements EventInterface
         $this->userId = $userId;
     }
 
-    // Méthodes utilitaires
     public function isAvailable(): bool
     {
         return $this->filled < $this->capacity;

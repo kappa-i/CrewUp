@@ -4,30 +4,24 @@ require_once __DIR__ . '/../src/i18n/load-translation.php';
 
 use Events\EventManager;
 
-// Constantes
 const COOKIE_NAME = 'lang';
 const DEFAULT_LANG = 'fr';
 
 session_start();
 
-// Vérifie si l'utilisateur est authentifié
 $userId = $_SESSION['user_id'] ?? null;
 $isAuthenticated = $userId !== null;
 $role = $_SESSION['role'] ?? null;
 
 if ($isAuthenticated) {
-    // Récupère les autres informations de l'utilisateur
     $username = $_SESSION['username'];
 }
-// ===== FIN AUTHENTIFICATION =====
 
-// Déterminer la langue
 $lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
 $t = loadTranslation($lang);
 
 $eventManager = new EventManager();
 
-// On vérifie si l'ID de l'événement est passé dans l'URL
 if (!isset($_GET["id"])) {
     header("Location: /annonces.php");
     exit();
@@ -36,7 +30,6 @@ if (!isset($_GET["id"])) {
 $eventId = $_GET["id"];
 $event = $eventManager->getEventById($eventId);
 
-// Si l'événement n'existe pas, on redirige vers la page des annonces
 if (!$event) {
     header("Location: /annonces.php");
     exit();
@@ -51,7 +44,6 @@ if ($isAuthenticated) {
     $isParticipating = (bool)$stmt->fetch();
 }
 
-// Liste des sports pour affichage (traduits)
 $sports = [
     'football' => $t['sport_football'],
     'basketball' => $t['sport_basketball'],

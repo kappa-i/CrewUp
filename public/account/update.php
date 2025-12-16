@@ -5,34 +5,26 @@ require_once __DIR__ . '/../../src/i18n/load-translation.php';
 use Events\EventManager;
 use Events\Event;
 
-// Démarre la session
 session_start();
 
-// Vérifie si l'utilisateur est authentifié
 $userId = $_SESSION['user_id'] ?? null;
 
-// L'utilisateur n'est pas authentifié
 if (!$userId) {
-    // Redirige vers la page de connexion
     header('Location: /auth/login.php');
     exit();
 }
 
-// Sinon, récupère les autres informations de l'utilisateur
 $username = $_SESSION['username'];
 $role = $_SESSION['role'];
 
-// Constantes
 const COOKIE_NAME = 'lang';
 const DEFAULT_LANG = 'fr';
 
-// Déterminer la langue
 $lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
 $t = loadTranslation($lang);
 
 $eventManager = new EventManager();
 
-// Liste des sports disponibles (traduits)
 $sports = [
     'football' => $t['sport_football'],
     'basketball' => $t['sport_basketball'],
@@ -44,29 +36,23 @@ $sports = [
     'other' => $t['sport_other']
 ];
 
-// On vérifie si l'ID de l'événement est passé dans l'URL
 if (isset($_GET["id"])) {
-    // On récupère l'ID de l'événement de la superglobale `$_GET`
     $eventId = $_GET["id"];
 
-    // On récupère l'événement correspondant à l'ID
     $event = $eventManager->getEventById($eventId);
     $actualFilled = $event->getFilled();
 
 
-    // Si l'événement n'existe pas, on redirige vers la page des annonces
     if (!$event) {
         header("Location: /annonces.php");
         exit();
     }
-    
-    // ===== VÉRIFICATION DU PROPRIÉTAIRE =====
-    // Vérifie que l'utilisateur connecté est bien le créateur de l'événement
+
     if ($event->getUserId() !== $userId && $role !== 'admin') {
         header("Location: /annonces.php");
         exit();
     }
-    
+
     $id = $event->getId();
     $title = $event->getTitle();
     $sport = $event->getSport();
@@ -77,76 +63,65 @@ if (isset($_GET["id"])) {
     $filled = $event->getFilled();
     $description = $event->getDescription();
     $imageUrl = $event->getImageUrl();
-
 } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Gère la soumission du formulaire
 
-    // Récupération des données du formulaire
     $id = $_POST["id"];
-    
-    // Vérification supplémentaire lors de la soumission
+
     $event = $eventManager->getEventById($id);
     if (!$event || $event->getUserId() !== $userId && $role !== 'admin') {
         $_SESSION['error_message'] = "Vous n'avez pas la permission de modifier cet événement.";
         header("Location: /annonces.php");
         exit();
     }
-    
+
     $title = $_POST["title"];
     $sport = $_POST["sport"];
     $location = $_POST["location"];
     $date = $_POST["date"];
     $time = $_POST["time"];
     $capacity = $_POST["capacity"];
-    $filled = $_POST["filled"];
+    $filled = $event->getFilled();
     $description = $_POST["description"] ?? null;
     $imageUrl = $_POST["image_url"] ?? null;
 
-    // Validation des données
     $errors = [];
-    
+
     if (empty($title) || strlen($title) < 3) {
         $errors[] = "Le titre doit contenir au moins 3 caractères.";
     }
-    
+
     if (empty($sport)) {
         $errors[] = "Le sport est requis.";
     }
-    
+
     if (empty($location)) {
         $errors[] = "Le lieu est requis.";
     }
-    
+
     if (empty($date)) {
         $errors[] = "La date est requise.";
-
     } else {
         $today = date('Y-m-d');
         if ($date < $today) {
             $errors[] = "La date ne peut pas être antérieure à la date actuelle.";
         }
     }
-    
+
     if (empty($time)) {
         $errors[] = "L'heure est requise.";
     }
-    
+
     if ($capacity <= 0) {
         $errors[] = "La capacité doit être un nombre positif.";
     }
 
-    if ($filled < 0) {
-        $errors[] = "Le nombre de participants doit être positif ou nul.";
+   if ($capacity < $filled) {
+        $errors[] = "La capacité ne peut pas être inférieure au nombre de participants déjà inscrits.";
     }
 
-    if ($filled > $actualFilled) {
-        $errors[] = "Le nombre de participants ne peut pas dépasser la capacité.";
-    }
-
-    // S'il n'y a pas d'erreurs, on met à jour l'événement
     if (empty($errors)) {
         try {
-            // On crée un objet Event avec les nouvelles données
+
             $event = new Event(
                 $id,
                 $title,
@@ -161,16 +136,12 @@ if (isset($_GET["id"])) {
                 $userId
             );
 
-            // On met à jour l'événement dans la base de données
             $success = $eventManager->updateEvent($event);
 
-            // On vérifie si la mise à jour a réussi
             if ($success) {
-                // On redirige vers la page des annonces
                 header("Location: /annonces.php");
                 exit();
             } else {
-                // Si la mise à jour a échoué, on affiche un message d'erreur
                 $errors[] = "La mise à jour a échoué.";
             }
         } catch (\Exception $e) {
@@ -178,7 +149,6 @@ if (isset($_GET["id"])) {
         }
     }
 } else {
-    // Si l'ID n'est pas passé dans l'URL, on redirige vers la page des annonces
     header("Location: /annonces.php");
     exit();
 }
@@ -229,10 +199,10 @@ if (isset($_GET["id"])) {
             <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>" />
 
             <label for="title"><?= htmlspecialchars($t['event_title_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
-            <input type="text" id="title" name="title" 
-                   value="<?= isset($title) ? htmlspecialchars($title) : '' ?>" 
-                   required minlength="3" 
-                   placeholder="<?= htmlspecialchars($t['placeholder_title']) ?>">
+            <input type="text" id="title" name="title"
+                value="<?= isset($title) ? htmlspecialchars($title) : '' ?>"
+                required minlength="3"
+                placeholder="<?= htmlspecialchars($t['placeholder_title']) ?>">
 
             <label for="sport"><?= htmlspecialchars($t['sport_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
             <select id="sport" name="sport" required>
@@ -245,39 +215,44 @@ if (isset($_GET["id"])) {
             </select>
 
             <label for="location"><?= htmlspecialchars($t['location_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
-            <input type="text" id="location" name="location" 
-                   value="<?= isset($location) ? htmlspecialchars($location) : '' ?>" 
-                   required 
-                   placeholder="<?= htmlspecialchars($t['placeholder_location']) ?>">
+            <input type="text" id="location" name="location"
+                value="<?= isset($location) ? htmlspecialchars($location) : '' ?>"
+                required
+                placeholder="<?= htmlspecialchars($t['placeholder_location']) ?>">
 
             <label for="date"><?= htmlspecialchars($t['date_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
-            <input type="date" id="date" name="date" 
-                   value="<?= isset($date) ? htmlspecialchars($date) : '' ?>" 
-                   required>
+            <input type="date" id="date" name="date"
+                value="<?= isset($date) ? htmlspecialchars($date) : '' ?>"
+                required>
 
             <label for="time"><?= htmlspecialchars($t['time_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
-            <input type="time" id="time" name="time" 
-                   value="<?= isset($time) ? htmlspecialchars($time) : '' ?>" 
-                   required>
+            <input type="time" id="time" name="time"
+                value="<?= isset($time) ? htmlspecialchars($time) : '' ?>"
+                required>
 
             <label for="capacity"><?= htmlspecialchars($t['max_participants_label']) ?> <span style="color: #ff6b6b;"><?= htmlspecialchars($t['required_field']) ?></span></label>
-            <input type="number" id="capacity" name="capacity" 
+           <input type="number" id="capacity" name="capacity" 
                    value="<?= isset($capacity) ? htmlspecialchars($capacity) : '' ?>" 
-                   required min="2" 
+                   required min="<?= isset($filled) ? $filled : 2 ?>" 
                    placeholder="<?= htmlspecialchars($t['placeholder_capacity']) ?>">
+            <?php if (isset($filled) && $filled > 0): ?>
+                <small style="color: #ffa500; display: block; margin-top: 5px;">
+                    ⚠️ <?= $filled ?> participant(s) déjà inscrit(s). La capacité ne peut pas être inférieure à ce nombre.
+                </small>
+            <?php endif; ?>
 
             <label for="description"><?= htmlspecialchars($t['description_label']) ?></label>
-            <textarea id="description" name="description" 
-                      placeholder="<?= htmlspecialchars($t['placeholder_description']) ?>"><?= isset($description) ? htmlspecialchars($description) : '' ?></textarea>
+            <textarea id="description" name="description"
+                placeholder="<?= htmlspecialchars($t['placeholder_description']) ?>"><?= isset($description) ? htmlspecialchars($description) : '' ?></textarea>
 
             <label for="image_url"><?= htmlspecialchars($t['image_url_label']) ?></label>
-            <input type="url" id="image_url" name="image_url" 
-                   value="<?= isset($imageUrl) ? htmlspecialchars($imageUrl) : '' ?>" 
-                   placeholder="<?= htmlspecialchars($t['placeholder_image']) ?>">
+            <input type="url" id="image_url" name="image_url"
+                value="<?= isset($imageUrl) ? htmlspecialchars($imageUrl) : '' ?>"
+                placeholder="<?= htmlspecialchars($t['placeholder_image']) ?>">
 
             <div class="form-buttons">
-                <a href="deleteConfirm.php?id=<?= htmlspecialchars($id) ?>" 
-                   style="flex: 1; text-decoration: none;">
+                <a href="deleteConfirm.php?id=<?= htmlspecialchars($id) ?>"
+                    style="flex: 1; text-decoration: none;">
                     <button type="button" class="btn-reset" style="width: 100%;"><?= htmlspecialchars($t['btn_delete']) ?></button>
                 </a>
                 <button type="submit" class="btn-submit"><?= htmlspecialchars($t['btn_update']) ?></button>

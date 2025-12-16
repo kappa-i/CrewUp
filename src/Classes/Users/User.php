@@ -10,7 +10,6 @@ class User implements UsersInterface
     private string $password;
     private string $role;
 
-    // Constructeur pour initialiser l'objet
     public function __construct(
         ?int $id,
         string $username,
@@ -18,7 +17,6 @@ class User implements UsersInterface
         string $password,
         string $role = 'user'
     ) {
-        // Vérification des données
         if (empty($username)) {
             throw new \InvalidArgumentException("Le nom d'utilisateur est requis.");
         } else if (strlen($username) < 3) {
@@ -37,7 +35,6 @@ class User implements UsersInterface
             throw new \InvalidArgumentException("Le rôle doit être 'user' ou 'admin'.");
         }
 
-        // Initialisation des propriétés
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;
@@ -45,7 +42,7 @@ class User implements UsersInterface
         $this->role = $role;
     }
 
-    // Getters pour accéder aux propriétés
+    // Getters
     public function getId(): ?int
     {
         return $this->id;
@@ -71,7 +68,7 @@ class User implements UsersInterface
         return $this->role;
     }
 
-    // Setters pour modifier les propriétés
+    // Setters 
     public function setId(int $id): void
     {
         $this->id = $id;
@@ -105,7 +102,6 @@ class User implements UsersInterface
         }
     }
 
-    // Méthodes utilitaires
     public function isAdmin(): bool
     {
         return $this->role === 'admin';

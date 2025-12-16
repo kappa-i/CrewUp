@@ -2,27 +2,22 @@
 <link rel="stylesheet" href="../assets/css/account.css">
 
 <?php
-// Démarre la session
 session_start();
 
-// Si l'utilisateur est déjà connecté, le rediriger vers l'accueil
 if (isset($_SESSION['user_id'])) {
     header('Location: /index.php');
     exit();
 }
 
-// Initialise les variables
 $error = '';
 $success = '';
 
-// Traiter le formulaire d'inscription
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     $confirmPassword = $_POST['confirm_password'] ?? '';
 
-    // Validation des données
     if (empty($username) || empty($email) || empty($password) || empty($confirmPassword)) {
         $error = 'Tous les champs sont obligatoires.';
     } elseif (strlen($username) < 3) {
@@ -35,14 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Le mot de passe doit contenir au moins 8 caractères.';
     } else {
         try {
-            // Connexion à la base de données MySQL
             $pdo = new PDO(
                 'mysql:host=h09pj7.myd.infomaniak.com;port=3306;dbname=h09pj7_db_crewup;charset=utf8mb4',
                 'h09pj7_gabcappai',
                 'muG9Wd27@_ Y$'
             );
 
-            // Vérifier si l'email existe déjà
             $stmt = $pdo->prepare('SELECT * FROM users WHERE email = :email');
             $stmt->execute(['email' => $email]);
             $user = $stmt->fetch();
@@ -50,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($user) {
                 $error = 'Cet e-mail est déjà pris.';
             } else {
-                // Vérifier si le nom d'utilisateur existe déjà
                 $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username');
                 $stmt->execute(['username' => $username]);
                 $existingUsername = $stmt->fetch();
@@ -58,10 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($existingUsername) {
                     $error = 'Ce nom d\'utilisateur est déjà pris.';
                 } else {
-                    // Hacher le mot de passe
                     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-                    // Insérer le nouvel utilisateur
                     $stmt = $pdo->prepare('INSERT INTO users (username, email, password, role) VALUES (:username, :email, :password, :role)');
                     $stmt->execute([
                         'username' => $username,
@@ -71,7 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ]);
 
                     $success = 'Compte créé avec succès ! Vous pouvez maintenant vous connecter.';
-                    // Envoyer l'email de bienvenue
                     require_once __DIR__ . '/../../src/utils/mail_config.php';
                     sendWelcomeEmail($email, $username);
                 }

@@ -5,35 +5,26 @@ require_once __DIR__ . '/../src/i18n/load-translation.php';
 use Events\EventManager;
 
 
-// Démarre la session
 session_start();
 
-// Vérifie si l'utilisateur est authentifié
 $userId = $_SESSION['user_id'] ?? null;
 $isAuthenticated = $userId !== null;
 
-// L'utilisateur est authentifié
 if ($isAuthenticated) {
-    // Récupère les autres informations de l'utilisateur
     $username = $_SESSION['username'];
     $role = $_SESSION['role'];
 }
 
-// Constantes
 const COOKIE_NAME = 'lang';
 const DEFAULT_LANG = 'fr';
 
-// Déterminer la langue
 $lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
 $t = loadTranslation($lang);
 
-// Création d'une instance de EventManager pour accéder aux événements
 $eventManager = new EventManager();
 
-// Récupération de tous les événements depuis la base de données
 $events = $eventManager->getEvents();
 
-// Récupération des événements rejoints par l'utilisateur
 $joinedEventSet = [];
 if ($isAuthenticated) {
     try {
@@ -43,7 +34,6 @@ if ($isAuthenticated) {
         $stmt = $pdo->prepare('SELECT event_id FROM event_participants WHERE user_id = :user_id');
         $stmt->execute(['user_id' => $userId]);
 
-        // Set pour lookup O(1)
         $joinedEventSet = array_fill_keys($stmt->fetchAll(PDO::FETCH_COLUMN), true);
     } catch (\Throwable $e) {
         $joinedEventSet = [];

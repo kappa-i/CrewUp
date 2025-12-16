@@ -1,5 +1,4 @@
 <?php
-// Charger les traductions si pas déjà fait
 if (!isset($t)) {
     require_once __DIR__ . '/../../src/i18n/load-translation.php';
 

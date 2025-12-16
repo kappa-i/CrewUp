@@ -22,7 +22,6 @@ class Database implements DatabaseInterface
 
         $this->pdo = new \PDO("mysql:host=$host;port=$port;charset=utf8mb4", $username, $password);
 
-        // Création de la base de données si elle n'existe pas
         $sql = "CREATE DATABASE IF NOT EXISTS `$database` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
@@ -32,7 +31,6 @@ class Database implements DatabaseInterface
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
 
-        // Création de la table `users` si elle n'existe pas
         $sql = "CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             username VARCHAR(50) NOT NULL UNIQUE,
@@ -44,7 +42,6 @@ class Database implements DatabaseInterface
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
 
-        // Création de la table `events` si elle n'existe pas
         $sql = "CREATE TABLE IF NOT EXISTS events (
             id INT AUTO_INCREMENT PRIMARY KEY,
             title VARCHAR(255) NOT NULL,

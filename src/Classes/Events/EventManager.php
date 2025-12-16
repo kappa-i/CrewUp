@@ -20,19 +20,14 @@ class EventManager implements EventManagerInterface
      */
     public function getEvents(): array
     {
-        // Définition de la requête SQL pour récupérer tous les événements
         $sql = "SELECT * FROM events ORDER BY date ASC, time ASC";
 
-        // Préparation de la requête SQL
         $stmt = $this->database->getPdo()->prepare($sql);
 
-        // Exécution de la requête SQL
         $stmt->execute();
 
-        // Récupération de tous les événements
         $events = $stmt->fetchAll();
 
-        // Transformation des tableaux associatifs en objets Event
         $events = array_map(function ($eventData) {
             return new Event(
                 $eventData['id'],
@@ -50,13 +45,9 @@ class EventManager implements EventManagerInterface
             );
         }, $events);
 
-        // Retour de tous les événements
         return $events;
     }
 
-    /**
-     * Récupère un événement par son ID
-     */
     public function getEventById(int $id): ?Event
     {
         $sql = "SELECT * FROM events WHERE id = :id";
@@ -112,12 +103,8 @@ class EventManager implements EventManagerInterface
         }, $events);
     }
 
-    /**
-     * Ajoute un nouvel événement
-     */
     public function addEvent(Event $event): int
     {
-        // Définition de la requête SQL pour ajouter un événement
         $sql = "INSERT INTO events (
             title,
             sport,
@@ -142,10 +129,8 @@ class EventManager implements EventManagerInterface
             :user_id
         )";
 
-        // Préparation de la requête SQL
         $stmt = $this->database->getPdo()->prepare($sql);
 
-        // Lien avec les paramètres
         $stmt->bindValue(':title', $event->getTitle());
         $stmt->bindValue(':sport', $event->getSport());
         $stmt->bindValue(':location', $event->getLocation());
@@ -157,22 +142,15 @@ class EventManager implements EventManagerInterface
         $stmt->bindValue(':image_url', $event->getImageUrl());
         $stmt->bindValue(':user_id', $event->getUserId());
 
-        // Exécution de la requête SQL pour ajouter un événement
         $stmt->execute();
 
-        // Récupération de l'identifiant de l'événement ajouté
         $eventId = $this->database->getPdo()->lastInsertId();
 
-        // Retour de l'identifiant de l'événement ajouté
         return $eventId;
     }
 
-    /**
-     * Met à jour un événement existant
-     */
     public function updateEvent(Event $event): bool
     {
-        // Définition de la requête SQL pour mettre à jour un événement
         $sql = "UPDATE events SET
             title = :title,
             sport = :sport,
@@ -185,10 +163,8 @@ class EventManager implements EventManagerInterface
             image_url = :image_url
         WHERE id = :id";
 
-        // Préparation de la requête SQL
         $stmt = $this->database->getPdo()->prepare($sql);
 
-        // Lien avec les paramètres
         $stmt->bindValue(':id', $event->getId());
         $stmt->bindValue(':title', $event->getTitle());
         $stmt->bindValue(':sport', $event->getSport());
@@ -200,31 +176,20 @@ class EventManager implements EventManagerInterface
         $stmt->bindValue(':description', $event->getDescription());
         $stmt->bindValue(':image_url', $event->getImageUrl());
 
-        // Exécution de la requête SQL pour mettre à jour l'événement
         return $stmt->execute();
     }
 
-    /**
-     * Supprime un événement
-     */
     public function removeEvent(int $id): bool
     {
-        // Définition de la requête SQL pour supprimer un événement
         $sql = "DELETE FROM events WHERE id = :id";
 
-        // Préparation de la requête SQL
         $stmt = $this->database->getPdo()->prepare($sql);
 
-        // Lien avec le paramètre
         $stmt->bindValue(':id', $id);
 
-        // Exécution de la requête SQL pour supprimer un événement
         return $stmt->execute();
     }
 
-    /**
-     * Récupère les événements par sport
-     */
     public function getEventsBySport(string $sport): array
     {
         $sql = "SELECT * FROM events WHERE sport = :sport ORDER BY date ASC, time ASC";
@@ -253,9 +218,6 @@ class EventManager implements EventManagerInterface
         }, $events);
     }
 
-    /**
-     * Incrémente le nombre de participants
-     */
     public function incrementFilled(int $eventId): bool
     {
         $sql = "UPDATE events SET filled = filled + 1 WHERE id = :id AND filled < capacity";
@@ -266,9 +228,6 @@ class EventManager implements EventManagerInterface
         return $stmt->execute() && $stmt->rowCount() > 0;
     }
 
-    /**
-     * Décrémente le nombre de participants
-     */
     public function decrementFilled(int $eventId): bool
     {
         $sql = "UPDATE events SET filled = filled - 1 WHERE id = :id AND filled > 0";
