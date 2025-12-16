@@ -114,4 +114,25 @@ return [
     // ===== Footer =====
     'footer_desc' => 'CrewUp makes it easy to connect athletes in Switzerland. Join events, meet players, and play your sport effortlessly.',
     'create_announcement_btn' => 'Create an Event',
+
+    // ===== Auth =====
+    'auth_register_title' => 'Create an account',
+    'auth_error_label' => 'Error:',
+    'auth_success_label' => 'Success:',
+    'auth_login_now' => 'Log in now',
+    'auth_username_label' => 'Username',
+    'auth_email_label' => 'Email address',
+    'auth_password_label' => 'Password * (min. 8 characters)',
+    'auth_confirm_password_label' => 'Confirm password',
+    'auth_register_btn' => 'Create my account',
+    'auth_have_account' => 'Already have an account?',
+    'auth_login_link' => 'Log in',
+    'auth_back_home' => '← Back to home',
+
+    // ===== Auth (Login) =====
+    'auth_login_title' => 'Log in',
+    'auth_password_simple_label' => 'Password',
+    'auth_login_btn' => 'Log in',
+    'auth_no_account' => 'Don’t have an account yet?',
+    'auth_register_link' => 'Create an account',
 ];

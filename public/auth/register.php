@@ -84,42 +84,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <main>
-        <h1>Créer un compte</h1>
+        <h1><?= htmlspecialchars($t['auth_register_title']) ?></h1>
 
         <?php if ($error): ?>
-            <p style="color: red;"><strong>Erreur :</strong> <?= htmlspecialchars($error) ?></p>
+            <p style="color: red;">
+                <strong><?= htmlspecialchars($t['auth_error_label']) ?></strong>
+                <?= htmlspecialchars($error) ?>
+            </p>
         <?php endif; ?>
 
         <?php if ($success): ?>
-            <p style="color: green;"><strong>Succès :</strong> <?= htmlspecialchars($success) ?></p>
-            <p><a href="login.php">Se connecter maintenant</a></p>
+            <p style="color: green;">
+                <strong><?= htmlspecialchars($t['auth_success_label']) ?></strong>
+                <?= htmlspecialchars($success) ?>
+            </p>
+            <p><a href="login.php"><?= htmlspecialchars($t['auth_login_now']) ?></a></p>
         <?php endif; ?>
 
         <?php if (!$success): ?>
             <form method="POST">
-                <label for="username">Nom d'utilisateur *</label>
+                <label for="username"><?= htmlspecialchars($t['auth_username_label']) ?> <?= htmlspecialchars($t['required_field']) ?></label>
                 <input type="text" id="username" name="username"
                     value="<?= isset($username) ? htmlspecialchars($username) : '' ?>"
                     required minlength="3" autofocus>
 
-                <label for="email">Adresse e-mail *</label>
+                <label for="email"><?= htmlspecialchars($t['auth_email_label']) ?> <?= htmlspecialchars($t['required_field']) ?></label>
                 <input type="email" id="email" name="email"
                     value="<?= isset($email) ? htmlspecialchars($email) : '' ?>"
                     required>
 
-                <label for="password">Mot de passe * (min. 8 caractères)</label>
+                <label for="password"><?= htmlspecialchars($t['auth_password_label']) ?></label>
                 <input type="password" id="password" name="password" required minlength="8">
 
-                <label for="confirm_password">Confirmer le mot de passe *</label>
+                <label for="confirm_password"><?= htmlspecialchars($t['auth_confirm_password_label']) ?> <?= htmlspecialchars($t['required_field']) ?></label>
                 <input type="password" id="confirm_password" name="confirm_password" required minlength="8">
 
-                <button type="submit">Créer mon compte</button>
+                <button type="submit"><?= htmlspecialchars($t['auth_register_btn']) ?></button>
             </form>
 
-            <p>Vous avez déjà un compte ? <a href="login.php">Se connecter</a></p>
+            <p>
+                <?= htmlspecialchars($t['auth_have_account']) ?>
+                <a href="login.php"><?= htmlspecialchars($t['auth_login_link']) ?></a>
+            </p>
         <?php endif; ?>
 
-        <p><a href="/index.php">← Retour à l'accueil</a></p>
+        <p><a href="/index.php"><?= htmlspecialchars($t['auth_back_home']) ?></a></p>
     </main>
 </body>
 

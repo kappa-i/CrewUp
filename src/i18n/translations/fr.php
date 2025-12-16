@@ -114,4 +114,25 @@ return [
     // ===== Footer =====
     'footer_desc' => 'CrewUp facilite la connexion entre sportifs en Suisse. Rejoins des événements, rencontre des joueurs et pratique ton sport simplement.',
     'create_announcement_btn' => 'Créer une annonce',
+
+    // ===== Auth =====
+    'auth_register_title' => 'Créer un compte',
+    'auth_error_label' => 'Erreur :',
+    'auth_success_label' => 'Succès :',
+    'auth_login_now' => 'Se connecter maintenant',
+    'auth_username_label' => "Nom d'utilisateur",
+    'auth_email_label' => 'Adresse e-mail',
+    'auth_password_label' => 'Mot de passe * (min. 8 caractères)',
+    'auth_confirm_password_label' => 'Confirmer le mot de passe',
+    'auth_register_btn' => 'Créer mon compte',
+    'auth_have_account' => 'Vous avez déjà un compte ?',
+    'auth_login_link' => 'Se connecter',
+    'auth_back_home' => '← Retour à l’accueil',
+
+    // ===== Auth (Login) =====
+    'auth_login_title' => 'Se connecter',
+    'auth_password_simple_label' => 'Mot de passe',
+    'auth_login_btn' => 'Se connecter',
+    'auth_no_account' => 'Pas encore de compte ?',
+    'auth_register_link' => 'Créer un compte',
 ];

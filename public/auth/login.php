@@ -57,27 +57,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <main>
-        <h1>Se connecter</h1>
+        <h1><?= htmlspecialchars($t['auth_login_title']) ?></h1>
 
         <?php if ($error): ?>
-            <p style="color: red;"><strong>Erreur :</strong> <?= htmlspecialchars($error) ?></p>
+            <p style="color: red;">
+                <strong><?= htmlspecialchars($t['auth_error_label']) ?></strong>
+                <?= htmlspecialchars($error) ?>
+            </p>
         <?php endif; ?>
 
         <form method="POST">
-            <label for="username">Nom d'utilisateur *</label>
+            <label for="username">
+                <?= htmlspecialchars($t['auth_username_label']) ?>
+                <?= htmlspecialchars($t['required_field']) ?>
+            </label>
             <input type="text" id="username" name="username"
                 value="<?= isset($username) ? htmlspecialchars($username) : '' ?>"
                 required autofocus>
 
-            <label for="password">Mot de passe *</label>
+            <label for="password">
+                <?= htmlspecialchars($t['auth_password_simple_label']) ?>
+                <?= htmlspecialchars($t['required_field']) ?>
+            </label>
             <input type="password" id="password" name="password" required>
 
-            <button type="submit">Se connecter</button>
+            <button type="submit"><?= htmlspecialchars($t['auth_login_btn']) ?></button>
         </form>
 
-        <p>Pas encore de compte ? <a href="register.php">Créer un compte</a></p>
+        <p>
+            <?= htmlspecialchars($t['auth_no_account']) ?>
+            <a href="register.php"><?= htmlspecialchars($t['auth_register_link']) ?></a>
+        </p>
 
-        <p><a href="/index.php">← Retour à l'accueil</a></p>
+        <p>
+            <a href="/index.php"><?= htmlspecialchars($t['auth_back_home']) ?></a>
+        </p>
     </main>
 </body>
 
