@@ -20,7 +20,7 @@ class EventManager implements EventManagerInterface
      */
     public function getEvents(): array
     {
-        $sql = "SELECT * FROM events ORDER BY date ASC, time ASC";
+        $sql = "SELECT * FROM events ORDER BY date DESC, time DESC";
 
         $stmt = $this->database->getPdo()->prepare($sql);
 
