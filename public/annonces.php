@@ -80,12 +80,18 @@ if ($isAuthenticated) {
             <?php else: ?>
                 <?php foreach ($events as $event): ?>
 
-                    <?php $isJoined = $isAuthenticated && isset($joinedEventSet[$event->getId()]); ?>
+                    <?php $isJoined = $isAuthenticated && isset($joinedEventSet[$event->getId()]);
+                    $isPast = strtotime($event->getDate()) < time();
+                    ?>
 
-                    <article class="card<?= $isJoined ? ' is-joined' : '' ?>">
+                    <article class="card<?= $isJoined ? ' is-joined' : '' ?><?= $isPast ? ' is-past' : '' ?>">
 
                         <?php if ($isJoined): ?>
                             <div class="joined-tag"><?= htmlspecialchars($t['joined_tag']) ?></div>
+                        <?php endif; ?>
+
+                        <?php if ($isPast): ?>
+                            <div class="past-tag"><?= htmlspecialchars($t['past_tag'] ?? 'Terminé') ?></div>
                         <?php endif; ?>
 
                         <img class="card_img" src="<?= htmlspecialchars($event->getImageUrl() ?? 'https://media.istockphoto.com/id/533861572/fr/photo/football-au-coucher-du-soleil.jpg?s=612x612&w=0&k=20&c=6qnC4x39vZ2wEUkTh1e6QJsqIKfxW6jo15aSCPjsITk=') ?>" alt="<?= htmlspecialchars($event->getTitle()) ?>">
