@@ -22,7 +22,7 @@ return [
     'filter_date' => 'Date >',
     'no_events' => 'No events available at the moment.',
     'create_first' => 'Create the first one!',
-    'create' => 'Create an announcement',
+    'create' => 'Create an event',
     
     // ===== Dashboard page =====
     'dashboard_title' => 'My Account',
