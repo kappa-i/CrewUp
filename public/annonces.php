@@ -81,7 +81,7 @@ if ($isAuthenticated) {
                 <?php foreach ($events as $event): ?>
 
                     <?php $isJoined = $isAuthenticated && isset($joinedEventSet[$event->getId()]);
-                    $isPast = strtotime($event->getDate()) < time();
+                          $isPast = strtotime($event->getDate() . ' +1 day') < time();
                     ?>
 
                     <article class="card<?= $isJoined ? ' is-joined' : '' ?><?= $isPast ? ' is-past' : '' ?>">
