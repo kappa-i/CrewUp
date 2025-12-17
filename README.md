@@ -3,9 +3,8 @@
 **Site Internet :** https://crewup.ch/  
 **Rapport Écrit :** [CrewUp.pdf](https://github.com/user-attachments/files/24214401/CrewUp.pdf)
 
----
 <br>
-
+---
 
 # 🏃‍♂️ CrewUp – Gestion d'Événements Sportifs (FR/EN)
 
