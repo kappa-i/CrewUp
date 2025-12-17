@@ -170,7 +170,7 @@ main p.back-home a {
     display: flex;
     justify-content: center;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: -20px;
 }
 
 .role-badge {

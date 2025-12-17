@@ -98,6 +98,7 @@ footer {
     font-size: 1vw;
     color: rgba(255, 255, 255, 0.85);
     width: 260px;
+    text-wrap: nowrap;
 }
 
 .language_switcher {
