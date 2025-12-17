@@ -1,7 +1,5 @@
 <?php
 
-
-
 // Charge les classes automatiquement
 spl_autoload_register(function ($class) {
    
