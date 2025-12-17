@@ -1,3 +1,9 @@
+# 🗂️ Soumission
+Site Internet - https://crewup.ch/
+Rapport Ecrit - [CrewUp.pdf](https://github.com/user-attachments/files/24214401/CrewUp.pdf)
+
+
+
 # 🏃‍♂️ CrewUp – Gestion d'Événements Sportifs (FR/EN)
 
 > Projet développé par Gabriel, Nuno, Tanguy M53-2, lors du cours de Programmation Serveur 2, en ingénirie des médias à l'HEIG-VD.
@@ -5,15 +11,6 @@
 > 🤖Utilisation des IA pour le responsive CSS, les animations JS, La traduction automatique du tableau associatif pour EN/FR : ChatGPT, Claude AI.
 
 CrewUp est une plateforme web de gestion et d'organisation d'événements sportifs, accessible en français et en anglais. L'application permet à ses utilisateurs de créer, rejoindre et gérer des événements sportifs dans leur région.
-
-## 📋 Répartition des tâches
-
-Semaine 17.11.25
-
-- **Nuno** : Connexion de compte
-- **Gabriel** : Connexion de compte
-- **Tanguy** : Connexion de compte
-
 
 ---
 
