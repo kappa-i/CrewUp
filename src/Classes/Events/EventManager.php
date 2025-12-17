@@ -15,9 +15,7 @@ class EventManager implements EventManagerInterface
         $this->database = new Database();
     }
 
-    /**
-     * Récupère tous les événements
-     */
+    //pour recuperer tous les events
     public function getEvents(): array
     {
         $sql = "SELECT * FROM events ORDER BY date DESC, time DESC";

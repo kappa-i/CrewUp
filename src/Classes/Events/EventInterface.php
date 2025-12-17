@@ -3,7 +3,7 @@
 namespace Events;
 
 interface EventInterface {
-    // Getters
+    //getters
     public function getId(): ?int;
     public function getTitle(): string;
     public function getSport(): string;
@@ -17,7 +17,7 @@ interface EventInterface {
     public function getUserId(): int;
     public function getCreatedAt(): ?string;
 
-    // Setters
+    //setters
     public function setId(int $id): void;
     public function setTitle(string $title): void;
     public function setSport(string $sport): void;

@@ -9,7 +9,7 @@ session_start();
 $userId = $_SESSION['user_id'] ?? null;
 
 if (!$userId) {
-    // Redirige vers la page de connexion
+    //renvoi a la page de connexion
     header('Location: /auth/login.php');
     exit();
 }

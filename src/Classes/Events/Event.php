@@ -81,7 +81,7 @@ class Event implements EventInterface
         $this->createdAt = $createdAt;
     }
 
-    // Getters
+    //tous les getters pour chaque truc
     public function getId(): ?int
     {
         return $this->id;
@@ -224,7 +224,7 @@ class Event implements EventInterface
 
     public function getFormattedDate(): string
     {
-        // Convertir la date en format français (ex: "Sa, 12.07.26")
+        //convertir la date format francais comme nous (ex: "Sa, 12.07.26")
         $timestamp = strtotime($this->date);
         $days = ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa'];
         $dayName = $days[date('w', $timestamp)];
