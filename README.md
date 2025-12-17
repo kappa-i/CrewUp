@@ -1,6 +1,8 @@
 # 🗂️ Soumission
-Site Internet - https://crewup.ch/ <br>
-Rapport Ecrit - [CrewUp.pdf](https://github.com/user-attachments/files/24214401/CrewUp.pdf)
+
+**Site Internet :** https://crewup.ch/  
+**Rapport Écrit :** [CrewUp.pdf](https://github.com/user-attachments/files/24214401/CrewUp.pdf)
+
 ---
 <br>
 
