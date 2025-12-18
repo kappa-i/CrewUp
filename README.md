@@ -8,7 +8,7 @@
 
 # 🏃‍♂️ CrewUp – Gestion d'Événements Sportifs (FR/EN)
 
-> Projet développé par Gabriel Cappai, Nuno Amaro, Tanguy Vaucher M53-2, lors du cours de Programmation Serveur 2, en ingénirie des médias à l'HEIG-VD.
+> Projet développé par Gabriel Cappai, Nuno Amaro, Tanguy Vaucher (M53-2), lors du cours de Programmation Serveur 2, en ingénierie des médias à l'HEIG-VD.
 
 > 🤖Utilisation des IA pour le responsive CSS, les animations JS, La traduction automatique du tableau associatif pour EN/FR, ainsi que pour le debug de certains aspects techniques : ChatGPT, Claude AI.
 
