@@ -100,7 +100,7 @@ CrewUp est une plateforme web de gestion et d'organisation d'événements sporti
 
 ### 🛠️ Fonctionnalités Optionnelles (si le temps le permet)
 
-- Invitation d'amis **hors plateforme** (sans compte) à participer à un événement
+- Invitation d'amis à participer à un événement
 - Chat intégré / Foire Aux Questions (FAQ)
 
 ---
